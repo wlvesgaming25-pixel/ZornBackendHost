@@ -8,6 +8,7 @@ class AuthManager {
         this.currentUser = null;
         this.sessionKey = 'zorn_user_session';
         this.users = JSON.parse(localStorage.getItem('zorn_users') || '{}');
+        this.config = new ProductionConfig();
         this.init();
     }
 
@@ -570,11 +571,8 @@ class AuthManager {
     }
 
     getApiBaseUrl() {
-        // Use ProductionConfig if available, fallback to localhost
-        if (window.ProductionConfig) {
-            return window.ProductionConfig.getOAuthUrl();
-        }
-        return 'http://localhost:3004';
+        // Use ProductionConfig instance
+        return this.config.getOAuthUrl();
     }
 
     // Check for OAuth login results

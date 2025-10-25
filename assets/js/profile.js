@@ -9,6 +9,7 @@ class ProfileManager {
         this.defaultAvatar = 'assets/img/roster/socialsbg.png.webp';
         this.maxFileSize = 5 * 1024 * 1024; // 5MB
         this.allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+        this.config = new ProductionConfig();
         
         // Wait a bit for authManager to load, then initialize
         setTimeout(() => this.init(), 200);
@@ -127,7 +128,7 @@ class ProfileManager {
     async loadOAuthUser() {
         try {
             console.log('Attempting to load OAuth user from token...');
-            const response = await fetch('http://localhost:3004/api/auth/me', {
+            const response = await fetch(`${this.config.getOAuthUrl()}/api/auth/me`, {
                 method: 'GET',
                 credentials: 'include', // Include HTTP-only cookies
                 headers: {

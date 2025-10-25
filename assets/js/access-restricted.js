@@ -8,6 +8,7 @@ class AccessRestrictedPage {
         this.redirectTimer = null;
         this.redirectCountdown = 10;
         this.isRedirecting = false;
+        this.config = new ProductionConfig();
         
         this.init();
     }
@@ -171,7 +172,7 @@ class AccessRestrictedPage {
      */
     async validateJWTToken(token) {
         try {
-            const response = await fetch('http://localhost:3004/api/validate-token', {
+            const response = await fetch(`${this.config.getOAuthUrl()}/api/validate-token`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
