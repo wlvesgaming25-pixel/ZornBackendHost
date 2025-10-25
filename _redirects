@@ -1,22 +1,22 @@
-# Clean URLs - remove .html extensions
-/login /login.html 200
-/about /about.html 200
-/roster /roster.html 200
-/contact /contact.html 200
-/apply /apply.html 200
-/store /store.html 200
-/partners /partners.html 200
-/profile /profile.html 200
+# Clean URLs - remove .html extensions with rewrites to fix JavaScript loading
+/login /login.html 200!
+/about /about.html 200!
+/roster /roster.html 200!
+/contact /contact.html 200!
+/apply /apply.html 200!
+/store /store.html 200!
+/partners /partners.html 200!
+/profile /profile.html 200!
 
 # Handle specific apply pages
-/apply/coach /apply-coach.html 200
-/apply/competitive /apply-competitive.html 200
-/apply/creator /apply-creator.html 200
-/apply/designer /apply-designer.html 200
-/apply/editor /apply-editor.html 200
-/apply/freestyler /apply-freestyler.html 200
-/apply/management /apply-management.html 200
-/apply/other /apply-other.html 200
+/apply/coach /apply-coach.html 200!
+/apply/competitive /apply-competitive.html 200!
+/apply/creator /apply-creator.html 200!
+/apply/designer /apply-designer.html 200!
+/apply/editor /apply-editor.html 200!
+/apply/freestyler /apply-freestyler.html 200!
+/apply/management /apply-management.html 200!
+/apply/other /apply-other.html 200!
 
 # Fallback for any other .html files
 /* /index.html 404
