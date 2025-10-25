@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zorn Roster - Meet our talented team members">
+    <title>Roster - Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/roster.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link active">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="user-profile" id="userProfile">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero animate-on-load fade-in-scale">
+            <div class="container">
+                <h1 class="animate-on-load slide-in-bottom delay-2">Our Roster</h1>
+                <p class="animate-on-load slide-in-bottom delay-3">Meet the talented individuals who make Zorn exceptional</p>
+            </div>
+        </section>
+
+        <!-- Owner Section -->
+        <section class="roster-section owner-section">
+            <div class="container">
+                <h2 class="section-title animate-on-load slide-in-top delay-4">OWNER</h2>
+                <div class="featured-member animate-on-load fade-in-scale delay-5">
+                    <div class="member-carousel">
+                        <div class="carousel-nav prev" onclick="changeSlide(-1)">&#8249;</div>
+                        <div class="member-slide active">
+                            <div class="member-image-large">
+                                <img src="assets/img/roster/xj-pfp.png" alt="Team Owner">
+                            </div>
+                            <div class="member-details">
+                                <div class="member-name">XJEffect <img src="https://flagcdn.com/24x18/au.png" alt="Australian Flag" style="margin-left: 8px; vertical-align: middle;"></div>
+                                <div class="member-title">Founder & CEO</div>
+                                <div class="member-description">Leading Team Zorn with vision and passion for esports excellence since 2025.</div>
+                                <div class="social-icons">
+                                    <a href="https://www.twitch.tv/xjeffect" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                                    <a href="https://x.com/XJEffect" class="social-icon twitter"><img src="assets/img/roster/sociallogos/x-logo.png" alt="X"></a>
+                                    <a href="https://www.youtube.com/@XJEffect" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                                    <a href="https://www.tiktok.com/@XJEffect" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-nav next" onclick="changeSlide(1)">&#8250;</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Management Section -->
+        <section class="roster-section management-section">
+            <div class="container">
+                <h2 class="section-title">MANAGEMENT</h2>
+                <div class="member-grid">
+                    <!-- First row - always visible -->
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/jawlei-avi2.png" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/nz.png" alt="New Zealand Flag">
+                        </div>
+                        <div class="member-name-new">Jawlei</div>
+                        <div class="member-role-new">Head of Operations</div>
+                                <div class="social-icons">
+                                    <a href="https://www.twitch.tv/jawlei" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                                    <a href="https://x.com/jawleidzn" class="social-icon twitter"><img src="assets/img/roster/sociallogos/x-logo.png" alt="X"></a>
+                                    <a href="https://www.tiktok.com/@jawlei" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                                </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Blessed-Avi.png" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/nz.png" alt="New Zealand Flag">
+                        </div>
+                        <div class="member-name-new">Blessed</div>
+                        <div class="member-role-new">Head of Talent & Scouting</div>
+                        <div class="social-icons">
+                            <a href="https://www.twitch.tv/blessed_rl_" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                            <a href="https://www.youtube.com/@blessed_rl" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@blessed_rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/CommyBro Zorn.png" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">CommyBro</div>
+                        <div class="member-role-new">General Manager</div>
+                        <div class="social-icons">
+                            <a href="https://www.twitch.tv/commybro" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                            <a href="https://x.com/com3122" class="social-icon twitter"><img src="assets/img/roster/sociallogos/x-logo.png" alt="X"></a>
+                            <a href="https://www.tiktok.com/@commybruh" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional management cards - initially hidden -->
+                <div class="member-grid additional-management" id="additionalManagement">
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Arxh-Avi.png" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Arxh</div>
+                        <div class="member-role-new">Events Co-ordinator</div>
+                        <div class="social-icons">
+                            <a href="https://x.com/Arxh_13" class="social-icon twitter"><img src="assets/img/roster/sociallogos/x-logo.png" alt="X"></a>
+
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Broken-Zorn-Avi.png" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/nz.png" alt="New Zealand Flag">
+                        </div>
+                        <div class="member-name-new">Broken</div>
+                        <div class="member-role-new">Management</div>
+                        <div class="social-icons">
+                            <a href="https://www.twitch.tv/thebrokenidtt" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                            <a href="https://www.youtube.com/@thebrokenid" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@thebrokenid?_t=ZS-908TEsk6xD6&_r=1" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Almighty</div>
+                        <div class="member-role-new">Moderation</div>
+                        <div class="social-icons">
+                            <a href="https://www.youtube.com/channel/UCLGPOZ24PAkaDKrUsvu3cxg" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@almightyrl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Agitator</div>
+                        <div class="member-role-new">Moderation</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@agitator_rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Team Manager">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/24x18/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Dyku</div>
+                        <div class="member-role-new">Moderation</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@dyku.rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expand/Collapse Button -->
+                <div class="expand-button-container">
+                    <button class="expand-button" onclick="toggleManagementCards()" id="managementToggle">
+                        <span class="expand-text">Show More Management</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Creators Section -->
+        <section class="roster-section content-section">
+            <div class="container">
+                <h2 class="section-title">CONTENT CREATORS</h2>
+                <div class="member-grid">
+                    <!-- First row - always visible -->
+                    <div class="member-card-new lead-role scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Dylan</div>
+                        <div class="member-role-new">Lead Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@dylann.rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Blessed-Avi.png" alt="Blessed">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/nz.png" alt="New Zealand Flag">
+                        </div>
+                        <div class="member-name-new">Blessed</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.twitch.tv/blessed_rl_" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                            <a href="https://www.youtube.com/@blessed_rl" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@blessed_rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Mist-Avi.png" alt="MistStream">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">MistStream</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.twitch.tv/miststream" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                            <a href="https://www.youtube.com/@MistStream" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@miststream.rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional content creator cards - initially hidden -->
+                <div class="member-grid additional-content center-cards" id="additionalContent">
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Ascend</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@ascend_rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Splash-Avi.png" alt="Splash">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Splash</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.youtube.com/@splashhrl7" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@splashhhrl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/fruitie-pfp.jpeg" alt="Fruitie">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">Fruitie</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.twitch.tv/fiz6fruitie" class="social-icon twitch"><img src="assets/img/roster/sociallogos/twitch-logo.png" alt="Twitch"></a>
+                            <a href="https://www.youtube.com/@fiz6fruitie" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@fruitierazza" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Azzq-Avi.png" alt="ImAzzq">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="Australian Flag">
+                        </div>
+                        <div class="member-name-new">ImAzzq</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@imazzq.rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/us.png" alt="US Flag">
+                        </div>
+                        <div class="member-name-new">Damon</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@damon_rl?is_from_webapp=1&sender_device=pc" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/nl.png" alt="NL Flag">
+                        </div>
+                        <div class="member-name-new">Tyme</div>
+                        <div class="member-role-new">Content Creator</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@aria_tyme7" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expand/Collapse Button -->
+                <div class="expand-button-container">
+                    <button class="expand-button" onclick="toggleContentCards()" id="contentToggle">
+                        <span class="expand-text">Show More Content Creators</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Section -->
+        <section class="roster-section competitive-section">
+            <div class="container">
+                <h2 class="section-title">COMPETITIVE CLIP HITTERS</h2>
+                <div class="member-grid">
+                    <!-- First row - always visible -->
+                    <div class="member-card-new lead-role scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Monty-Avi.png" alt="Monty">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Monty</div>
+                        <div class="member-role-new">Lead CCH</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@montyrl_" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Masomnia-Avi.png" alt="Masomnia">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Masomnia</div>
+                        <div class="member-role-new">CCH</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@mas0mnia" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Thxnder-Zorn-Avi.png" alt="Thxnder">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Thxnder</div>
+                        <div class="member-role-new">CCH</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@thxnder.rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional competitive cards - initially hidden -->
+                <div class="member-grid additional-competitive center-cards" id="additionalCompetitive">
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Evoke">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Evoke</div>
+                        <div class="member-role-new">CCH</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@evokeisback" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="JusttVoidd">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">JusttVoidd</div>
+                        <div class="member-role-new">CCH</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@justtvoidd" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expand/Collapse Button -->
+                <div class="expand-button-container">
+                    <button class="expand-button" onclick="toggleCompetitiveCards()" id="competitiveToggle">
+                        <span class="expand-text">Show More Competitive Clip Hitters</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Freestylers Section -->
+        <section class="roster-section freestyler-section">
+            <div class="container">
+                <h2 class="section-title">FREESTYLERS</h2>
+                <div class="member-grid">
+                    <!-- First row - always visible -->
+                    <div class="member-card-new lead-role scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Kash</div>
+                        <div class="member-role-new">Lead Freestyler</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@.kashrl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Pablo</div>
+                        <div class="member-role-new">FREESTYLER</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@pabloo007_" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/us.png" alt="US Flag">
+                        </div>
+                        <div class="member-name-new">Kai</div>
+                        <div class="member-role-new">FREESTYLER</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@kai.rl1?_t=ZP-8tiSU24NEfm&_r=1" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional freestyler cards - initially hidden -->
+                <div class="member-grid additional-freestylers center-cards" id="additionalFreestylers">
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Default">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Wa.Baki</div>
+                        <div class="member-role-new">FREESTYLER</div>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@wa.baki" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expand/Collapse Button -->
+                <div class="expand-button-container">
+                    <button class="expand-button" onclick="toggleFreestylerCards()" id="freestylerToggle">
+                        <span class="expand-text">Show More Freestylers</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Designers Section -->
+        <section class="roster-section designer-section">
+            <div class="container">
+                <h2 class="section-title">DESIGNERS</h2>
+                <div class="member-grid center-cards">
+                    <div class="member-card-new lead-role scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/jawlei-avi2.png" alt="Jawlei">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/nz.png" alt="NZ Flag">
+                        </div>
+                        <div class="member-name-new">Jawlei</div>
+                        <div class="member-role-new">Lead Designer</div>
+                        <div class="social-icons">
+                            <a href="https://jawlei.portfoliobox.net/" class="social-icon behance"><img src="assets/img/roster/sociallogos/behance-logo.png" alt="Behance"></a>
+                            <a href="https://x.com/jawleidzn" class="social-icon twitter"><img src="assets/img/roster/sociallogos/x-logo.png" alt="X"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/xj-pfp.png" alt="XjEffect">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">XJEffect</div>
+                        <div class="member-role-new">Designer</div>
+                        <div class="social-icons">
+                            <a href="https://behance.net/DesignsByXavier" class="social-icon behance"><img src="assets/img/roster/sociallogos/behance-logo.png" alt="Behance"></a>
+                            <a href="https://x.com/xjeffect" class="social-icon twitter"><img src="assets/img/roster/sociallogos/x-logo.png" alt="X"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Editors Section -->
+        <section class="roster-section editor-section">
+            <div class="container">
+                <h2 class="section-title">EDITORS</h2>
+                <div class="member-grid center-cards">
+                    <div class="member-card-new lead-role scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/socialsbg.png.webp" alt="Shockwave">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/au.png" alt="AU Flag">
+                        </div>
+                        <div class="member-name-new">Shockwave</div>
+                        <div class="member-role-new">Lead Montage FX</div>
+                        <div class="social-icons">
+                            <a href="https://www.youtube.com/@ShockwaveVFX" class="social-icon YT"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@shockwavevfx" class="social-icon TikTok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-card-new lead-role scroll-fade-in">
+                        <div class="member-avatar">
+                            <img src="assets/img/roster/Zorn-Blessed-Avi.png" alt="Blessed">
+                        </div>
+                        <div class="member-flag">
+                            <img src="https://flagcdn.com/32x24/nz.png" alt="NZ Flag">
+                        </div>
+                        <div class="member-name-new">Blessed</div>
+                        <div class="member-role-new">Lead TikTok FX</div>
+                        <div class="social-icons">
+                            <a href="https://www.youtube.com/@blessed_rl" class="social-icon youtube"><img src="assets/img/roster/sociallogos/yt-logo.png" alt="YouTube"></a>
+                            <a href="https://www.tiktok.com/@blessed_rl" class="social-icon tiktok"><img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="join-team">
+            <div class="container">
+                <div class="join-content">
+                    <h2>Join Our Team</h2>
+                    <p>We're always looking for talented individuals who share our passion for excellence. If you think you'd be a great fit for our team, we'd love to hear from you!</p>
+                    <a href="apply.html" class="btn btn-primary">Apply Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="roster.html">Roster</a></li>
+                    <li><a href="apply.html">Apply</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://x.com/ZornHQ" class="social-link" target="_blank">X (Twitter)</a>
+                    <a href="https://discord.gg/VNb82VRYna" class="social-link" target="_blank">Discord</a>
+                    <a href="https://www.tiktok.com/@teamzornhq" class="social-link" target="_blank">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: teamzornhq@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/roster.js"></script>
+</body>
+</html>

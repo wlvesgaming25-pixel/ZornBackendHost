@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply for Other Positions at Team Zorn - Rocket League Organization">
+    <title>Apply for Other Position - Team Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/apply.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="roster.html" class="nav-link">Roster</a></li>
+                    <li class="nav-item"><a href="apply.html" class="nav-link active">Apply</a></li>
+                    <li class="nav-item"><a href="partners.html" class="nav-link">Partners</a></li>
+                    <li class="nav-item"><a href="store.html" class="nav-link">Store</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Other Position Application</h1>
+                <p>Have a unique skill? We'd love to hear from you!</p>
+                <div class="back-link"><a href="apply.html" class="btn btn-secondary">← Back to Positions</a></div>
+            </div>
+        </section>
+        <section class="application-form">
+            <div class="container">
+                <!-- Requirements Modal -->
+                <div id="requirementsModal" class="requirements-modal">
+                    <div class="modal-content">
+                        <h2>Other Position Requirements</h2>
+                        <div class="requirements-list">
+                            <ul>
+                                <li>Must be 16+ years old</li>
+                                <li>Clearly explain your proposed role and skills</li>
+                                <li>Demonstrate relevant experience or qualifications</li>
+                                <li>Show how you can contribute to Team Zorn</li>
+                                <li>Provide examples of previous work if applicable</li>
+                                <li>Professional attitude and reliability</li>
+                            </ul>
+                        </div>
+                        <div class="modal-actions">
+                            <button onclick="acceptRequirements()" class="btn btn-primary">I Meet These Requirements - Continue</button>
+                            <button onclick="declineRequirements()" class="btn btn-secondary">Go Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applicationFormSection" style="display: none;">
+                <h2>Application Form</h2>
+                <form class="apply-form" action="#" method="POST" novalidate>
+                    <input type="hidden" name="position" value="other">
+                    <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" name="fullName" required></div>
+                    <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required></div>
+                    <div class="form-group"><label for="discordTag">Discord Tag *</label><input type="text" id="discordTag" name="discordTag" required></div>
+                    <div class="form-group"><label for="proposedRole">Proposed Role *</label><input type="text" id="proposedRole" name="proposedRole" required placeholder="What position are you proposing? (e.g., Analyst, Developer, Translator, etc.)"></div>
+                    <div class="form-group"><label for="roleDescription">Role Description *</label><textarea id="roleDescription" name="roleDescription" rows="4" required placeholder="Describe what this role would involve and how it would benefit Team Zorn"></textarea></div>
+                    <div class="form-group"><label for="qualifications">Your Qualifications *</label><textarea id="qualifications" name="qualifications" rows="4" required placeholder="What experience, skills, or qualifications do you have for this role?"></textarea></div>
+                    <div class="form-group"><label for="portfolio">Portfolio/Examples</label><textarea id="portfolio" name="portfolio" rows="3" placeholder="Share any relevant work samples, portfolio, or examples of your skills"></textarea></div>
+                    <div class="form-group"><label for="availability">Time Commitment *</label><textarea id="availability" name="availability" rows="3" required placeholder="How much time can you dedicate to this role? What's your typical availability?"></textarea></div>
+                    <div class="form-group"><label for="motivation">Why Team Zorn? *</label><textarea id="motivation" name="motivation" rows="6" required placeholder="Why do you want to contribute to Team Zorn in this capacity? How do you see this role growing with us?"></textarea></div>
+                    <div class="form-group checkbox-group"><input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to represent Team Zorn professionally and fulfill my proposed role responsibilities *</label></div>
+                    <button type="submit" class="btn btn-primary">Submit Other Application</button>
+                </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Quick Links</h4><ul><li><a href="about.html">About</a></li><li><a href="roster.html">Roster</a></li><li><a href="apply.html">Apply</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+            <div class="footer-section"><h4>Connect</h4><div class="social-links"><a href="https://x.com/ZornHQ" class="social-link" target="_blank">X (Twitter)</a><a href="https://discord.gg/VNb82VRYna" class="social-link" target="_blank">Discord</a><a href="https://www.tiktok.com/@teamzornhq" class="social-link" target="_blank">TikTok</a></div></div>
+            <div class="footer-section"><h4>Contact Info</h4><p>Email: teamzornhq@gmail.com</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Team Zorn. All rights reserved.</p></div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/applications-simple.js"></script>
+    <script src="assets/js/requirements-modal.js"></script>
+</body>
+</html>

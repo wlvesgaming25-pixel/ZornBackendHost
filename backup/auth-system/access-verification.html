@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Portal - Access Verification | Team Zorn</title>
+    <style>
+        :root {
+            --zorn-gradient: linear-gradient(135deg, #ff4824 0%, #ff0b4e 50%, #b000ff 100%);
+            --gray-950: #0a0a0a;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --gray-700: #333333;
+            --white: #ffffff;
+            --green-400: #4ade80;
+            --red-400: #f87171;
+            --orange-400: #fb923c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gray-950);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            background: var(--zorn-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: var(--gray-900);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray-700);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--zorn-gradient);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--gray-700);
+            color: var(--white);
+        }
+
+        .btn-success {
+            background: var(--green-400);
+            color: var(--gray-950);
+        }
+
+        .btn-danger {
+            background: var(--red-400);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-card {
+            background: var(--gray-800);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .status-card.secure {
+            border-left-color: var(--green-400);
+        }
+
+        .status-card.warning {
+            border-left-color: var(--orange-400);
+        }
+
+        .status-card.error {
+            border-left-color: var(--red-400);
+        }
+
+        .account-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .account-table th,
+        .account-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .account-table th {
+            background: var(--gray-800);
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: var(--green-400);
+            color: var(--gray-950);
+        }
+
+        .status-inactive {
+            background: var(--red-400);
+            color: var(--white);
+        }
+
+        .status-pending {
+            background: var(--orange-400);
+            color: var(--gray-950);
+        }
+
+        .log-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background: var(--gray-800);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .log-entry {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-700);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .actions-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-info {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid var(--green-400);
+            color: var(--green-400);
+        }
+
+        .alert-warning {
+            background: rgba(251, 146, 60, 0.1);
+            border: 1px solid var(--orange-400);
+            color: var(--orange-400);
+        }
+
+        .alert-error {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid var(--red-400);
+            color: var(--red-400);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gray-700);
+            border-top: 3px solid var(--green-400);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .actions-panel {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Leadership Portal Access Verification</h1>
+            <p>Secure authentication system for Team Zorn management</p>
+        </div>
+
+        <!-- System Status Overview -->
+        <div class="section">
+            <h2 class="section-title">
+                📊 System Status Overview
+            </h2>
+            <div class="status-grid" id="statusGrid">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading system status...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Registry -->
+        <div class="section">
+            <h2 class="section-title">
+                👥 Management Registry
+            </h2>
+            <div id="registryContent">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading management accounts...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section">
+            <h2 class="section-title">
+                ⚡ Quick Actions
+            </h2>
+            <div class="actions-panel">
+                <button class="btn btn-primary" onclick="runAccessCheck()">
+                    🔍 Run Access Check
+                </button>
+                <button class="btn btn-success" onclick="autoFixIssues()">
+                    🔧 Auto-Fix Issues
+                </button>
+                <button class="btn btn-secondary" onclick="generateReport()">
+                    📊 Generate Report
+                </button>
+                <button class="btn btn-secondary" onclick="exportLogs()">
+                    📄 Export Logs
+                </button>
+                <button class="btn btn-primary" onclick="goToDashboard()">
+                    🎮 Go to Dashboard
+                </button>
+            </div>
+            <div id="actionResults"></div>
+        </div>
+
+        <!-- Access Logs -->
+        <div class="section">
+            <h2 class="section-title">
+                📝 Recent Access Logs
+            </h2>
+            <div class="log-container" id="accessLogs">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading access logs...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/leadership-auth.js"></script>
+    <script>
+        class AccessVerificationPanel {
+            constructor() {
+                this.auth = window.leadershipAuth;
+                this.init();
+            }
+
+            async init() {
+                console.log('🚀 Initializing Access Verification Panel...');
+                
+                // Wait for auth system to be ready
+                await this.waitForAuth();
+                
+                // Load all panels
+                await Promise.all([
+                    this.loadSystemStatus(),
+                    this.loadManagementRegistry(),
+                    this.loadAccessLogs()
+                ]);
+            }
+
+            async waitForAuth() {
+                return new Promise((resolve) => {
+                    if (this.auth && this.auth.managementRegistry) {
+                        resolve();
+                    } else {
+                        setTimeout(() => this.waitForAuth().then(resolve), 100);
+                    }
+                });
+            }
+
+            async loadSystemStatus() {
+                const grid = document.getElementById('statusGrid');
+                
+                try {
+                    const report = this.auth.generateAccessReport();
+                    
+                    grid.innerHTML = `
+                        <div class="status-card ${report.securityStatus === 'SECURE' ? 'secure' : 'warning'}">
+                            <h3>🔐 Security Status</h3>
+                            <p><strong>${report.securityStatus}</strong></p>
+                            <p>${report.verifiedAccounts}/${report.totalAccounts} accounts verified</p>
+                        </div>
+                        
+                        <div class="status-card secure">
+                            <h3>✅ Active Accounts</h3>
+                            <p><strong>${report.activeAccounts}</strong></p>
+                            <p>Ready for portal access</p>
+                        </div>
+                        
+                        <div class="status-card ${report.unverifiedAccounts > 0 ? 'warning' : 'secure'}">
+                            <h3>⚠️ Requires Attention</h3>
+                            <p><strong>${report.unverifiedAccounts}</strong></p>
+                            <p>Accounts need verification</p>
+                        </div>
+                        
+                        <div class="status-card ${report.inactiveAccounts > 0 ? 'error' : 'secure'}">
+                            <h3>🚫 Inactive Accounts</h3>
+                            <p><strong>${report.inactiveAccounts}</strong></p>
+                            <p>Deactivated accounts</p>
+                        </div>
+                    `;
+                } catch (error) {
+                    grid.innerHTML = `<div class="alert alert-error">Error loading system status: ${error.message}</div>`;
+                }
+            }
+
+            async loadManagementRegistry() {
+                const container = document.getElementById('registryContent');
+                
+                try {
+                    const report = this.auth.generateAccessReport();
+                    
+                    let tableHTML = `
+                        <table class="account-table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Level</th>
+                                    <th>Status</th>
+                                    <th>Permissions</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    report.accounts.forEach(account => {
+                        const statusClass = account.status === 'ACTIVE' ? 'status-active' :
+                                          account.status === 'INACTIVE' ? 'status-inactive' : 'status-pending';
+                        
+                        tableHTML += `
+                            <tr>
+                                <td>${account.email}</td>
+                                <td>${account.role}</td>
+                                <td>${account.level}</td>
+                                <td><span class="status-badge ${statusClass}">${account.status}</span></td>
+                                <td>${account.permissions.join(', ')}</td>
+                                <td>
+                                    ${account.status === 'REQUIRES_VERIFICATION' ? 
+                                        `<button class="btn btn-success" onclick="verifyAccount('${account.email}')">Verify</button>` : ''}
+                                    ${!account.active ? 
+                                        `<button class="btn btn-primary" onclick="activateAccount('${account.email}')">Activate</button>` : ''}
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    
+                    tableHTML += '</tbody></table>';
+                    
+                    container.innerHTML = tableHTML;
+                    
+                } catch (error) {
+                    container.innerHTML = `<div class="alert alert-error">Error loading registry: ${error.message}</div>`;
+                }
+            }
+
+            async loadAccessLogs() {
+                const container = document.getElementById('accessLogs');
+                
+                try {
+                    const logs = this.auth.accessLogs.slice(-20).reverse(); // Last 20 logs
+                    
+                    if (logs.length === 0) {
+                        container.innerHTML = '<p style="text-align: center; color: #888;">No access logs found</p>';
+                        return;
+                    }
+                    
+                    let logsHTML = '';
+                    logs.forEach(log => {
+                        const timestamp = new Date(log.timestamp).toLocaleString();
+                        const color = log.action.includes('DENIED') ? '#f87171' : '#4ade80';
+                        
+                        logsHTML += `
+                            <div class="log-entry" style="color: ${color}">
+                                [${timestamp}] ${log.action} - ${log.email} (${log.role || 'Unknown'})
+                                ${log.reason ? `- ${log.reason}` : ''}
+                            </div>
+                        `;
+                    });
+                    
+                    container.innerHTML = logsHTML;
+                    
+                } catch (error) {
+                    container.innerHTML = `<div class="alert alert-error">Error loading logs: ${error.message}</div>`;
+                }
+            }
+        }
+
+        // Action Functions
+        async function runAccessCheck() {
+            showResult('🔍 Running comprehensive access check...', 'info');
+            
+            try {
+                await window.leadershipAuth.performAccessCheck();
+                showResult('✅ Access check completed successfully!', 'success');
+                setTimeout(() => window.location.reload(), 2000);
+            } catch (error) {
+                showResult(`❌ Access check failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function autoFixIssues() {
+            showResult('🔧 Auto-fixing access issues...', 'info');
+            
+            try {
+                const fixes = await window.leadershipAuth.autoFixAccessIssues();
+                
+                let message = '✅ Auto-fix completed!\n\n';
+                if (fixes.applied.length > 0) {
+                    message += 'Applied fixes:\n' + fixes.applied.join('\n') + '\n\n';
+                }
+                if (fixes.failed.length > 0) {
+                    message += 'Failed fixes:\n' + fixes.failed.join('\n') + '\n\n';
+                }
+                if (fixes.applied.length === 0 && fixes.failed.length === 0) {
+                    message += 'No issues found to fix.';
+                }
+                
+                showResult(message, fixes.failed.length > 0 ? 'warning' : 'success');
+                setTimeout(() => window.location.reload(), 3000);
+            } catch (error) {
+                showResult(`❌ Auto-fix failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function generateReport() {
+            showResult('📊 Generating comprehensive report...', 'info');
+            
+            try {
+                const report = window.leadershipAuth.generateAccessReport();
+                
+                // Create downloadable report
+                const reportText = JSON.stringify(report, null, 2);
+                const blob = new Blob([reportText], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `leadership-access-report-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                
+                showResult('✅ Report generated and downloaded!', 'success');
+            } catch (error) {
+                showResult(`❌ Report generation failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function exportLogs() {
+            showResult('📄 Exporting access logs...', 'info');
+            
+            try {
+                const logs = window.leadershipAuth.accessLogs;
+                const logsText = JSON.stringify(logs, null, 2);
+                const blob = new Blob([logsText], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `access-logs-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                
+                showResult('✅ Access logs exported!', 'success');
+            } catch (error) {
+                showResult(`❌ Log export failed: ${error.message}`, 'error');
+            }
+        }
+
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+
+        function verifyAccount(email) {
+            if (window.leadershipAuth.managementRegistry[email]) {
+                window.leadershipAuth.managementRegistry[email].verified = true;
+                showResult(`✅ Account ${email} verified successfully!`, 'success');
+                setTimeout(() => window.location.reload(), 1500);
+            }
+        }
+
+        function activateAccount(email) {
+            if (window.leadershipAuth.managementRegistry[email]) {
+                window.leadershipAuth.managementRegistry[email].active = true;
+                showResult(`✅ Account ${email} activated successfully!`, 'success');
+                setTimeout(() => window.location.reload(), 1500);
+            }
+        }
+
+        function showResult(message, type) {
+            const container = document.getElementById('actionResults');
+            const alertClass = `alert-${type === 'success' ? 'info' : type}`;
+            
+            container.innerHTML = `
+                <div class="alert ${alertClass}" style="margin-top: 1rem;">
+                    ${message.replace(/\n/g, '<br>')}
+                </div>
+            `;
+        }
+
+        // Initialize panel when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new AccessVerificationPanel();
+        });
+    </script>
+</body>
+</html>

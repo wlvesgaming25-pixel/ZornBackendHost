@@ -1,0 +1,337 @@
+// Simple Discord webhook integration for Team Zorn applications
+console.log('Loading applications-simple.js');
+
+const webhookUrls = {
+    'freestyler': 'https://discord.com/api/webhooks/1422213487542669434/lxJlUHkES5gpy64s2_GYOPXDKhBTH_j4eLktI0lBPiiAp0vMKKhV0G6k-QdBSvgiDd8L',
+    'competitive-player': 'https://discord.com/api/webhooks/1422213442307231788/-oDiPhkJMLxW5CAILA4Ydwrcjfk1y8doonqtosgQ95prla2we6vzc1MRwfesulVhYKYM',
+    'video-editor': 'https://discord.com/api/webhooks/1422213396962738216/KeGc0wuN79Bd6aCTKQmh-eI1ALdHjQluT1SFG8gYhqyXoTX9xAcEXO8ohNpafE-w6bv7',
+    'designer': 'https://discord.com/api/webhooks/1422213298631217183/rF7Wschxfhs-9GyPOf7XnSKZoC_kK5qvF0u2GObWR8PGY7XT3LpWGQW4-q7wJNw3_phd',
+    'content-creator': 'https://discord.com/api/webhooks/1422213542379130883/Zn3QzVLDmEPmYd8-Mz1kfQ1FGYQM-0I0xdYMA34v41uf7VSDG3voL_EWvLGtit6_ydf8'
+};
+
+const positionNames = {
+    'freestyler': 'Freestyler',
+    'competitive-player': 'Competitive Clip Hitter',
+    'video-editor': 'Video Editor',
+    'designer': 'Designer/Graphics',
+    'content-creator': 'Content Creator',
+    'management': 'Management',
+    'coach': 'Coach',
+    'other': 'Other'
+};
+
+async function submitApplication(event) {
+    console.log('=== SUBMIT APPLICATION CALLED ===');
+    event.preventDefault();
+    
+    // Get the form properly - event.target might be the submit button, not the form
+    const form = event.target.tagName === 'FORM' ? event.target : event.target.closest('form');
+    console.log('Form:', form);
+    console.log('Event target:', event.target);
+    console.log('Form tag name:', form?.tagName);
+    
+    if (!form) {
+        console.error('Could not find form element');
+        alert('Form not found. Please try again.');
+        return;
+    }
+    
+    // Use FormData API to properly extract form data
+    const formData = new FormData(form);
+    console.log('FormData entries:');
+    
+    const formObj = {};
+    for (let [key, value] of formData.entries()) {
+        formObj[key] = value;
+        console.log(`${key}: "${value}"`);
+    }
+    
+    // Also log traditional method for comparison
+    const inputs = form.querySelectorAll('input, textarea, select');
+    console.log('Traditional method - Found inputs:', inputs.length);
+    inputs.forEach(input => {
+        if (input.name) {
+            console.log(`Traditional: ${input.name} = "${input.value}"`);
+        }
+    });
+    
+    const position = formObj.position;
+    console.log('Position:', position);
+    
+    if (!position) {
+        alert('Position not found in form data!');
+        return;
+    }
+    
+    const webhookUrl = webhookUrls[position];
+    console.log('Webhook URL:', webhookUrl);
+    
+    if (!webhookUrl) {
+        alert(`No webhook configured for position: ${position}`);
+        return;
+    }
+    
+    // Validate required fields using FormData
+    const requiredFields = [];
+    
+    console.log('=== VALIDATION DEBUG ===');
+    console.log('Form data object:', formObj);
+    
+    // Get all required fields that actually exist in this form
+    const requiredElements = form.querySelectorAll('[required]');
+    console.log('Found required elements:', requiredElements.length);
+    
+    requiredElements.forEach(fieldElement => {
+        const fieldName = fieldElement.name;
+        if (!fieldName) {
+            console.log(`⏭️ Skipping element without name attribute`);
+            return;
+        }
+        
+        const formValue = formObj[fieldName];
+        console.log(`Validating ${fieldName}: "${formValue}" (type: ${fieldElement.type})`);
+        
+        if (fieldElement.type === 'checkbox') {
+            // For checkboxes, FormData only includes them if checked
+            if (!formValue) {
+                console.log(`❌ Checkbox ${fieldName} is not checked`);
+                const label = form.querySelector(`label[for="${fieldElement.id}"]`);
+                const friendlyName = label ? label.textContent.replace('*', '').trim() : fieldName;
+                requiredFields.push(friendlyName);
+            } else {
+                console.log(`✅ Checkbox ${fieldName} is checked`);
+            }
+        } else {
+            // For text fields, textareas, selects
+            if (!formValue || formValue.toString().trim() === '') {
+                console.log(`❌ Field ${fieldName} is empty`);
+                const label = form.querySelector(`label[for="${fieldElement.id}"]`);
+                const friendlyName = label ? label.textContent.replace('*', '').trim() : fieldName;
+                requiredFields.push(friendlyName);
+            } else {
+                console.log(`✅ Field ${fieldName} has value: "${formValue}"`);
+            }
+        }
+    });
+    
+    console.log('Missing required fields:', requiredFields);
+    console.log('=== END VALIDATION DEBUG ===');
+    
+    if (requiredFields.length > 0) {
+        alert('Please fill in all required fields:\n\n• ' + requiredFields.join('\n• '));
+        return;
+    }
+    
+    // Create Discord embed
+    const embed = {
+        title: `New ${positionNames[position]} Application`,
+        color: 16724004, // Team color
+        fields: [
+            { name: 'Full Name', value: formObj.fullName || 'Not provided', inline: true },
+            { name: 'Email', value: formObj.email || 'Not provided', inline: true },
+            { name: 'Discord Tag', value: formObj.discordTag || 'Not provided', inline: true },
+            { name: 'Position Applied For', value: positionNames[position] || position, inline: false }
+        ],
+        timestamp: new Date().toISOString(),
+        footer: { text: 'Team Zorn Application System' }
+    };
+    
+    // Add position-specific fields
+    if (position === 'designer') {
+        if (formObj.specialization) embed.fields.push({ name: 'Specialization', value: formObj.specialization, inline: false });
+        if (formObj.portfolio) embed.fields.push({ name: 'Portfolio', value: formObj.portfolio, inline: false });
+        if (formObj.software) embed.fields.push({ name: 'Software Used', value: formObj.software, inline: false });
+        if (formObj.experience) embed.fields.push({ name: 'Experience', value: formObj.experience, inline: false });
+    }
+    
+    // Add motivation/why join field - this is the main message
+    if (formObj.motivation) {
+        embed.fields.push({ name: 'Why Team Zorn?', value: formObj.motivation, inline: false });
+    } else if (formObj.whyJoin) {
+        embed.fields.push({ name: 'Why Team Zorn?', value: formObj.whyJoin, inline: false });
+    }
+    
+    const payload = {
+        embeds: [embed]
+    };
+    
+    console.log('Sending payload:', payload);
+    
+    try {
+        const button = form.querySelector('button[type="submit"]');
+        if (button) {
+            button.textContent = 'Submitting...';
+            button.disabled = true;
+        }
+        
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        if (response.ok) {
+            console.log('✅ Application sent to Discord successfully');
+            
+            // Store application for dashboard review
+            storeApplicationForDashboard(formObj, position);
+            
+            alert('Application submitted successfully! We will review it and get back to you.');
+            form.reset();
+        } else {
+            console.error('Discord response:', response.status, response.statusText);
+            alert('Failed to submit application. Please try again.');
+        }
+        
+        if (button) {
+            button.textContent = 'Submit Application';
+            button.disabled = false;
+        }
+        
+    } catch (error) {
+        console.error('Submission error:', error);
+        alert('Failed to submit application. Please try again.');
+        
+        const button = form.querySelector('button[type="submit"]');
+        if (button) {
+            button.textContent = 'Submit Application';
+            button.disabled = false;
+        }
+    }
+}
+
+// Dashboard Integration Functions
+function storeApplicationForDashboard(formData, position) {
+    try {
+        console.log('📊 Storing application for dashboard review...');
+        
+        // Create application object for dashboard
+        const application = {
+            id: 'app_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+            name: formData.fullName || formData.name,
+            email: formData.email,
+            role: positionNames[position] || position,
+            status: 'pending',
+            submittedAt: new Date().toISOString(),
+            message: formData.motivation || formData.whyJoin || formData.experience || formData.message || 'No message provided',
+            isDemo: false, // Mark as real application
+            
+            // Additional fields based on form data
+            discordTag: formData.discordTag || formData.discord,
+            age: formData.age,
+            timezone: formData.timezone,
+            availability: formData.availability,
+            experience: formData.experience,
+            portfolio: formData.portfolio || formData.contentLinks
+        };
+
+        // Add role-specific fields
+        if (position === 'competitive-player' || position === 'freestyler') {
+            application.rank = formData.currentRank || formData.rank;
+            application.hoursPlayed = formData.hoursPlayed;
+            application.tournamentExperience = formData.tournamentExperience;
+            application.teamExperience = formData.teamExperience;
+            application.mainAgent = formData.mainAgent;
+        }
+
+        if (position === 'video-editor' || position === 'designer') {
+            application.software = formData.software ? 
+                formData.software.split(',').map(s => s.trim()) : [];
+            application.style = formData.style;
+            application.turnaround = formData.turnaround;
+        }
+
+        if (position === 'content-creator') {
+            application.contentStyle = formData.contentStyle;
+            application.postingFrequency = formData.postingFrequency;
+            application.equipment = formData.equipment;
+        }
+
+        if (position === 'management' || position === 'coach') {
+            application.skills = formData.skills ? 
+                formData.skills.split(',').map(s => s.trim()) : [];
+            application.previousTeams = formData.previousTeams;
+            application.achievements = formData.achievements;
+        }
+
+        // Get existing applications from localStorage
+        let existingApplications = [];
+        try {
+            const stored = localStorage.getItem('zorn_applications');
+            if (stored) {
+                existingApplications = JSON.parse(stored);
+            }
+        } catch (error) {
+            console.warn('Failed to load existing applications:', error);
+        }
+
+        // Add new application to the beginning of the array
+        existingApplications.unshift(application);
+
+        // Save back to localStorage
+        localStorage.setItem('zorn_applications', JSON.stringify(existingApplications));
+        
+        console.log('✅ Application stored for dashboard review:', application.id);
+        console.log('📊 Total applications in storage:', existingApplications.length);
+        
+        // Notify any open dashboard windows
+        notifyDashboard(application);
+        
+    } catch (error) {
+        console.error('❌ Failed to store application for dashboard:', error);
+        // Don't throw error as this shouldn't block the main submission
+    }
+}
+
+function notifyDashboard(application) {
+    try {
+        console.log('📢 Notifying dashboard of new application:', application.name);
+        
+        // Method 1: Custom event for same tab
+        const customEvent = new CustomEvent('zorn_new_application', {
+            detail: application
+        });
+        window.dispatchEvent(customEvent);
+        
+        // Method 2: localStorage notification for other tabs
+        const notification = {
+            type: 'new_application',
+            application: application,
+            timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('zorn_dashboard_notification', JSON.stringify(notification));
+        
+        // Method 3: Force a localStorage change event by updating a timestamp
+        localStorage.setItem('zorn_dashboard_update', Date.now().toString());
+        
+        // Remove notification after a short delay
+        setTimeout(() => {
+            localStorage.removeItem('zorn_dashboard_notification');
+        }, 2000);
+        
+        console.log('✅ Dashboard notifications sent successfully');
+        
+    } catch (error) {
+        console.error('❌ Failed to notify dashboard:', error);
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, looking for forms...');
+    
+    const forms = document.querySelectorAll('.apply-form');
+    console.log(`Found ${forms.length} application forms`);
+    
+    forms.forEach((form, index) => {
+        console.log(`Setting up form ${index + 1}`);
+        form.addEventListener('submit', submitApplication);
+    });
+    
+    // Also make it globally available
+    window.submitApplication = submitApplication;
+    console.log('Global submitApplication function set');
+});

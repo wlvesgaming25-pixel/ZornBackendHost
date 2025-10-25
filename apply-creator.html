@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply as a Content Creator for Team Zorn - Rocket League Organization">
+    <title>Apply as Content Creator - Team Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/apply.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="roster.html" class="nav-link">Roster</a></li>
+                    <li class="nav-item"><a href="apply.html" class="nav-link active">Apply</a></li>
+                    <li class="nav-item"><a href="partners.html" class="nav-link">Partners</a></li>
+                    <li class="nav-item"><a href="store.html" class="nav-link">Store</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Content Creator Application</h1>
+                <p>Join Team Zorn and grow your content with us!</p>
+                <div class="back-link"><a href="apply.html" class="btn btn-secondary">← Back to Positions</a></div>
+            </div>
+        </section>
+        <section class="application-form">
+            <div class="container">
+                <!-- Requirements Modal -->
+                <div id="requirementsModal" class="requirements-modal">
+                    <div class="modal-content">
+                        <h2>Content Creator Requirements</h2>
+                        <div class="requirements-list">
+                            <ul>
+                                <li>Must be 16+ years old</li>
+                                <li>Existing YouTube/Twitch channel with regular uploads</li>
+                                <li>Engaging personality and strong communication skills</li>
+                                <li>Understanding of gaming content trends</li>
+                                <li>Consistent upload schedule and audience engagement</li>
+                                <li>Willingness to represent Team Zorn brand</li>
+                            </ul>
+                        </div>
+                        <div class="modal-actions">
+                            <button onclick="acceptRequirements()" class="btn btn-primary">I Meet These Requirements - Continue</button>
+                            <button onclick="declineRequirements()" class="btn btn-secondary">Go Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applicationFormSection" style="display: none;">
+                <h2>Application Form</h2>
+                <form class="apply-form" action="#" method="POST" novalidate>
+                    <input type="hidden" name="position" value="content-creator">
+                    <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" name="fullName" required></div>
+                    <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required></div>
+                    <div class="form-group"><label for="discordTag">Discord Tag *</label><input type="text" id="discordTag" name="discordTag" required></div>
+                    <div class="form-group"><label for="platforms">Content Platforms *</label>
+                        <textarea id="platforms" name="platforms" rows="3" required placeholder="List your content platforms and subscriber/follower counts (YouTube, Twitch, TikTok, etc.)"></textarea>
+                    </div>
+                    <div class="form-group"><label for="contentType">Content Type *</label>
+                        <select id="contentType" name="contentType" required>
+                            <option value="">Primary content type</option>
+                            <option value="gameplay">Gameplay Videos</option>
+                            <option value="tutorials">Tutorials/Educational</option>
+                            <option value="streaming">Live Streaming</option>
+                            <option value="highlights">Highlights/Montages</option>
+                            <option value="variety">Variety Content</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="schedule">Upload Schedule *</label><textarea id="schedule" name="schedule" rows="3" required placeholder="Describe your typical upload schedule and content frequency"></textarea></div>
+                    <div class="form-group"><label for="channels">Channel Links *</label><textarea id="channels" name="channels" rows="4" required placeholder="Share links to your main content channels (YouTube, Twitch, etc.)"></textarea></div>
+                    <div class="form-group"><label for="motivation">Why Team Zorn? *</label><textarea id="motivation" name="motivation" rows="6" required placeholder="Why do you want to create content for Team Zorn? How can we help grow each other?"></textarea></div>
+                    <div class="form-group checkbox-group"><input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to represent Team Zorn professionally in my content *</label></div>
+                    <button type="submit" class="btn btn-primary">Submit Creator Application</button>
+                </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Quick Links</h4><ul><li><a href="about.html">About</a></li><li><a href="roster.html">Roster</a></li><li><a href="apply.html">Apply</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+            <div class="footer-section"><h4>Connect</h4><div class="social-links"><a href="https://x.com/ZornHQ" class="social-link" target="_blank">X (Twitter)</a><a href="https://discord.gg/VNb82VRYna" class="social-link" target="_blank">Discord</a><a href="https://www.tiktok.com/@teamzornhq" class="social-link" target="_blank">TikTok</a></div></div>
+            <div class="footer-section"><h4>Contact Info</h4><p>Email: teamzornhq@gmail.com</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Team Zorn. All rights reserved.</p></div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/applications-simple.js"></script>
+    <script src="assets/js/requirements-modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,838 @@
+/* Import base styles from index.css */
+@import url('index.css');
+
+/* Scroll Animation Styles */
+.scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-fade-in.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation delays for multiple cards */
+.scroll-fade-in:nth-child(1) { transition-delay: 0.1s; }
+.scroll-fade-in:nth-child(2) { transition-delay: 0.2s; }
+.scroll-fade-in:nth-child(3) { transition-delay: 0.3s; }
+.scroll-fade-in:nth-child(4) { transition-delay: 0.4s; }
+.scroll-fade-in:nth-child(5) { transition-delay: 0.5s; }
+.scroll-fade-in:nth-child(6) { transition-delay: 0.6s; }
+.scroll-fade-in:nth-child(7) { transition-delay: 0.7s; }
+.scroll-fade-in:nth-child(8) { transition-delay: 0.8s; }
+
+/* Page-specific overrides and additions */
+.page-hero {
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Roster Filters Section */
+.roster-filters {
+    padding: 60px 0 40px;
+    background: #111;
+}
+
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    border: 2px solid #333;
+    background: linear-gradient(135deg, #1a1a1a 0%, #151515 50%, #0f0f0f 100%);
+    color: #e0e0e0;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.search-box {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #333;
+    border-radius: 25px;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #151515 50%, #0f0f0f 100%);
+    color: #e0e0e0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #ff4824;
+    box-shadow: 0 0 0 3px rgba(255, 72, 36, 0.1);
+}
+
+/* Roster Grid Section */
+.roster-grid-section {
+    padding: 60px 0 80px;
+    background: #111;
+}
+
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.member-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #151515 50%, #0f0f0f 100%);
+    border: 1px solid #333;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(255, 72, 36, 0.2);
+    border-color: #ff4824;
+}
+
+.member-image {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.member-card:hover .member-image img {
+    transform: scale(1.05);
+}
+
+.member-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.member-card:hover .member-overlay {
+    opacity: 1;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.member-info {
+    padding: 2rem;
+}
+
+.member-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
+
+.member-role {
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.member-bio {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.member-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Join Team Section */
+.join-team {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    color: white;
+    text-align: center;
+}
+
+.join-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.join-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: white;
+    background: linear-gradient(135deg, #0a0a0a, #0a0a0a);
+    color: #e0e0e0;
+    border: 2px solid #333;
+}
+
+.btn-primary:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Member Filtering Animation */
+.member-card {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.member-card.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    position: absolute;
+}
+
+/* Loading Animation */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.loading::after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #17a2b8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .filter-tabs {
+        justify-content: center;
+    }
+
+    .filter-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+
+    .roster-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .member-card {
+        margin: 0 0.5rem;
+    }
+
+    .member-info {
+        padding: 1.5rem;
+    }
+
+    .join-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero {
+        padding: 100px 0 60px;
+    }
+
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+
+    .roster-filters,
+    .roster-grid-section,
+    .join-team {
+        padding: 50px 0;
+    }
+
+    .roster-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        width: 200px;
+    }
+
+    .member-image {
+        height: 200px;
+    }
+
+    .member-info {
+        padding: 1rem;
+    }
+
+    .social-links {
+        gap: 0.5rem;
+    }
+
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* New Roster Design */
+.roster-section {
+    padding: 80px 0;
+    background: #0a0a0a;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+}
+
+/* Owner Section - Featured Member */
+.owner-section {
+    background: #0a0a0a;
+    padding: 60px 0;
+}
+
+.featured-member {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.member-carousel {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a1a 0%, #151515 50%, #0f0f0f 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid #444;
+}
+
+.member-slide {
+    display: flex;
+    align-items: center;
+    padding: 3rem;
+    gap: 3rem;
+}
+
+.member-image-large {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid #555;
+}
+
+.member-image-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.country-flag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.country-flag img {
+    width: 24px;
+    height: 18px;
+    border-radius: 2px;
+}
+
+.member-details {
+    flex: 1;
+}
+
+.member-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.member-title {
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.member-description {
+    font-size: 1rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+/* Owner section social icons - left aligned */
+.owner-section .social-icons {
+    justify-content: flex-start;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #444;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid #555;
+}
+
+.social-icon:hover {
+    background: #555;
+    transform: translateY(-2px);
+    border-color: #666;
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.carousel-nav {
+    display: none;
+}
+
+/* Member Grid Sections */
+.member-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* All member cards now have consistent sizing */
+
+.member-card-new {
+    background: linear-gradient(135deg, #1a1a1a 0%, #151515 50%, #0f0f0f 100%);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid #444;
+    min-height: 300px;
+    width: 320px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.member-card-new:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border-color: #666;
+}
+
+.member-avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #555;
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-avatar .country-flag {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: #0a0a0a;
+    border-radius: 50%;
+    padding: 4px;
+    border: 2px solid #555;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-avatar .country-flag img {
+    width: 18px;
+    height: 13px;
+    border-radius: 1px;
+}
+
+.member-flag {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.member-flag img {
+    width: 32px;
+    height: 24px;
+    border-radius: 2px;
+}
+
+.member-name-new {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    padding: 8px 16px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+/* Lead Role Special Nameplate Styling */
+.member-card-new.lead-role .member-name-new {
+    background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+    color: #1a1a1a;
+    font-weight: 800;
+    border: 2px solid #d0d0d0;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.member-role-new {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.member-socials {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.member-socials .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #444;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #555;
+}
+
+.member-socials .social-link:hover {
+    background: #555;
+    transform: translateY(-2px);
+    border-color: #666;
+}
+
+/* Section-specific styling */
+.management-section,
+.competitive-section,
+.designer-section {
+    background: #111111;
+}
+
+.content-section,
+.freestyler-section,
+.editor-section {
+    background: #0a0a0a;
+}
+
+.roster-section {
+    padding: 60px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .member-slide {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .member-image-large {
+        width: 200px;
+        height: 200px;
+    }
+
+    .member-name {
+        font-size: 2rem;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .member-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Expand/Collapse Button Styles */
+.expand-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.expand-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.expand-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 72, 36, 0.4);
+}
+
+.expand-icon {
+    transition: transform 0.3s ease;
+}
+
+.expand-button.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.additional-management {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+}
+
+.additional-management.expanded {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 2rem;
+}
+
+.additional-content {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+}
+
+.additional-content.expanded {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 2rem;
+}
+
+.additional-competitive {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+}
+
+.additional-competitive.expanded {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 2rem;
+}
+
+.additional-freestylers {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+}
+
+.additional-freestylers.expanded {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 2rem;
+}

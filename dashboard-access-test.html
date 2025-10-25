@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Access Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            background: #555;
+            color: white;
+        }
+        button {
+            background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 50%, #b000ff 100%);
+            color: white;
+            cursor: pointer;
+            padding: 12px 24px;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #444;
+        }
+        .success { background: #2d5a2d; }
+        .error { background: #5a2d2d; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Dashboard Access Test</h1>
+        <p>Enter an authorized email (<code>ticklemybootey@gmail.com</code> or <code>zacfrew06@gmail.com</code>) to test dashboard access:</p>
+        
+        <input type="email" id="testEmail" placeholder="Enter email address" value="">
+        <button onclick="testDashboardAccess()">Test Access</button>
+        <button onclick="goToProfile()">Go to Profile Page</button>
+        
+        <div id="result" class="result">
+            Enter an email to test dashboard access...
+        </div>
+
+        <h3>📋 Test Instructions:</h3>
+        <ol>
+            <li>Enter <strong>ticklemybootey@gmail.com</strong> or <strong>zacfrew06@gmail.com</strong> above</li>
+            <li>Click "Test Access" to simulate login</li>
+            <li>Click "Go to Profile Page" to see the dashboard button</li>
+            <li>The dashboard button should appear in the Action Buttons section</li>
+        </ol>
+    </div>
+
+    <script>
+        function testDashboardAccess() {
+            const email = document.getElementById('testEmail').value.toLowerCase().trim();
+            const resultDiv = document.getElementById('result');
+            const authorizedEmails = ['ticklemybootey@gmail.com', 'zacfrew06@gmail.com'];
+            
+            if (!email) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Please enter an email address';
+                return;
+            }
+            
+            // Store the email in localStorage to simulate login
+            const userData = {
+                email: email,
+                name: 'Test User',
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            
+            if (authorizedEmails.includes(email)) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    ✅ <strong>ACCESS GRANTED!</strong><br>
+                    Email: ${email}<br>
+                    Dashboard access: Enabled<br>
+                    <small>User data stored in localStorage</small>
+                `;
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    ❌ <strong>ACCESS DENIED</strong><br>
+                    Email: ${email}<br>
+                    Dashboard access: Disabled<br>
+                    <small>Only authorized emails have dashboard access</small>
+                `;
+            }
+        }
+        
+        function goToProfile() {
+            window.location.href = 'profile.html';
+        }
+        
+        // Check current localStorage on page load
+        window.addEventListener('load', function() {
+            const stored = localStorage.getItem('currentUser');
+            if (stored) {
+                try {
+                    const userData = JSON.parse(stored);
+                    document.getElementById('testEmail').value = userData.email;
+                    testDashboardAccess();
+                } catch (e) {
+                    console.log('No valid user data found');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

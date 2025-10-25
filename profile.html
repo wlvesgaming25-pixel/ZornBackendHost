@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zorn Profile - Manage your account settings">
+    <title>Profile - Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="user-profile" id="userProfile">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero animate-on-load fade-in-scale">
+            <div class="container">
+                <h1 class="animate-on-load slide-in-bottom delay-2">Profile Settings</h1>
+                <p class="animate-on-load slide-in-bottom delay-3">Customize your account and preferences</p>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <div class="container">
+                <div class="profile-container">
+                    <!-- Profile Overview Card -->
+                    <div class="profile-card overview-card animate-on-load slide-in-left delay-4">
+                        <div class="card-header">
+                            <h2>Profile Overview</h2>
+                        </div>
+                        <div class="profile-preview">
+                            <div class="profile-avatar-large">
+                                <img id="profileAvatarPreview" src="assets/img/roster/socialsbg.png.webp" alt="Profile Picture">
+                                <div class="avatar-overlay">
+                                    <span>Click to change</span>
+                                </div>
+                            </div>
+                            <div class="profile-info">
+                                <h3 id="profileNameDisplay">Guest</h3>
+                                <p id="profileEmailDisplay">Not logged in</p>
+                                <p class="join-date">Joined: <span id="joinDateDisplay">--</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Information Card -->
+                    <div class="profile-card info-card animate-on-load slide-in-right delay-5">
+                        <div class="card-header">
+                            <h2>Basic Information</h2>
+                        </div>
+                        <form class="profile-form" id="profileForm">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" placeholder="Enter your username">
+                                <small class="form-help">This will be displayed publicly on the site</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email">
+                                <small class="form-help">Used for account recovery and notifications</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="displayName">Display Name</label>
+                                <input type="text" id="displayName" name="displayName" placeholder="Enter your display name">
+                                <small class="form-help">Optional: A custom name to show instead of username</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+                                <small class="form-help">Share a bit about yourself (max 500 characters)</small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Profile Picture Card -->
+                    <div class="profile-card avatar-card animate-on-load slide-in-left delay-6">
+                        <div class="card-header">
+                            <h2>Profile Picture</h2>
+                        </div>
+                        <div class="avatar-section">
+                            <div class="current-avatar">
+                                <img id="currentAvatar" src="assets/img/roster/socialsbg.png.webp" alt="Current Avatar">
+                            </div>
+                            <div class="avatar-controls">
+                                <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('avatarUpload').click()">
+                                    Upload New Picture
+                                </button>
+                                <button type="button" class="btn btn-outline" id="removeAvatar">Remove Picture</button>
+                                <small class="form-help">Recommended: Square images, max 5MB</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Card -->
+                    <div class="profile-card preferences-card animate-on-load slide-in-right delay-7">
+                        <div class="card-header">
+                            <h2>Preferences</h2>
+                        </div>
+                        <div class="preferences-section">
+                            <div class="preference-group">
+                                <h4>Notifications</h4>
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="emailNotifications">
+                                        <span class="checkmark"></span>
+                                        Email Notifications
+                                    </label>
+                                </div>
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="browserNotifications">
+                                        <span class="checkmark"></span>
+                                        Browser Notifications
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="preference-group">
+                                <h4>Privacy</h4>
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="profilePublic">
+                                        <span class="checkmark"></span>
+                                        Make profile public
+                                    </label>
+                                </div>
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="showEmail">
+                                        <span class="checkmark"></span>
+                                        Show email on profile
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Actions Card -->
+                    <div class="profile-card actions-card animate-on-load slide-in-bottom delay-8">
+                        <div class="card-header">
+                            <h2>Account Actions</h2>
+                        </div>
+                        <div class="actions-section">
+                            <div class="action-buttons">
+                                <button type="button" class="btn btn-primary" id="saveProfile">
+                                    Save Changes
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="resetProfile">
+                                    Reset to Default
+                                </button>
+                                <button type="button" class="btn btn-outline" id="changePassword">
+                                    Change Password
+                                </button>
+                                <!-- Dashboard button - only shown for authorized users -->
+                                <button type="button" class="btn btn-gradient" id="dashboardButton" style="display: none;" onclick="window.location.href='dashboard.html'">
+                                    🎮 Dashboard
+                                </button>
+                            </div>
+                            <div class="danger-zone">
+                                <h4>Danger Zone</h4>
+                                <button type="button" class="btn btn-danger" id="logoutBtn">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success/Error Messages -->
+        <div class="notification" id="notification">
+            <div class="notification-content">
+                <span class="notification-message" id="notificationMessage"></span>
+                <button class="notification-close" id="notificationClose">&times;</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="roster.html">Roster</a></li>
+                    <li><a href="apply.html">Apply</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://x.com/ZornHQ" class="social-link" target="_blank">X (Twitter)</a>
+                    <a href="https://discord.gg/VNb82VRYna" class="social-link" target="_blank">Discord</a>
+                    <a href="https://www.tiktok.com/@teamzornhq" class="social-link" target="_blank">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: teamzornhq@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/profile.js"></script>
+    <script>
+        // Check for dashboard access and show button for authorized email
+        document.addEventListener('DOMContentLoaded', function() {
+            const authorizedEmails = ['ticklemybootey@gmail.com', 'zacfrew06@gmail.com'];
+            const dashboardButton = document.getElementById('dashboardButton');
+            
+            // Function to check if user should see dashboard button
+            function checkDashboardAccess() {
+                // Check various sources for user email
+                let userEmail = null;
+                
+                // Check if email is in the email input field
+                const emailInput = document.getElementById('email');
+                if (emailInput && emailInput.value) {
+                    userEmail = emailInput.value.toLowerCase().trim();
+                }
+                
+                // Check localStorage for user data
+                if (!userEmail) {
+                    const storedUser = localStorage.getItem('user') || localStorage.getItem('currentUser');
+                    if (storedUser) {
+                        try {
+                            const userData = JSON.parse(storedUser);
+                            userEmail = userData.email?.toLowerCase().trim();
+                        } catch (e) {
+                            console.log('Could not parse stored user data');
+                        }
+                    }
+                }
+                
+                // Check sessionStorage
+                if (!userEmail) {
+                    const sessionUser = sessionStorage.getItem('user') || sessionStorage.getItem('currentUser');
+                    if (sessionUser) {
+                        try {
+                            const userData = JSON.parse(sessionUser);
+                            userEmail = userData.email?.toLowerCase().trim();
+                        } catch (e) {
+                            console.log('Could not parse session user data');
+                        }
+                    }
+                }
+                
+                // Check profile display
+                if (!userEmail) {
+                    const profileEmailDisplay = document.getElementById('profileEmailDisplay');
+                    if (profileEmailDisplay && profileEmailDisplay.textContent !== 'Not logged in') {
+                        userEmail = profileEmailDisplay.textContent.toLowerCase().trim();
+                    }
+                }
+                
+                // Show dashboard button if authorized
+                if (userEmail && authorizedEmails.includes(userEmail)) {
+                    dashboardButton.style.display = 'inline-block';
+                    console.log('✅ Dashboard access granted for:', userEmail);
+                } else {
+                    dashboardButton.style.display = 'none';
+                    if (userEmail) {
+                        console.log('❌ Dashboard access denied for:', userEmail);
+                    }
+                }
+            }
+            
+            // Check immediately
+            checkDashboardAccess();
+            
+            // Check when email input changes
+            const emailInput = document.getElementById('email');
+            if (emailInput) {
+                emailInput.addEventListener('input', checkDashboardAccess);
+                emailInput.addEventListener('change', checkDashboardAccess);
+            }
+            
+            // Check periodically in case user data loads later
+            setInterval(checkDashboardAccess, 2000);
+        });
+    </script>
+</body>
+</html>

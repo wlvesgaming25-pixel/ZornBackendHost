@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply as a Freestyler for Team Zorn - Rocket League Organization">
+    <title>Apply as Freestyler - Team Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/apply.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link active">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Freestyler Application</h1>
+                <p>Show us your most creative and technical freestyle skills!</p>
+                <div class="back-link">
+                    <a href="apply.html" class="btn btn-secondary">← Back to Positions</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="application-form">
+            <div class="container">
+                <div class="position-requirements">
+                    <h2>Position Requirements</h2>
+                    <div class="requirements-grid">
+                        <div class="requirement-item">
+                            <h3>Skill Level</h3>
+                            <p>Expert-level freestyle skills with creative trick combinations</p>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Content Creation</h3>
+                            <p>Ability to record and create engaging freestyle content</p>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Mechanics</h3>
+                            <p>Strong mechanical skills and game sense</p>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Experience</h3>
+                            <p>Previous freestyle content or competitive experience preferred</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements Modal -->
+                <div id="requirementsModal" class="requirements-modal">
+                    <div class="modal-content">
+                        <h2>Freestyler Requirements</h2>
+                        <div class="requirements-list">
+                            <ul>
+                                <li>Must be 16+ years old</li>
+                                <li>Expert-level freestyle skills in Rocket League</li>
+                                <li>Creative and unique trick combinations</li>
+                                <li>Ability to create engaging freestyle content</li>
+                                <li>Strong game sense and mechanical skills</li>
+                                <li>Experience with video recording/streaming</li>
+                            </ul>
+                        </div>
+                        <div class="modal-actions">
+                            <button onclick="acceptRequirements()" class="btn btn-primary">I Meet These Requirements - Continue</button>
+                            <button onclick="declineRequirements()" class="btn btn-secondary">Go Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applicationFormSection" style="display: none;">
+                <h2>Application Form</h2>
+                <form class="apply-form" action="#" method="POST" novalidate>
+                    <input type="hidden" name="position" value="freestyler">
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discordTag">Discord Tag *</label>
+                        <input type="text" id="discordTag" name="discordTag" placeholder="YourName#1234" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rlRank">Current Rocket League Rank *</label>
+                        <select id="rlRank" name="rlRank" required>
+                            <option value="">Select your highest rank</option>
+                            <option value="bronze">Bronze</option>
+                            <option value="silver">Silver</option>
+                            <option value="gold">Gold</option>
+                            <option value="platinum">Platinum</option>
+                            <option value="diamond">Diamond</option>
+                            <option value="champion">Champion</option>
+                            <option value="grand-champion">Grand Champion</option>
+                            <option value="supersonic-legend">Supersonic Legend</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="platform">Primary Gaming Platform *</label>
+                        <select id="platform" name="platform" required>
+                            <option value="">Select platform</option>
+                            <option value="steam">Steam (PC)</option>
+                            <option value="epic">Epic Games (PC)</option>
+                            <option value="xbox">Xbox</option>
+                            <option value="playstation">PlayStation</option>
+                            <option value="nintendo">Nintendo Switch</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="freestyleExperience">Freestyle Experience (Years) *</label>
+                        <select id="freestyleExperience" name="freestyleExperience" required>
+                            <option value="">Select experience level</option>
+                            <option value="under-1">Less than 1 year</option>
+                            <option value="1-2">1-2 years</option>
+                            <option value="2-3">2-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5+">5+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contentLinks">Content Portfolio *</label>
+                        <textarea id="contentLinks" name="contentLinks" rows="4" placeholder="Share links to your best freestyle videos, montages, or clips (YouTube, TikTok, Twitter, etc.)" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialSkills">Specialty Skills *</label>
+                        <textarea id="specialSkills" name="specialSkills" rows="4" placeholder="What freestyle techniques do you excel at? (Air dribbles, ceiling shots, flip resets, creative mechanics, etc.)" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivation">Why Team Zorn? *</label>
+                        <textarea id="motivation" name="motivation" rows="6" placeholder="Why do you want to join Team Zorn as a freestyler? What can you bring to our content and brand?" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Content Creation Availability</label>
+                        <textarea id="availability" name="availability" rows="3" placeholder="How often can you create content? What's your typical schedule for recording and uploading?"></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to represent Team Zorn professionally and follow team guidelines *</label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Subscribe to Team Zorn updates and newsletters</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Freestyler Application</button>
+                </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="roster.html">Roster</a></li>
+                    <li><a href="apply.html">Apply</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://x.com/ZornHQ" target="_blank" class="social-link">X (Twitter)</a>
+                    <a href="https://discord.gg/VNb82VRYna" target="_blank" class="social-link">Discord</a>
+                    <a href="https://www.tiktok.com/@teamzornhq" target="_blank" class="social-link">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: teamzornhq@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Team Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/applications-simple.js"></script>
+    <script src="assets/js/requirements-modal.js"></script>
+</body>
+</html>

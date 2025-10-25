@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply as a Competitive Clip Hitter for Team Zorn - Rocket League Organization">
+    <title>Apply as Competitive Clip Hitter - Team Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/apply.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link active">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Competitive Clip Hitter Application</h1>
+                <p>Ready to compete at the highest level with Team Zorn?</p>
+                <div class="back-link">
+                    <a href="apply.html" class="btn btn-secondary">← Back to Positions</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="application-form">
+            <div class="container">
+                <div class="position-requirements">
+                    <h2>Position Requirements</h2>
+                    <div class="requirements-grid">
+                        <div class="requirement-item">
+                            <h3>Skill Level</h3>
+                            <p>Champion rank or higher in competitive playlists</p>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Communication</h3>
+                            <p>Strong team communication and game sense</p>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Performance</h3>
+                            <p>Consistent performance under pressure</p>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Commitment</h3>
+                            <p>Availability for scrims, tournaments, and team practice</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements Modal -->
+                <div id="requirementsModal" class="requirements-modal">
+                    <div class="modal-content">
+                        <h2>Competitive Clip Hitter Requirements</h2>
+                        <div class="requirements-list">
+                            <ul>
+                                <li>Must be 16+ years old</li>
+                                <li>Champion rank or higher in competitive playlists</li>
+                                <li>Strong team communication and game sense</li>
+                                <li>Consistent performance under pressure</li>
+                                <li>Willingness to participate in scrims and tournaments</li>
+                                <li>Positive attitude and coachability</li>
+                            </ul>
+                        </div>
+                        <div class="modal-actions">
+                            <button onclick="acceptRequirements()" class="btn btn-primary">I Meet These Requirements - Continue</button>
+                            <button onclick="declineRequirements()" class="btn btn-secondary">Go Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applicationFormSection" style="display: none;">
+                <h2>Application Form</h2>
+                <form class="apply-form" action="#" method="POST" novalidate>
+                    <input type="hidden" name="position" value="competitive-player">
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discordTag">Discord Tag *</label>
+                        <input type="text" id="discordTag" name="discordTag" placeholder="YourName#1234" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rlRank">Current Highest Rank *</label>
+                        <select id="rlRank" name="rlRank" required>
+                            <option value="">Select your highest rank</option>
+                            <option value="champion-1">Champion 1</option>
+                            <option value="champion-2">Champion 2</option>
+                            <option value="champion-3">Champion 3</option>
+                            <option value="grand-champion-1">Grand Champion 1</option>
+                            <option value="grand-champion-2">Grand Champion 2</option>
+                            <option value="grand-champion-3">Grand Champion 3</option>
+                            <option value="supersonic-legend">Supersonic Legend</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="peakRank">Peak Rank Achieved *</label>
+                        <select id="peakRank" name="peakRank" required>
+                            <option value="">Select your peak rank</option>
+                            <option value="champion-1">Champion 1</option>
+                            <option value="champion-2">Champion 2</option>
+                            <option value="champion-3">Champion 3</option>
+                            <option value="grand-champion-1">Grand Champion 1</option>
+                            <option value="grand-champion-2">Grand Champion 2</option>
+                            <option value="grand-champion-3">Grand Champion 3</option>
+                            <option value="supersonic-legend">Supersonic Legend</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="platform">Primary Gaming Platform *</label>
+                        <select id="platform" name="platform" required>
+                            <option value="">Select platform</option>
+                            <option value="steam">Steam (PC)</option>
+                            <option value="epic">Epic Games (PC)</option>
+                            <option value="xbox">Xbox</option>
+                            <option value="playstation">PlayStation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredRole">Preferred Position *</label>
+                        <select id="preferredRole" name="preferredRole" required>
+                            <option value="">Select preferred role</option>
+                            <option value="striker">Striker/Offense</option>
+                            <option value="midfield">Midfield/Playmaker</option>
+                            <option value="defender">Defender/Last Man</option>
+                            <option value="flexible">Flexible/Any Position</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="competitiveExperience">Competitive Experience *</label>
+                        <textarea id="competitiveExperience" name="competitiveExperience" rows="4" placeholder="List your tournament experience, team history, notable achievements, RLCS/regional events, etc." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gameplayLinks">Gameplay Links</label>
+                        <textarea id="gameplayLinks" name="gameplayLinks" rows="3" placeholder="Share links to gameplay videos, highlights, or match recordings (YouTube, Twitch clips, etc.)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="strengths">Strengths & Playstyle *</label>
+                        <textarea id="strengths" name="strengths" rows="4" placeholder="Describe your playstyle, mechanical strengths, game sense abilities, and what you bring to a team" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Schedule & Availability *</label>
+                        <textarea id="availability" name="availability" rows="4" placeholder="What days and times are you available for practice, scrims, and tournaments? Include your timezone." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivation">Why Team Zorn? *</label>
+                        <textarea id="motivation" name="motivation" rows="6" placeholder="Why do you want to join Team Zorn? What are your competitive goals and how do they align with our team?" required></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to commit to team practice schedules and represent Team Zorn professionally *</label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Subscribe to Team Zorn updates and newsletters</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Competitive Application</button>
+                </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="roster.html">Roster</a></li>
+                    <li><a href="apply.html">Apply</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://x.com/ZornHQ" target="_blank" class="social-link">X (Twitter)</a>
+                    <a href="https://discord.gg/VNb82VRYna" target="_blank" class="social-link">Discord</a>
+                    <a href="https://www.tiktok.com/@teamzornhq" target="_blank" class="social-link">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: teamzornhq@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Team Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/applications-simple.js"></script>
+    <script src="assets/js/requirements-modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "zorn-backend",
+  "version": "1.0.0",
+  "description": "Backend services for Team Zorn website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "install-all": "npm install && cd discord-proxy && npm install && cd ../contact-handler && npm install && cd ../application-handler && npm install",
+    "start:discord": "cd discord-proxy && npm start",
+    "start:contact": "cd contact-handler && npm start", 
+    "start:applications": "cd application-handler && npm start",
+    "dev:discord": "cd discord-proxy && npm run dev",
+    "dev:contact": "cd contact-handler && npm run dev",
+    "dev:applications": "cd application-handler && npm run dev"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.0",
+    "concurrently": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "zorn",
+    "backend",
+    "api",
+    "discord",
+    "contact",
+    "applications"
+  ],
+  "author": "Team Zorn",
+  "license": "MIT"
+}

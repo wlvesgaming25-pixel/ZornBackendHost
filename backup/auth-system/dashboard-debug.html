@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Debug - Team Zorn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+        }
+        .debug-info {
+            background: #333;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .error {
+            background: #441111;
+            border: 1px solid #cc4444;
+        }
+        .success {
+            background: #114411;
+            border: 1px solid #44cc44;
+        }
+        .warning {
+            background: #444411;
+            border: 1px solid #cccc44;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Dashboard Debug Mode</h1>
+    <div id="debugOutput"></div>
+
+    <script>
+        const debugOutput = document.getElementById('debugOutput');
+
+        function addDebugInfo(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `debug-info ${type}`;
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            debugOutput.appendChild(div);
+            console.log(message);
+        }
+
+        // Override console methods to capture output
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+
+        console.log = function(...args) {
+            addDebugInfo(args.join(' '), 'info');
+            originalLog.apply(console, args);
+        };
+
+        console.error = function(...args) {
+            addDebugInfo(`❌ ${args.join(' ')}`, 'error');
+            originalError.apply(console, args);
+        };
+
+        console.warn = function(...args) {
+            addDebugInfo(`⚠️ ${args.join(' ')}`, 'warning');
+            originalWarn.apply(console, args);
+        };
+
+        addDebugInfo('🚀 Debug mode started');
+
+        // Test script loading
+        addDebugInfo('📦 Loading leadership-auth.js...');
+    </script>
+    
+    <script src="assets/js/leadership-auth.js" onload="addDebugInfo('✅ leadership-auth.js loaded')" onerror="addDebugInfo('❌ Failed to load leadership-auth.js', 'error')"></script>
+    
+    <script>
+        // Test if auth system loaded properly
+        setTimeout(() => {
+            if (window.leadershipAuth) {
+                addDebugInfo('✅ Leadership auth system found', 'success');
+                addDebugInfo(`🔧 Auth system status: ${typeof window.leadershipAuth}`, 'info');
+            } else {
+                addDebugInfo('❌ Leadership auth system not found', 'error');
+            }
+
+            // Test dashboard access
+            addDebugInfo('📦 Loading dashboard-access.js...');
+        }, 100);
+    </script>
+
+    <script src="assets/js/dashboard-access.js" onload="addDebugInfo('✅ dashboard-access.js loaded')" onerror="addDebugInfo('❌ Failed to load dashboard-access.js', 'error')"></script>
+
+    <script>
+        setTimeout(() => {
+            if (window.dashboardManager) {
+                addDebugInfo('✅ Dashboard manager found', 'success');
+            } else {
+                addDebugInfo('❌ Dashboard manager not found', 'error');
+            }
+
+            addDebugInfo('🏁 Debug initialization complete');
+        }, 500);
+    </script>
+</body>
+</html>

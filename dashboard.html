@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Team Zorn Application Dashboard - Leadership Portal">
+    <title>Dashboard - Team Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Removed loading screen -->
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container" id="dashboardContainer">
+        <!-- Top Navigation -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-container">
+                        <img src="assets/img/logo.png" alt="Team Zorn" class="dashboard-logo">
+                        <div class="nav-title">
+                            <h1>Application Dashboard</h1>
+                            <span class="nav-subtitle">Leadership Portal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile" id="userProfileHeader">
+                        <div class="user-avatar">
+                            <div class="avatar-placeholder" id="userAvatar">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="user-status online"></div>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name" id="userName">Loading...</span>
+                            <span class="user-role" id="userRole">Leader</span>
+                        </div>
+                        <div class="user-menu-toggle" id="userMenuToggle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6,9 12,15 18,9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Profile
+                        </a>
+                        <a href="index.html" class="dropdown-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            </svg>
+                            Main Site
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item logout-btn" id="logoutBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16,17 21,12 16,7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-glow"></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Filters & Controls -->
+            <div class="dashboard-controls">
+                <div class="controls-left">
+                    <h2 class="section-title">Applications</h2>
+                    <div class="application-stats">
+                        <span class="stat-item">
+                            <span class="stat-number" id="totalApplications">0</span>
+                            <span class="stat-label">Total</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-number pending" id="pendingApplications">0</span>
+                            <span class="stat-label">Pending</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-number accepted" id="acceptedApplications">0</span>
+                            <span class="stat-label">Accepted</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-number denied" id="deniedApplications">0</span>
+                            <span class="stat-label">Denied</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="controls-right">
+                    <div class="demo-controls">
+                        <button class="refresh-btn" id="refreshBtn" title="Refresh applications">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                <path d="M3 21v-5h5"/>
+                            </svg>
+                        </button>
+                        <button class="clear-demo-btn" id="clearDemoBtn" title="Remove all example/demo applications">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18"></path>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            </svg>
+                            Clear Demo Data
+                        </button>
+                    </div>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all" id="filterAll">All</button>
+                        <button class="filter-tab" data-filter="pending" id="filterPending">Pending</button>
+                        <button class="filter-tab" data-filter="accepted" id="filterAccepted">Accepted</button>
+                        <button class="filter-tab" data-filter="denied" id="filterDenied">Denied</button>
+                    </div>
+                    <div class="sort-dropdown">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="role">By Role</option>
+                            <option value="name">By Name</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Grid -->
+            <div class="applications-container">
+                <div class="applications-grid" id="applicationsGrid">
+                    <!-- Application cards will be dynamically inserted here -->
+                </div>
+                
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="empty-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10,9 9,9 8,9"></polyline>
+                        </svg>
+                    </div>
+                    <h3>No Applications Found</h3>
+                    <p>No applications match your current filter criteria.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Modal -->
+    <div class="modal-overlay" id="applicationModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Application Details</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Application details will be populated here -->
+            </div>
+            <div class="modal-actions">
+                <button class="action-btn accept-btn" id="acceptApplicationBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20,6 9,17 4,12"></polyline>
+                    </svg>
+                    Accept
+                </button>
+                <button class="action-btn deny-btn" id="denyApplicationBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Deny
+                </button>
+                <button class="action-btn remove-btn" id="removeApplicationBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18"></path>
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay confirmation-modal" id="confirmationModal">
+        <div class="modal-container confirmation-container">
+            <div class="confirmation-content">
+                <div class="confirmation-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </div>
+                <h3 id="confirmationTitle">Confirm Action</h3>
+                <p id="confirmationMessage">Are you sure you want to proceed?</p>
+                <div class="confirmation-actions">
+                    <button class="btn-secondary" id="confirmationCancel">Cancel</button>
+                    <button class="btn-danger" id="confirmationConfirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Animation Elements -->
+    <div class="dashboard-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/dashboard.js"></script>
+    <script>
+        // Simple initialization - no authentication required
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎮 Dashboard loading...');
+            
+            // Set user info based on email - 5 different team members
+            const userProfiles = {
+                'ticklemybootey@gmail.com': {
+                    name: 'Jawlei',
+                    role: 'Upper Staff & GFX'
+                },
+                'zacfrew06@gmail.com': {
+                    name: 'Blessed', 
+                    role: 'Head of Scouting & VFX'
+                },
+                'placeholder.email1@gmail.com': {
+                    name: 'Monty',
+                    role: 'Competitive Lead'
+                },
+                'placeholder.email2@gmail.com': {
+                    name: 'No one',
+                    role: 'Content Lead'
+                },
+                'placeholder.email4@gmail.com': {
+                    name: 'Shockwave',
+                    role: 'Video Editing Lead'
+                },
+                'teamzornhq@gmail.com': {
+                    name: 'Zorn HQ',
+                    role: 'Zorn Management'
+                }
+            };
+
+            // Get current user email from various sources
+            let currentUserEmail = null;
+            
+            // Check localStorage for current user
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                try {
+                    const userData = JSON.parse(storedUser);
+                    currentUserEmail = userData.email?.toLowerCase();
+                } catch (e) {
+                    console.log('Could not parse stored user data');
+                }
+            }
+            
+            // Check session storage
+            if (!currentUserEmail) {
+                const sessionUser = localStorage.getItem('zorn_user_session');
+                if (sessionUser) {
+                    try {
+                        const userData = JSON.parse(sessionUser);
+                        currentUserEmail = userData.email?.toLowerCase();
+                    } catch (e) {
+                        console.log('Could not parse session user data');
+                    }
+                }
+            }
+
+            // Set user info based on email or use default
+            const userNameEl = document.getElementById('userName');
+            const userRoleEl = document.getElementById('userRole');
+            
+            if (currentUserEmail && userProfiles[currentUserEmail]) {
+                const profile = userProfiles[currentUserEmail];
+                if (userNameEl) userNameEl.textContent = profile.name;
+                if (userRoleEl) userRoleEl.textContent = profile.role;
+                console.log(`✅ Loaded profile for: ${profile.name} (${profile.role})`);
+            } else {
+                // Default fallback
+                if (userNameEl) userNameEl.textContent = 'Team Leader';
+                if (userRoleEl) userRoleEl.textContent = 'Management';
+                console.log('📋 Using default profile');
+            }
+            
+            console.log('✅ Dashboard loaded successfully');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Success - Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #ff4824, #ff0b4e);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 120px; height: 120px; right: 10%; animation-delay: -2s; }
+        .particle:nth-child(3) { width: 60px; height: 60px; left: 80%; animation-delay: -4s; }
+        .particle:nth-child(4) { width: 100px; height: 100px; left: 60%; animation-delay: -1s; }
+        .particle:nth-child(5) { width: 40px; height: 40px; right: 30%; animation-delay: -3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        /* Main container */
+        .success-container {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px 50px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Success icon with animation */
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #ff4824, #ff0b4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+        }
+
+        @keyframes bounce {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, #ff4824, #ff0b4e);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+        }
+
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .checkmark path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: checkmark 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
+        }
+
+        @keyframes checkmark {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Typography */
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.6s ease-out 0.5s both;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out 0.7s both;
+        }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(88, 101, 242, 0.2);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: 12px;
+            padding: 8px 16px;
+            margin: 0 8px;
+            font-weight: 600;
+            color: #5865f2;
+        }
+
+        .discord-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            fill: #5865f2;
+        }
+
+        /* Countdown section */
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 32px 0;
+            animation: fadeInUp 0.6s ease-out 0.9s both;
+        }
+
+        .countdown-text {
+            font-size: 1rem;
+            color: #d0d0d0;
+            margin-bottom: 12px;
+        }
+
+        .countdown-timer {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff4824, #ff0b4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: countdownPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 1.1s both;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff4824, #ff0b4e);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 72, 36, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Fade in animation for elements */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .countdown-timer {
+                font-size: 2.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="success-container">
+        <!-- Animated success icon -->
+        <div class="success-icon">
+            <svg class="checkmark" viewBox="0 0 52 52">
+                <path d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+
+        <!-- Main content -->
+        <h1 class="main-title">Welcome to Zorn!</h1>
+        <p class="subtitle">
+            Successfully authenticated with 
+            <span class="platform-badge">
+                <svg class="discord-icon" viewBox="0 0 24 24">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.191.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.30z"/>
+                </svg>
+                Discord
+            </span>
+        </p>
+        
+        <!-- Countdown section -->
+        <div class="countdown-section">
+            <p class="countdown-text">Redirecting to your profile in</p>
+            <div class="countdown-timer" id="countdown">3</div>
+            <p class="countdown-text">seconds</p>
+        </div>
+        
+        <!-- Action buttons -->
+        <div class="button-group">
+            <a href="profile.html" class="btn btn-primary">Go to Profile Now</a>
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Get the success parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+        
+        // Clear the URL parameters immediately
+        window.history.replaceState({}, document.title, window.location.pathname);
+        
+        // Countdown and redirect functionality
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        // Enhanced countdown with smooth animations
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            // Add pulse animation on countdown change
+            countdownElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                countdownElement.style.transform = 'scale(1)';
+            }, 150);
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                // Fade out animation before redirect
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.3s ease-out';
+                
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 300);
+            }
+        }, 1000);
+        
+        // Add click handlers for immediate actions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cancel auto-redirect if user interacts with buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    clearInterval(timer);
+                });
+            });
+        });
+        
+        // Add particle animation
+        function createRandomParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 60 + 20 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = Math.random() * 3 + 4 + 's';
+            
+            document.querySelector('.particles').appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+        
+        // Create additional particles periodically
+        setInterval(createRandomParticle, 2000);
+        
+        console.log('✅ OAuth success page loaded');
+        console.log('🎮 Platform: Discord');
+        console.log('⏰ Auto-redirecting to profile in 3 seconds');
+    </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Communication Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        button {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #e55a2b;
+        }
+        .log {
+            background: #111;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        .success { color: #4ade80; }
+        .error { color: #ef4444; }
+        .info { color: #60a5fa; }
+        .warning { color: #fbbf24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Dashboard Communication Test</h1>
+    <p>This page tests the communication between application forms and the dashboard.</p>
+
+    <div class="test-section">
+        <h2>📊 Current localStorage Status</h2>
+        <button onclick="checkLocalStorage()">Check Storage</button>
+        <button onclick="clearStorage()">Clear Storage</button>
+        <div id="storageStatus" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 Test Application Submission</h2>
+        <p>Simulate submitting a new application:</p>
+        <button onclick="simulateApplication()">Submit Test Application</button>
+        <button onclick="simulateMultipleApps()">Submit 3 Test Applications</button>
+        <div id="submissionLog" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📡 Event Monitoring</h2>
+        <p>Monitor events that the dashboard should receive:</p>
+        <button onclick="startMonitoring()">Start Monitoring</button>
+        <button onclick="stopMonitoring()">Stop Monitoring</button>
+        <div id="eventLog" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Quick Links</h2>
+        <button onclick="openDashboard()">Open Dashboard</button>
+        <button onclick="openApplicationForm()">Open Application Form</button>
+    </div>
+
+    <script>
+        let monitoring = false;
+        let eventCount = 0;
+
+        function log(message, type = 'info', containerId = 'eventLog') {
+            const container = document.getElementById(containerId);
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = type;
+            entry.innerHTML = `[${timestamp}] ${message}`;
+            container.appendChild(entry);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function checkLocalStorage() {
+            const container = document.getElementById('storageStatus');
+            container.innerHTML = '';
+            
+            // Check zorn_applications
+            const apps = localStorage.getItem('zorn_applications');
+            if (apps) {
+                try {
+                    const parsed = JSON.parse(apps);
+                    log(`✅ Found ${parsed.length} applications in storage`, 'success', 'storageStatus');
+                    parsed.forEach((app, index) => {
+                        log(`  ${index + 1}. ${app.name} (${app.role}) - ${app.isDemo ? 'DEMO' : 'REAL'}`, 'info', 'storageStatus');
+                    });
+                } catch (e) {
+                    log(`❌ Failed to parse applications: ${e.message}`, 'error', 'storageStatus');
+                }
+            } else {
+                log('📭 No applications found in localStorage', 'warning', 'storageStatus');
+            }
+
+            // Check notification flags
+            const notification = localStorage.getItem('zorn_dashboard_notification');
+            if (notification) {
+                log(`🔔 Notification pending: ${notification}`, 'info', 'storageStatus');
+            }
+
+            const updateFlag = localStorage.getItem('zorn_dashboard_update');
+            if (updateFlag) {
+                log(`⚡ Update flag: ${updateFlag}`, 'info', 'storageStatus');
+            }
+        }
+
+        function clearStorage() {
+            localStorage.removeItem('zorn_applications');
+            localStorage.removeItem('zorn_dashboard_notification');
+            localStorage.removeItem('zorn_dashboard_update');
+            log('🗑️ Storage cleared', 'success', 'storageStatus');
+            checkLocalStorage();
+        }
+
+        function simulateApplication() {
+            const testApp = {
+                id: 'test_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                name: 'Test User ' + eventCount++,
+                email: 'test@example.com',
+                role: 'Test Position',
+                status: 'pending',
+                submittedAt: new Date().toISOString(),
+                message: 'This is a test application submitted via the communication test page.',
+                isDemo: false
+            };
+
+            // Get existing applications
+            let existingApps = [];
+            try {
+                const stored = localStorage.getItem('zorn_applications');
+                if (stored) {
+                    existingApps = JSON.parse(stored);
+                }
+            } catch (e) {
+                log(`❌ Error loading existing apps: ${e.message}`, 'error', 'submissionLog');
+            }
+
+            // Add new application
+            existingApps.unshift(testApp);
+            localStorage.setItem('zorn_applications', JSON.stringify(existingApps));
+
+            // Send notifications (same as applications.js)
+            try {
+                // Custom event
+                const customEvent = new CustomEvent('zorn_new_application', {
+                    detail: testApp
+                });
+                window.dispatchEvent(customEvent);
+
+                // Notification object
+                const notification = {
+                    type: 'new_application',
+                    application: testApp,
+                    timestamp: new Date().toISOString()
+                };
+                localStorage.setItem('zorn_dashboard_notification', JSON.stringify(notification));
+
+                // Update flag
+                localStorage.setItem('zorn_dashboard_update', Date.now().toString());
+
+                log(`✅ Test application submitted: ${testApp.name} (ID: ${testApp.id})`, 'success', 'submissionLog');
+                log(`📊 Total applications: ${existingApps.length}`, 'info', 'submissionLog');
+
+                // Clear notification after delay
+                setTimeout(() => {
+                    localStorage.removeItem('zorn_dashboard_notification');
+                }, 2000);
+
+            } catch (e) {
+                log(`❌ Error sending notifications: ${e.message}`, 'error', 'submissionLog');
+            }
+        }
+
+        function simulateMultipleApps() {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => simulateApplication(), i * 500);
+            }
+        }
+
+        function startMonitoring() {
+            if (monitoring) return;
+            monitoring = true;
+            
+            log('🔄 Starting event monitoring...', 'info');
+
+            // Storage events
+            window.addEventListener('storage', onStorageEvent);
+            
+            // Custom events
+            window.addEventListener('zorn_new_application', onCustomEvent);
+
+            log('👂 Listening for events', 'success');
+        }
+
+        function stopMonitoring() {
+            if (!monitoring) return;
+            monitoring = false;
+
+            window.removeEventListener('storage', onStorageEvent);
+            window.removeEventListener('zorn_new_application', onCustomEvent);
+
+            log('⏹️ Stopped monitoring', 'warning');
+        }
+
+        function onStorageEvent(e) {
+            if (!monitoring) return;
+            log(`📡 Storage event: key="${e.key}" newValue="${e.newValue?.substring(0, 100)}..."`, 'info');
+        }
+
+        function onCustomEvent(e) {
+            if (!monitoring) return;
+            log(`🎯 Custom event: ${JSON.stringify(e.detail).substring(0, 100)}...`, 'success');
+        }
+
+        function openDashboard() {
+            window.open('dashboard.html', '_blank');
+        }
+
+        function openApplicationForm() {
+            window.open('apply-freestyler.html', '_blank');
+        }
+
+        // Auto-check storage on load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkLocalStorage();
+            startMonitoring();
+        });
+    </script>
+</body>
+</html>

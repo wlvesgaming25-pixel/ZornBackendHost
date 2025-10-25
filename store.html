@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zorn Store - Official merchandise and products">
+    <title>Store - Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/store.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link active">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="user-profile" id="userProfile">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Store Closed Overlay -->
+        <div class="store-closed-overlay">
+            <div class="store-closed-content">
+                <h1>Store is Currently Closed</h1>
+                <p>We're working hard to bring you amazing merchandise soon!</p>
+                <p>Check back later for exclusive Zorn gear.</p>
+                <div class="store-closed-actions">
+                    <a href="index.html" class="btn-back-home">Back to Homepage</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="page-hero animate-on-load fade-in-scale">
+            <div class="container">
+                <h1 class="animate-on-load slide-in-bottom delay-2">Zorn Store</h1>
+                <p class="animate-on-load slide-in-bottom delay-3">Official merchandise and premium products from Zorn</p>
+            </div>
+        </section>
+
+        <section class="store-filters animate-on-load slide-in-top delay-4">
+            <div class="container">
+                <div class="filter-controls">
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All Products</button>
+                        <button class="filter-btn" data-category="apparel">Apparel</button>
+                        <button class="filter-btn" data-category="accessories">Accessories</button>
+                        <button class="filter-btn" data-category="tech">Tech</button>
+                        <button class="filter-btn" data-category="collectibles">Collectibles</button>
+                    </div>
+                    <div class="sort-controls">
+                        <select id="sortSelect">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <button class="cart-btn" id="cartToggle">
+                        🛒 Cart (<span id="cartCount">0</span>)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-grid">
+            <div class="container">
+                <div class="products">
+                    <!-- Apparel -->
+                    <div class="product-card animate-on-load fade-in-scale delay-5" data-category="apparel">
+                        <div class="product-image">
+                            <img src="assets/img/store/hoodie-black.jpg" alt="Zorn Black Hoodie">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Black Hoodie</h3>
+                            <p class="product-price">$59.99</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option>Select Size</option>
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                    <option value="xxl">XXL</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="hoodie-black" data-price="59.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-load fade-in-scale delay-6" data-category="apparel">
+                        <div class="product-image">
+                            <img src="assets/img/store/tshirt-white.jpg" alt="Zorn White T-Shirt">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn White T-Shirt</h3>
+                            <p class="product-price">$29.99</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option>Select Size</option>
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                    <option value="xxl">XXL</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="tshirt-white" data-price="29.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Accessories -->
+                    <div class="product-card animate-on-load fade-in-scale delay-7" data-category="accessories">
+                        <div class="product-image">
+                            <img src="assets/img/store/cap-black.jpg" alt="Zorn Black Cap">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Black Cap</h3>
+                            <p class="product-price">$24.99</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option>One Size</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="cap-black" data-price="24.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-load fade-in-scale delay-8" data-category="accessories">
+                        <div class="product-image">
+                            <img src="assets/img/store/backpack.jpg" alt="Zorn Backpack">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Tech Backpack</h3>
+                            <p class="product-price">$89.99</p>
+                            <div class="product-options">
+                                <select class="color-select">
+                                    <option>Select Color</option>
+                                    <option value="black">Black</option>
+                                    <option value="gray">Gray</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="backpack" data-price="89.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Tech -->
+                    <div class="product-card animate-on-load fade-in-scale delay-9" data-category="tech">
+                        <div class="product-image">
+                            <img src="assets/img/store/mousepad.jpg" alt="Zorn Gaming Mousepad">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Gaming Mousepad</h3>
+                            <p class="product-price">$19.99</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option>Select Size</option>
+                                    <option value="medium">Medium (30x25cm)</option>
+                                    <option value="large">Large (40x30cm)</option>
+                                    <option value="xl">XL (60x30cm)</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="mousepad" data-price="19.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-load fade-in-scale delay-10" data-category="tech">
+                        <div class="product-image">
+                            <img src="assets/img/store/stickers.jpg" alt="Zorn Sticker Pack">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Sticker Pack</h3>
+                            <p class="product-price">$9.99</p>
+                            <div class="product-options">
+                                <p class="option-text">Pack of 10 premium stickers</p>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="stickers" data-price="9.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Collectibles -->
+                    <div class="product-card animate-on-load fade-in-scale delay-11" data-category="collectibles">
+                        <div class="product-image">
+                            <img src="assets/img/store/mug.jpg" alt="Zorn Coffee Mug">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Coffee Mug</h3>
+                            <p class="product-price">$14.99</p>
+                            <div class="product-options">
+                                <select class="color-select">
+                                    <option>Select Color</option>
+                                    <option value="black">Black</option>
+                                    <option value="white">White</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="mug" data-price="14.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-load fade-in-scale delay-12" data-category="collectibles">
+                        <div class="product-image">
+                            <img src="assets/img/store/pin-set.jpg" alt="Zorn Pin Set">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Limited Edition Pin Set</h3>
+                            <p class="product-price">$34.99</p>
+                            <div class="product-options">
+                                <p class="option-text">Set of 5 enamel pins</p>
+                                <span class="limited-badge">Limited Edition</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="pin-set" data-price="34.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="store-info">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">🚚</div>
+                        <h3>Free Shipping</h3>
+                        <p>Free shipping on orders over $75 worldwide</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">↩️</div>
+                        <h3>Easy Returns</h3>
+                        <p>30-day return policy for all products</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">⭐</div>
+                        <h3>Premium Quality</h3>
+                        <p>High-quality materials and craftsmanship</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🔒</div>
+                        <h3>Secure Checkout</h3>
+                        <p>Safe and secure payment processing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total: $<span id="cartTotal">0.00</span></strong>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="roster.html">Roster</a></li>
+                    <li><a href="apply.html">Apply</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Store Info</h4>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://x.com/ZornHQ" class="social-link" target="_blank">X (Twitter)</a>
+                    <a href="https://discord.gg/VNb82VRYna" class="social-link" target="_blank">Discord</a>
+                    <a href="https://www.tiktok.com/@teamzornhq" class="social-link" target="_blank">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: teamzornhq@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/store.js"></script>
+</body>
+</html>

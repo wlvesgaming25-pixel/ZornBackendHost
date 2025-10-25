@@ -1,0 +1,47 @@
+{
+  "name": "zorn-website",
+  "version": "2.0.0",
+  "description": "Official website for Team Zorn - Modern esports organization and content creation platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000",
+    "build": "echo 'Static site - no build process required'",
+    "deploy:netlify": "netlify deploy --prod",
+    "deploy:gh-pages": "gh-pages -d .",
+    "lint:html": "html-validate *.html",
+    "lint:css": "stylelint assets/css/*.css",
+    "serve": "serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/zorn-website-2.0.git"
+  },
+  "keywords": [
+    "esports",
+    "gaming",
+    "content-creation",
+    "team-zorn",
+    "website",
+    "static-site"
+  ],
+  "author": "Team Zorn",
+  "license": "MIT",
+  "homepage": "https://zorn-website.netlify.app",
+  "devDependencies": {
+    "gh-pages": "^6.0.0",
+    "html-validate": "^8.0.0",
+    "netlify-cli": "^17.0.0",
+    "serve": "^14.2.0",
+    "stylelint": "^15.10.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

@@ -1,0 +1,981 @@
+/* Import base styles from index.css */
+@import url('index.css');
+
+/* Page-specific overrides and additions */
+.page-hero {
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Who We Are Section */
+.who-we-are {
+    padding: 80px 0 40px 0;
+    background-color: transparent;
+}
+
+.who-we-are h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+}
+
+.who-we-are p {
+    font-size: 1rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 0;
+}
+
+/* About Content Section */
+/* Zorn DNA Section - Original Gaming-focused Design */
+.about-content {
+    padding: 40px 0 100px 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 72, 36, 0.05), transparent),
+                radial-gradient(circle at 70% 80%, rgba(255, 11, 78, 0.05), transparent);
+    pointer-events: none;
+}
+
+.zorn-dna-section {
+    position: relative;
+    z-index: 2;
+}
+
+.dna-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.dna-header h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #e0e0e0;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.dna-header p {
+    font-size: 1.2rem;
+    color: #999;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* DNA Grid Layout - More Balanced */
+.dna-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: start;
+    position: relative;
+}
+
+.philosophy-card {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.mission-card {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.vision-card {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.stats-fusion {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    justify-self: stretch;
+}
+
+/* DNA Cards */
+.dna-card {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dna-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 72, 36, 0.5);
+    box-shadow: 0 0 30px rgba(255, 72, 36, 0.4);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(255, 72, 36, 0.3));
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+    color: #e0e0e0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-tag {
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.dna-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Card Glow Effects */
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.dna-card:hover .card-glow {
+    opacity: 1;
+}
+
+.philosophy-glow {
+    background: linear-gradient(135deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+}
+
+.mission-glow {
+    background: linear-gradient(135deg, transparent, rgba(255, 72, 36, 0.1), transparent);
+}
+
+.vision-glow {
+    background: linear-gradient(135deg, transparent, rgba(0, 191, 255, 0.1), transparent);
+}
+
+.stats-glow {
+    background: linear-gradient(135deg, transparent, rgba(255, 72, 36, 0.1), transparent);
+}
+
+/* Stats Card - Uses dna-card base styling */
+.stats-card {
+    justify-content: center;
+}
+
+.stat-display {
+    text-align: center;
+    margin-bottom: 0.6rem;
+    position: relative;
+}
+
+.stat-display:last-child {
+    margin-bottom: 0;
+}
+
+.stat-counter {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.2rem;
+    margin-bottom: 0.1rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-unit {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-label {
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+.connection-lines {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    right: -30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 72, 36, 0.3), transparent);
+    transform: translateY(-50%);
+}
+
+/* Action Strip */
+.action-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(255, 72, 36, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 72, 36, 0.2);
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    max-width: 250px;
+}
+
+.action-icon {
+    font-size: 2rem;
+    padding: 1rem;
+    background: rgba(255, 72, 36, 0.1);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 72, 36, 0.3);
+}
+
+.action-text h4 {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.action-text p {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.action-separator {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, rgba(255, 72, 36, 0.3), transparent);
+}
+
+/* Mission & Values Section */
+.mission-values {
+    padding: 80px 0;
+    background: #111;
+}
+
+.mission-values h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #151515 50%, #0f0f0f 100%);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(255, 72, 36, 0.2);
+    border-color: #ff4824;
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+}
+
+.value-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Milestones Section */
+.milestones-section {
+    padding: 100px 0;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-subtitle {
+    color: #ff4824;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-header h2 {
+    color: #e0e0e0;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Clean Minimal Milestones */
+.milestones-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    position: relative;
+    animation: containerFloat 6s ease-in-out infinite;
+}
+
+@keyframes containerFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.milestones-container::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 100px;
+    bottom: 100px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, #ff4824, #ff0b4e, transparent);
+    z-index: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.2s ease-out;
+}
+
+.milestones-container::after {
+    content: '';
+    position: absolute;
+    left: 78px;
+    top: 98px;
+    bottom: 98px;
+    width: 6px;
+    background: linear-gradient(180deg, transparent, rgba(255, 72, 36, 0.3), rgba(255, 11, 78, 0.3), transparent);
+    z-index: 0;
+    border-radius: 3px;
+    filter: blur(4px);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.2s ease-out 0.2s;
+}
+
+.milestones-container.animate-timeline::before {
+    transform: scaleY(1);
+}
+
+.milestones-container.animate-timeline::after {
+    transform: scaleY(1);
+}
+
+@keyframes growLine {
+    to {
+        transform: scaleY(1);
+    }
+}
+
+.milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* Fallback: show milestones if JS doesn't load */
+    animation: showFallback 0.1s ease-out 3s forwards;
+}
+
+@keyframes showFallback {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.milestone-item:nth-child(even) {
+    transform: translateX(60px);
+}
+
+.milestone-item.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.milestone-item.animate-in:nth-child(1) { transition-delay: 0.1s; }
+.milestone-item.animate-in:nth-child(2) { transition-delay: 0.2s; }
+.milestone-item.animate-in:nth-child(3) { transition-delay: 0.3s; }
+.milestone-item.animate-in:nth-child(4) { transition-delay: 0.4s; }
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.milestone-item:last-child {
+    margin-bottom: 0;
+}
+
+.milestone-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4824, #ff0b4e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    box-shadow: 0 8px 32px rgba(255, 72, 36, 0.4);
+    position: relative;
+    flex-shrink: 0;
+    z-index: 2;
+    transform: scale(0) rotate(180deg);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.milestone-item.animate-number .milestone-number {
+    transform: scale(1) rotate(0deg);
+}
+
+.milestone-item:nth-child(1).animate-number .milestone-number { transition-delay: 0.5s; }
+.milestone-item:nth-child(2).animate-number .milestone-number { transition-delay: 0.6s; }
+.milestone-item:nth-child(3).animate-number .milestone-number { transition-delay: 0.7s; }
+.milestone-item:nth-child(4).animate-number .milestone-number { transition-delay: 0.8s; }
+
+@keyframes popIn {
+    to {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.milestone-number:hover {
+    transform: scale(1.1) rotate(-5deg);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.milestone-number::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255, 72, 36, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 3s infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+}
+
+.milestone-content {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 32px 40px;
+    flex: 1;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+.milestone-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        transparent 20%, 
+        rgba(255, 72, 36, 0.2) 40%, 
+        rgba(255, 72, 36, 0.4) 50%, 
+        rgba(255, 72, 36, 0.2) 60%, 
+        transparent 80%, 
+        transparent 100%);
+}
+
+.milestone-item:hover .milestone-content {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 72, 36, 0.4);
+    box-shadow: 0 25px 80px rgba(255, 72, 36, 0.15), 0 0 0 1px rgba(255, 72, 36, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+
+
+
+.milestone-date {
+    display: inline-block;
+    background: rgba(255, 72, 36, 0.1);
+    color: #ff4824;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 72, 36, 0.2);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.milestone-date:hover {
+    background: rgba(255, 72, 36, 0.2);
+    border-color: rgba(255, 72, 36, 0.5);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.milestone-content h3 {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.milestone-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 400;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.milestone-item:hover .milestone-content h3 {
+    transform: translateX(10px);
+    transition: transform 0.3s ease;
+}
+
+.milestone-item:hover .milestone-content p {
+    color: rgba(255, 255, 255, 0.95);
+    transition: color 0.3s ease;
+}
+
+
+
+
+
+@keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Fade-in Animation */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.fade-in-element.fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation delay */
+.fade-in-element:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-element:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-element:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-element:nth-child(4) { transition-delay: 0.4s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-text {
+        order: 2;
+    }
+
+    .about-image {
+        order: 1;
+    }
+
+    .about-text h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .info-boxes {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .info-box {
+        padding: 2rem;
+    }
+
+    /* DNA Section Responsive */
+    .dna-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .dna-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 2rem;
+    }
+
+    .philosophy-card,
+    .mission-card,
+    .vision-card {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .stats-fusion {
+        grid-column: 1;
+        grid-row: auto;
+        order: -1;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1.5rem;
+    }
+
+    .stat-display {
+        margin-bottom: 0;
+        flex: 1;
+    }
+
+    .connection-lines {
+        display: none;
+    }
+
+    .action-strip {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .action-separator {
+        width: 60px;
+        height: 1px;
+        transform: rotate(90deg);
+    }
+
+    .stat-box {
+        padding: 1.2rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .stat-content {
+        align-items: center;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+        padding: 0.8rem;
+        min-width: 45px;
+        height: 45px;
+    }
+
+    /* Evolution Path Mobile */
+    .path-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .evolution-title {
+        font-size: 1.4rem;
+    }
+    
+    .evolution-stage {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .stage-icon {
+        font-size: 2.5rem;
+        width: 70px;
+        height: 70px;
+    }
+    
+    .stage-level {
+        position: static;
+        margin-bottom: 1rem;
+    }
+    
+    .stage-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .stage-info p {
+        font-size: 0.85rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .milestone-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero {
+        padding: 100px 0 60px;
+    }
+
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+
+    .about-content,
+    .mission-values,
+    .milestones-section {
+        padding: 60px 0;
+    }
+
+    .value-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .info-box {
+        padding: 1.5rem;
+    }
+
+    .info-box h3 {
+        font-size: 1.3rem;
+    }
+
+    .stats-sidebar {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .stat-box {
+        padding: 1.2rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+    }
+
+    .stat-content {
+        align-items: center;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+        padding: 0.7rem;
+        min-width: 40px;
+        height: 40px;
+    }
+
+    .info-box {
+        padding: 1.5rem;
+    }
+
+    .info-box h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Mobile Milestones */
+    .milestones-container::before {
+        display: none;
+    }
+    
+    .milestone-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+    
+    .milestone-number {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+    
+    .milestone-number::after {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .milestone-content {
+        padding: 24px 24px;
+    }
+    
+    .milestone-content h3 {
+        font-size: 22px;
+    }
+    
+    .milestone-content p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+

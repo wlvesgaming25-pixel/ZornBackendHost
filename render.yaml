@@ -1,0 +1,44 @@
+# Render Build Configuration
+services:
+  - type: web
+    name: zorn-website
+    env: static
+    buildCommand: echo "No build command needed for static site"
+    staticPublishPath: .
+    domains:
+      - zorn-website.onrender.com
+    envVars:
+      - key: NODE_ENV
+        value: production
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-XSS-Protection
+        value: "1; mode=block"
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /assets/*
+        name: Cache-Control
+        value: "public, max-age=31536000, immutable"
+      - path: "*.css"
+        name: Cache-Control
+        value: "public, max-age=31536000"
+      - path: "*.js"
+        name: Cache-Control
+        value: "public, max-age=31536000"
+      - path: "*.png"
+        name: Cache-Control
+        value: "public, max-age=31536000"
+      - path: "*.jpg"
+        name: Cache-Control
+        value: "public, max-age=31536000"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
