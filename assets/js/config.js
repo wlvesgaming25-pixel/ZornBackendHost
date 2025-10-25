@@ -17,11 +17,10 @@ class ProductionConfig {
                 applications: 'http://localhost:3003'
             },
             production: {
-                // TODO: Update these URLs after deploying backend services
-                discord: 'https://zorn-backend-discord.onrender.com',  // Replace with actual URL
-                oauth: 'https://zorn-backend-oauth.onrender.com',      // Replace with actual URL  
-                contact: 'https://zorn-backend-contact.onrender.com',   // Replace with actual URL
-                applications: 'https://zorn-backend-apps.onrender.com' // Replace with actual URL
+                discord: 'https://zornbackendhost-1.onrender.com',  // ✅ LIVE - Discord Proxy
+                oauth: 'https://zorn-oauth-handler.onrender.com',      // ✅ LIVE - OAuth Handler
+                contact: 'https://zorn-backend-contact.onrender.com',   // Future service
+                applications: 'https://zorn-backend-apps.onrender.com' // Future service
             }
         };
     }
