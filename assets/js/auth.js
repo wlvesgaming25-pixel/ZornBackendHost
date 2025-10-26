@@ -683,26 +683,55 @@ class AuthManager {
     }
 
     updateHeaderUI() {
-        const userProfile = document.getElementById('userProfile');
-        if (!userProfile) return;
+        // Support both standard userProfile and dashboard userProfileHeader
+        const userProfile = document.getElementById('userProfile') || document.getElementById('userProfileHeader');
+        if (!userProfile) {
+            console.log('No user profile element found on this page');
+            return;
+        }
 
         if (this.currentUser) {
             // User is logged in - show profile
             const userData = this.getUserData();
-            userProfile.innerHTML = `
-                <a href="profile.html" class="user-profile-link">
-                    <img src="${userData.avatar || 'assets/img/roster/socialsbg.png.webp'}" alt="Profile" class="user-avatar">
-                    <span class="user-name">${userData.displayName || userData.username}</span>
-                </a>
-            `;
+            
+            // Check if this is dashboard layout (different structure)
+            if (userProfile.id === 'userProfileHeader') {
+                // Dashboard-specific profile update
+                const userNameEl = userProfile.querySelector('.user-name');
+                const userRoleEl = userProfile.querySelector('.user-role');
+                const userAvatarEl = userProfile.querySelector('.avatar-placeholder');
+                
+                if (userNameEl) userNameEl.textContent = userData.displayName || userData.username;
+                if (userRoleEl) userRoleEl.textContent = userData.role || 'Member';
+                if (userAvatarEl) {
+                    userAvatarEl.innerHTML = `<img src="${userData.avatar || 'assets/img/roster/socialsbg.png.webp'}" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%;">`;
+                }
+            } else {
+                // Standard layout profile update
+                userProfile.innerHTML = `
+                    <a href="/profile" class="user-profile-link">
+                        <img src="${userData.avatar || 'assets/img/roster/socialsbg.png.webp'}" alt="Profile" class="user-avatar">
+                        <span class="user-name">${userData.displayName || userData.username}</span>
+                    </a>
+                `;
+            }
+            
+            console.log('✅ Profile updated for user:', userData.displayName || userData.username);
         } else {
-            // User is not logged in - show placeholder profile picture
-            userProfile.innerHTML = `
-                <a href="login.html" class="user-profile-link">
-                    <img src="assets/img/roster/socialsbg.png.webp" alt="Login" class="user-avatar placeholder">
-                    <span class="user-name">Guest</span>
-                </a>
-            `;
+            // User is not logged in
+            if (userProfile.id === 'userProfileHeader') {
+                // Dashboard should redirect to access-restricted if no user
+                // This is handled by dashboard access control
+                return;
+            } else {
+                // Standard layout - show login link
+                userProfile.innerHTML = `
+                    <a href="/login" class="user-profile-link">
+                        <img src="assets/img/roster/socialsbg.png.webp" alt="Login" class="user-avatar placeholder">
+                        <span class="user-name">Guest</span>
+                    </a>
+                `;
+            }
         }
     }
 
