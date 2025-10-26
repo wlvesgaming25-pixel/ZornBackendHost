@@ -9,26 +9,14 @@ class DiscordStatsCounter {
     }
     
     getBackendUrls() {
-        // Use ProductionConfig if available, fallback to manual detection
-        if (window.ProductionConfig) {
-            const discordUrl = window.ProductionConfig.getDiscordApiUrl();
-            return [discordUrl];
+        // Initialize ProductionConfig if not available
+        if (!this.config) {
+            this.config = new ProductionConfig();
         }
         
-        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
-        if (isDevelopment) {
-            return [
-                'http://localhost:3001',
-                'http://127.0.0.1:3001'
-            ];
-        } else {
-            // For production, try production backend URLs
-            return [
-                'https://zorn-backend-discord.onrender.com',
-                'https://zorn-backend-discord.herokuapp.com'
-            ];
-        }
+        // Use the correct Discord API URL from config
+        const discordUrl = this.config.getDiscordApiUrl();
+        return [discordUrl];
     }
     
     async init() {
