@@ -5,6 +5,15 @@
 
 class DashboardManager {
     constructor() {
+        // Access control
+        this.config = new ProductionConfig();
+        this.authorizedEmails = [
+            'ticklemybootey@gmail.com',
+            'zacfrew06@gmail.com'
+        ];
+        this.currentUser = null;
+        
+        // Dashboard data
         this.applications = [];
         this.filteredApplications = [];
         this.currentFilter = 'all';
@@ -13,6 +22,9 @@ class DashboardManager {
         this.isLoading = false;
         this.pollInterval = null;
         this.lastUpdateTime = null;
+        
+        // Initialize access control
+        this.checkAccess();
         
         // Mock data for demonstration - can be cleared
         this.mockApplications = [
@@ -100,6 +112,103 @@ class DashboardManager {
                 isDemo: true // Mark as demo data
             }
         ];
+    }
+
+    /**
+     * Check if user has access to dashboard
+     */
+    async checkAccess() {
+        console.log('🔒 Checking dashboard access...');
+        
+        try {
+            // Load authenticated user
+            await this.loadAuthenticatedUser();
+            
+            // Verify access permissions
+            if (this.hasAccess()) {
+                console.log('✅ Access granted - initializing dashboard');
+                await this.init();
+            } else {
+                console.log('❌ Access denied - redirecting');
+                this.redirectToAccessDenied();
+            }
+        } catch (error) {
+            console.error('Access verification failed:', error);
+            this.redirectToAccessDenied();
+        }
+    }
+
+    async loadAuthenticatedUser() {
+        // Try OAuth JWT first
+        const oauthUser = await this.loadOAuthUser();
+        if (oauthUser) {
+            this.currentUser = oauthUser;
+            return;
+        }
+
+        // Fallback to local session
+        const localUser = this.loadLocalUser();
+        if (localUser) {
+            this.currentUser = localUser;
+            return;
+        }
+
+        throw new Error('No authenticated user found');
+    }
+
+    async loadOAuthUser() {
+        try {
+            const response = await fetch(`${this.config.getOAuthUrl()}/api/auth/me`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const userData = await response.json();
+                console.log('✅ OAuth user loaded:', userData.email);
+                return userData;
+            }
+        } catch (error) {
+            console.log('No OAuth session found');
+        }
+        return null;
+    }
+
+    loadLocalUser() {
+        const session = localStorage.getItem('zorn_user_session');
+        if (session) {
+            try {
+                const user = JSON.parse(session);
+                if (this.isSessionValid(user)) {
+                    console.log('✅ Local user session loaded:', user.email);
+                    return user;
+                }
+            } catch (e) {
+                console.error('Invalid local session data');
+            }
+        }
+        return null;
+    }
+
+    isSessionValid(user) {
+        if (!user.loginTime) return false;
+        const sessionAge = Date.now() - user.loginTime;
+        const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+        return sessionAge < maxAge;
+    }
+
+    hasAccess() {
+        if (!this.currentUser || !this.currentUser.email) {
+            return false;
+        }
+        return this.authorizedEmails.includes(this.currentUser.email.toLowerCase());
+    }
+
+    redirectToAccessDenied() {
+        window.location.href = '/access-restricted';
     }
 
     /**
@@ -1197,11 +1306,11 @@ class DashboardManager {
     }
 }
 
-// Global initialization function
+// Global initialization function with access control
 window.initializeDashboard = function() {
     if (!window.dashboardManager) {
         window.dashboardManager = new DashboardManager();
-        window.dashboardManager.init();
+        // Access control is handled in constructor - no manual init() call
     }
 };
 

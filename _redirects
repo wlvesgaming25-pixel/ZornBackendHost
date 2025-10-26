@@ -7,6 +7,8 @@
 /store /store.html 200!
 /partners /partners.html 200!
 /profile /profile.html 200!
+/dashboard /dashboard.html 200!
+/access-restricted /access-restricted.html 200!
 
 # Handle specific apply pages
 /apply/coach /apply-coach.html 200!
