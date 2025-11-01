@@ -65,7 +65,7 @@ JWT_EXPIRES_IN=7d
 
 # Discord OAuth (From Discord Developer Portal)
 DISCORD_CLIENT_ID=1430027033072898088
-DISCORD_CLIENT_SECRET=D9rPKwikL1eVvzociFcpGRZHpaPX7H2j
+DISCORD_CLIENT_SECRET=fD3xhxvkDR3ELXNPpmDyChtxwofj5Aer
 DISCORD_REDIRECT_URI=https://zorn.team/auth/discord/callback
 
 # Google OAuth (From Google Cloud Console)

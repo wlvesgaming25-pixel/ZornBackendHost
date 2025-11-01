@@ -5,6 +5,8 @@
 
 class ProductionConfig {
     constructor() {
+    this.API_BASE_URL = 'https://zorn.team/api';
+    this.FRONTEND_URL = 'https://zorn.team';
         this.isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
         this.isDevelopment = !this.isProduction;
         
@@ -23,6 +25,8 @@ class ProductionConfig {
                 applications: 'https://zorn-backend-apps.onrender.com' // Future service
             }
         };
+        this.API_BASE_URL = 'https://zorn.team/api';
+        this.FRONTEND_URL = 'https://zorn.team';
     }
 
     getApiEndpoint(service) {

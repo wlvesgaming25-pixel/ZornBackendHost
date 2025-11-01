@@ -24,7 +24,7 @@ class LeadershipPortalAuth {
             },
 
             // Department Managers (Department Access)
-            'ticklemybootey@gmail.com': {
+            'jawleiall@gmail.com': {
                 role: 'Creative Director',
                 level: 'manager',
                 permissions: ['view', 'edit', 'delete'],

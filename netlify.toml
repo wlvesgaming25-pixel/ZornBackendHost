@@ -1,3 +1,7 @@
+[[redirects]]
+  from = "/login"
+  to = "/login.html"
+  status = 200
 # Netlify Build Configuration
 [build]
   # Directory to publish (default is the root)
@@ -17,7 +21,8 @@
   status = 404
   force = false
 
-# Specific redirects for clean URLs
+
+# Clean URL redirects for all main pages
 [[redirects]]
   from = "/about"
   to = "/about.html"
@@ -36,6 +41,31 @@
 [[redirects]]
   from = "/partners"
   to = "/partners.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/profile"
+  to = "/profile.html"
+  status = 200
+
+[[redirects]]
+  from = "/roster"
+  to = "/roster.html"
+  status = 200
+
+[[redirects]]
+  from = "/store"
+  to = "/store.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/login.html"
   status = 200
 
 [[redirects]]
@@ -58,40 +88,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.jpeg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
 
 # Form handling (for contact form)
 [[forms]]

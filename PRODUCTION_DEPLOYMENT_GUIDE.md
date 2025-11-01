@@ -42,8 +42,8 @@ Required for full functionality:
    - **Note:** node_modules removed for deployment (will be installed automatically)
    - Environment Variables:
      ```
-     DISCORD_BOT_TOKEN=your_bot_token
-     DISCORD_GUILD_ID=your_server_id
+   DISCORD_BOT_TOKEN=your_bot_token_here
+   DISCORD_GUILD_ID=your_guild_id_here
      ```
 
 #### Service 2: OAuth Handler (Discord Login)
@@ -54,8 +54,8 @@ Required for full functionality:
    - Start Command: `npm start`
    - Environment Variables:
      ```
-     DISCORD_CLIENT_ID=1430027033072898088
-     DISCORD_CLIENT_SECRET=D9rPKwikL1eVvzociFcpGRZHpaPX7H2j
+   DISCORD_CLIENT_ID=1430027033072898088
+   DISCORD_CLIENT_SECRET=fD3xhxvkDR3ELXNPpmDyChtxwofj5Aer
      FRONTEND_URL=https://your-netlify-url.netlify.app
      DISCORD_REDIRECT_URI=https://your-render-oauth.onrender.com/auth/discord/callback
      JWT_SECRET=your_jwt_secret
@@ -76,12 +76,12 @@ Required for full functionality:
 ## 🔧 Required Environment Variables
 
 ### Discord Proxy Service
-- `DISCORD_BOT_TOKEN` - Get from Discord Developer Portal
-- `DISCORD_GUILD_ID` - Your Team Zorn server ID
+- `DISCORD_BOT_TOKEN` - your_bot_token_here
+- `DISCORD_GUILD_ID` - your_guild_id_here
 
 ### OAuth Handler Service  
-- `DISCORD_CLIENT_ID` - Already configured (1430027033072898088)
-- `DISCORD_CLIENT_SECRET` - Already configured  
+- `DISCORD_CLIENT_ID` - 1430027033072898088
+- `DISCORD_CLIENT_SECRET` - fD3xhxvkDR3ELXNPpmDyChtxwofj5Aer
 - `FRONTEND_URL` - Your Netlify URL
 - `DISCORD_REDIRECT_URI` - Your OAuth service URL + /auth/discord/callback
 - `JWT_SECRET` - Generate a secure random string

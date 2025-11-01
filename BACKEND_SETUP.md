@@ -17,7 +17,7 @@ Each service needs its own `.env` file. Copy from `.env.example` files in each d
 
 #### Discord Proxy Service
 ```env
-DISCORD_TOKEN=your_discord_bot_token
+DISCORD_TOKEN=your_bot_token_here
 GUILD_ID=your_discord_server_id
 PORT=3001
 ```

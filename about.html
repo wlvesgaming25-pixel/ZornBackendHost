@@ -104,6 +104,29 @@
                                 </div>
                                 <div class="stat-label">Discord members strong</div>
                             </div>
+                                <div class="stat-display">
+                                    <div class="stat-counter">
+                                        <span class="stat-number" id="discordMemberCount">--</span>
+                                        <span class="stat-unit">members</span>
+                                    </div>
+                                    <div class="stat-label">Discord members count</div>
+                                </div>
+                                <div class="stat-display">
+                                    <div class="stat-counter">
+                                        <span class="stat-number" id="discordRoleCount">--</span>
+                                        <span class="stat-unit">roles</span>
+                                    </div>
+                                    <div class="stat-label">Discord roles count</div>
+                                </div>
+                            </div>
+                            <script>
+                            fetch('/api/discord-proxy')
+                              .then(res => res.json())
+                              .then(data => {
+                                document.getElementById('discordMemberCount').textContent = data.memberCount;
+                                document.getElementById('discordRoleCount').textContent = data.roleCount;
+                              });
+                            </script>
                             <div class="connection-lines"></div>
                             <div class="card-glow stats-glow"></div>
                         </div>

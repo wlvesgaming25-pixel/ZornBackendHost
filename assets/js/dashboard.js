@@ -9,7 +9,10 @@ class DashboardManager {
         this.config = new ProductionConfig();
         this.authorizedEmails = [
             'ticklemybootey@gmail.com',
-            'zacfrew06@gmail.com'
+            'jawleiall@gmail.com',
+            'charliewhitaker842@gmail.com',
+            'zacfrew06@gmail.com',
+            'xavier.mcmullan2006@outlook.com'
         ];
         this.currentUser = null;
         
@@ -25,93 +28,6 @@ class DashboardManager {
         
         // Initialize access control
         this.checkAccess();
-        
-        // Mock data for demonstration - can be cleared
-        this.mockApplications = [
-            {
-                id: 'demo_001',
-                name: 'Alex Chen',
-                email: 'alex.chen@email.com',
-                discordTag: 'AlexChen#2847',
-                role: 'Creative Designer',
-                status: 'pending',
-                submittedAt: new Date('2025-10-20T14:30:00Z'),
-                message: 'I\'ve been creating content for 3+ years and specialize in motion graphics and brand design. I love the aesthetic of Team Zorn and would love to contribute to your creative vision.',
-                portfolio: 'https://alexchen.design',
-                experience: '3+ years',
-                availability: 'Part-time (15-20 hrs/week)',
-                timezone: 'EST',
-                software: ['After Effects', 'Photoshop', 'Illustrator', 'Figma'],
-                previousWork: 'Freelance designer for various esports organizations',
-                whyZorn: 'I admire Team Zorn\'s innovative approach to content creation and community building.',
-                isDemo: true // Mark as demo data
-            },
-            {
-                id: 'demo_002',
-                name: 'Jordan Martinez',
-                email: 'jordan.m.gaming@email.com',
-                discordTag: 'JordanM#9456',
-                role: 'Competitive Player',
-                status: 'pending',
-                submittedAt: new Date('2025-10-19T09:15:00Z'),
-                message: 'Radiant Valorant player with tournament experience. Currently looking for a competitive team to join for upcoming VCT events.',
-                rank: 'Radiant (Peak)',
-                mainAgent: 'Jett, Reyna',
-                hoursPlayed: '2000+',
-                tournamentExperience: 'Local tournaments, ranked #1 in regional ladder',
-                availability: 'Full-time',
-                teamExperience: 'Previously played for collegiate team',
-                streaming: 'Yes, 500+ followers on Twitch',
-                isDemo: true // Mark as demo data
-            },
-            {
-                id: 'demo_003',
-                name: 'Morgan Taylor',
-                email: 'morgan.taylor.content@email.com',
-                discordTag: 'MorganT#3721',
-                role: 'Content Creator',
-                status: 'accepted',
-                submittedAt: new Date('2025-10-18T16:45:00Z'),
-                message: 'TikTok creator with 50K+ followers specializing in gaming content and tutorials. Would love to create content for Team Zorn.',
-                contentStyle: 'Gaming tutorials, funny moments, reaction videos',
-                postingFrequency: 'Daily on TikTok, 3x/week on YouTube',
-                equipment: 'Professional streaming setup with OBS, good microphone',
-                collaborations: 'Worked with several gaming brands',
-                isDemo: true // Mark as demo data
-            },
-            {
-                id: 'demo_004',
-                name: 'Sam Rivera',
-                email: 'sam.rivera.mgmt@email.com',
-                discordTag: 'SamRivera#8152',
-                role: 'Team Management',
-                status: 'denied',
-                submittedAt: new Date('2025-10-17T11:20:00Z'),
-                message: 'Experienced in esports team management with background in business operations and team coordination.',
-                experience: '2 years managing regional esports team',
-                skills: ['Team coordination', 'Scheduling', 'Sponsor relations', 'Event planning'],
-                availability: 'Full-time',
-                previousTeams: 'Regional Legends (Valorant team)',
-                achievements: 'Led team to 3 tournament victories',
-                isDemo: true // Mark as demo data
-            },
-            {
-                id: 'demo_005',
-                name: 'Casey Wong',
-                email: 'casey.w.editor@email.com',
-                role: 'Video Editor',
-                status: 'pending',
-                submittedAt: new Date('2025-10-16T13:10:00Z'),
-                message: 'Professional video editor with 4+ years experience in gaming content. Specialized in highlight reels and promotional videos.',
-                software: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
-                experience: '4+ years',
-                portfolio: 'casywong.video',
-                style: 'Fast-paced highlights, cinematic montages',
-                turnaround: '24-48 hours for most projects',
-                availability: 'Part-time (20-25 hrs/week)',
-                isDemo: true // Mark as demo data
-            }
-        ];
     }
 
     /**
@@ -139,9 +55,12 @@ class DashboardManager {
     }
 
     async loadAuthenticatedUser() {
+        console.log('🔍 Loading authenticated user...');
+        
         // Try OAuth JWT first
         const oauthUser = await this.loadOAuthUser();
         if (oauthUser) {
+            console.log('✅ OAuth user found:', oauthUser.email);
             this.currentUser = oauthUser;
             return;
         }
@@ -149,9 +68,12 @@ class DashboardManager {
         // Fallback to local session
         const localUser = this.loadLocalUser();
         if (localUser) {
+            console.log('✅ Local user found:', localUser.email);
             this.currentUser = localUser;
             return;
         }
+        
+        console.log('❌ No authenticated user found');
 
         throw new Error('No authenticated user found');
     }
@@ -202,9 +124,19 @@ class DashboardManager {
 
     hasAccess() {
         if (!this.currentUser || !this.currentUser.email) {
+            console.log('❌ No current user or email found');
+            console.log('Current user:', this.currentUser);
             return false;
         }
-        return this.authorizedEmails.includes(this.currentUser.email.toLowerCase());
+        
+        const userEmail = this.currentUser.email.toLowerCase();
+        const hasAccess = this.authorizedEmails.includes(userEmail);
+        
+        console.log('🔍 Access check for:', userEmail);
+        console.log('📋 Authorized emails:', this.authorizedEmails);
+        console.log('✅ Access granted:', hasAccess);
+        
+        return hasAccess;
     }
 
     redirectToAccessDenied() {
@@ -233,7 +165,7 @@ class DashboardManager {
     }
 
     /**
-     * Load applications from API or mock data
+     * Load applications from localStorage and API
      */
     async loadApplications() {
         this.isLoading = true;
@@ -246,18 +178,26 @@ class DashboardManager {
             
             if (savedApplications) {
                 const parsed = JSON.parse(savedApplications);
-                this.applications = parsed;
+                
+                // Remove any demo applications from stored data
+                this.applications = parsed.filter(app => !app.isDemo);
+                
                 console.log('📂 Loaded applications from localStorage:', this.applications.length);
                 
+                // If we filtered out demo data, save the clean version
+                if (this.applications.length !== parsed.length) {
+                    console.log('🧹 Removed demo applications, saving clean data');
+                    this.saveApplicationsToStorage();
+                }
+                
                 // Debug: Log each application
-                parsed.forEach((app, index) => {
-                    console.log(`  ${index + 1}. ${app.name} (${app.role}) - ${app.isDemo ? 'DEMO' : 'REAL'} - ID: ${app.id}`);
+                this.applications.forEach((app, index) => {
+                    console.log(`  ${index + 1}. ${app.name} (${app.role}) - ID: ${app.id}`);
                 });
             } else {
-                // First time loading - use demo data
-                this.applications = [...this.mockApplications];
-                this.saveApplicationsToStorage();
-                console.log('🎭 Loaded demo applications:', this.applications.length);
+                // First time loading - start with empty applications
+                this.applications = [];
+                console.log('📭 No existing applications - starting fresh');
             }
 
             // Try to fetch new applications from API
@@ -268,10 +208,10 @@ class DashboardManager {
             
         } catch (error) {
             console.error('Error loading applications:', error);
-            // Fallback to demo data if everything fails
+            // Initialize with empty array if loading fails
             if (this.applications.length === 0) {
-                this.applications = [...this.mockApplications];
-                this.filteredApplications = [...this.applications];
+                this.applications = [];
+                this.filteredApplications = [];
             }
         } finally {
             this.isLoading = false;
@@ -298,10 +238,16 @@ class DashboardManager {
                 if (newApplications && newApplications.length > 0) {
                     this.addNewApplications(newApplications);
                 }
+            } else if (response.status === 404) {
+                // Suppress 404 error and fallback to localStorage
+                console.log('API /api/applications/new not found (404) - using local storage only');
+            } else {
+                // Other errors
+                console.warn('API /api/applications/new returned error:', response.status);
             }
         } catch (error) {
             // API not available yet - this is expected during development
-            console.log('📡 API not available - using local storage only');
+            console.log('\ud83d\udce1 API not available - using local storage only');
         }
     }
 
@@ -309,8 +255,7 @@ class DashboardManager {
      * Add new applications and notify user
      */
     addNewApplications(newApplications) {
-        const addedCount = 0;
-        
+        let addedCount = 0;
         newApplications.forEach(newApp => {
             // Check if application already exists
             const exists = this.applications.some(app => app.id === newApp.id);
@@ -320,7 +265,6 @@ class DashboardManager {
                     newApp.submittedAt = new Date();
                 }
                 newApp.status = newApp.status || 'pending';
-                
                 this.applications.unshift(newApp); // Add to beginning
                 addedCount++;
             }
@@ -331,7 +275,6 @@ class DashboardManager {
             this.applyFilters();
             this.renderApplications();
             this.showNotification(`${addedCount} new application(s) received!`, 'success');
-            
             // Flash the new applications
             this.highlightNewApplications(newApplications.map(app => app.id));
         }
@@ -460,14 +403,6 @@ class DashboardManager {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
                 this.handleLogout();
-            });
-        }
-
-        // Clear demo data button
-        const clearDemoBtn = document.getElementById('clearDemoBtn');
-        if (clearDemoBtn) {
-            clearDemoBtn.addEventListener('click', () => {
-                this.handleClearDemoData();
             });
         }
 
@@ -830,11 +765,6 @@ class DashboardManager {
         this.hideConfirmationModal();
         
         try {
-            if (action === 'clearDemo') {
-                this.clearDemoApplications();
-                return;
-            }
-
             // Handle application actions
             if (!this.selectedApplication) return;
             const application = this.selectedApplication;
@@ -845,7 +775,7 @@ class DashboardManager {
             //     body: JSON.stringify({ action })
             // });
 
-            // For demo, update local data
+            // Update local data
             if (action === 'remove') {
                 this.applications = this.applications.filter(app => app.id !== application.id);
             } else {
@@ -1148,47 +1078,6 @@ class DashboardManager {
                 }
             });
         }, 500);
-    }
-
-    /**
-     * Handle clearing demo data
-     */
-    handleClearDemoData() {
-        const demoCount = this.applications.filter(app => app.isDemo).length;
-        
-        if (demoCount === 0) {
-            this.showNotification('No demo applications to clear', 'info');
-            return;
-        }
-
-        this.showConfirmationModal('clearDemo', {
-            title: 'Clear Demo Applications',
-            message: `Are you sure you want to remove all ${demoCount} demo/example applications? This will leave only real submitted applications. This action cannot be undone.`,
-            confirmText: 'Clear Demo Data'
-        });
-    }
-
-    /**
-     * Execute demo data clearing
-     */
-    clearDemoApplications() {
-        const beforeCount = this.applications.length;
-        
-        // Remove all applications marked as demo
-        this.applications = this.applications.filter(app => !app.isDemo);
-        
-        const removedCount = beforeCount - this.applications.length;
-        
-        // Save to storage
-        this.saveApplicationsToStorage();
-        
-        // Update display
-        this.applyFilters();
-        this.renderApplications();
-        
-        this.showNotification(`Cleared ${removedCount} demo applications. Only real submissions remain.`, 'success');
-        
-        console.log(`🗑️ Removed ${removedCount} demo applications`);
     }
 
     /**

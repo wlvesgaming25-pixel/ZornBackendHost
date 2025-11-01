@@ -99,9 +99,9 @@ getBackendUrl() {
 ### Discord Service
 ```env
 PORT=3001
-DISCORD_BOT_TOKEN=your_bot_token
-DISCORD_GUILD_ID=your_server_id
-DISCORD_MEMBER_ROLE_ID=your_member_role_id
+DISCORD_BOT_TOKEN=your_bot_token_here
+DISCORD_GUILD_ID=your_guild_id_here
+DISCORD_MEMBER_ROLE_ID=your_role_id_here
 FRONTEND_URL=https://your-website.netlify.app
 ```
 

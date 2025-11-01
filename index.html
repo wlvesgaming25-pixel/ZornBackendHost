@@ -53,7 +53,7 @@
     </header>
 
     <main>
-        <section class="hero animate-on-load fade-in-scale">
+    <section class="hero animate-on-load fade-in-scale">
             <div class="hero-content">
                 <h1 class="animate-on-load slide-in-bottom delay-2">Welcome to Zorn</h1>
                 <p class="animate-on-load slide-in-bottom delay-3">Wrath. Precision. Legacy.</p>
@@ -69,6 +69,21 @@
             </div>
         </section>
 
+        <!-- Discord & Member Stats Card -->
+        <section class="stats-card" style="margin: 2rem auto; max-width: 400px; background: #181818; border-radius: 20px; box-shadow: 0 2px 16px rgba(0,0,0,0.2); color: #fff; padding: 2rem;">
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div style="text-align: center; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; color: #e74c3c; font-weight: bold;" id="total-members">0</span>
+                    <span style="font-size: 1rem; color: #aaa; margin-left: 0.5rem;">MEMBERS</span>
+                    <div style="font-size: 1rem; color: #ccc; margin-top: 0.5rem;">Building the future</div>
+                </div>
+                <div style="text-align: center;">
+                    <span style="font-size: 2.5rem; color: #e74c3c; font-weight: bold;" id="discord-members">0</span>
+                    <span style="font-size: 1rem; color: #aaa; margin-left: 0.5rem;">COMMUNITY</span>
+                    <div style="font-size: 1rem; color: #ccc; margin-top: 0.5rem;">Discord members strong</div>
+                </div>
+            </div>
+        </section>
         <section class="features">
             <div class="container">
                 <h2 class="animate-on-load slide-in-top delay-6">Why Choose Zorn?</h2>
@@ -121,6 +136,7 @@
 
     <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/discord-stats.js"></script>
     <script src="assets/js/auth.js"></script>
 </body>
 </html>

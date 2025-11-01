@@ -1,3 +1,13 @@
+app.get('/api/discord-proxy', async (req, res) => {
+    const guildRes = await fetch(`https://discord.com/api/v10/guilds/${DISCORD_GUILD_ID}?with_counts=true`, {
+        headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` }
+    });
+    const guildData = await guildRes.json();
+    res.json({
+        memberCount: guildData.approximate_member_count || guildData.member_count,
+        roleCount: guildData.roles ? guildData.roles.length : 0
+    });
+});
 const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
@@ -87,6 +97,17 @@ app.get('/api/discord/team-members', async (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Discord proxy server is running' });
+});
+
+app.get('/api/discord-proxy', async (req, res) => {
+  const guildRes = await fetch(`https://discord.com/api/v10/guilds/${GUILD_ID}`, {
+    headers: { Authorization: `Bot ${BOT_TOKEN}` }
+  });
+  const guildData = await guildRes.json();
+  res.json({
+    memberCount: guildData.approximate_member_count || guildData.member_count,
+    roleCount: guildData.roles ? guildData.roles.length : 0
+  });
 });
 
 app.listen(port, () => {

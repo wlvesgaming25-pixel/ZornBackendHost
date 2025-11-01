@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zorn Login - Access your account">
-    <title>Login - Zorn</title>
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
                     <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
                 </div>
+
+</body>
                 <ul class="nav-menu">
                     <li class="nav-item">
                         <a href="index.html" class="nav-link">Home</a>
@@ -58,8 +45,8 @@
                 <div class="auth-card animate-on-load fade-in-scale">
                     <!-- Tab Navigation -->
                     <div class="auth-tabs">
-                        <button class="tab-btn active" id="loginTab">Login</button>
-                        <button class="tab-btn" id="registerTab">Register</button>
+                        <button type="button" class="tab-btn active" id="loginTab">Login</button>
+                        <button type="button" class="tab-btn" id="registerTab">Register</button>
                     </div>
 
                     <!-- Login Form -->
@@ -72,18 +59,12 @@
                         <form class="auth-form" id="loginFormElement">
                             <div class="form-group">
                                 <label for="loginEmail">Email or Username</label>
-                                <input type="text" id="loginEmail" name="loginEmail" required placeholder="Enter your email or username">
-                                <div class="input-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                        <polyline points="22,6 12,13 2,6"></polyline>
-                                    </svg>
-                                </div>
+                                <input type="text" id="loginEmail" name="loginEmail" required placeholder="Enter your email or username" autocomplete="username">
                             </div>
 
                             <div class="form-group">
                                 <label for="loginPassword">Password</label>
-                                <input type="password" id="loginPassword" name="loginPassword" required placeholder="Enter your password">
+                                <input type="password" id="loginPassword" name="loginPassword" required placeholder="Enter your password" autocomplete="current-password">
                                 <div class="input-icon">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -112,9 +93,7 @@
                                 <a href="#" class="forgot-password">Forgot password?</a>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
-                                Sign In
-                            </button>
+                            <button type="submit" class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
                         </form>
 
                         <div class="auth-divider">
@@ -139,6 +118,33 @@
                         </div>
                         
                         <form class="auth-form" id="registerFormElement">
+        <script>
+        document.getElementById('registerTab').onclick = function() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+        };
+        document.getElementById('loginTab').onclick = function() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        };
+        document.getElementById('registerFormElement').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('registerEmail').value.trim();
+            const username = document.getElementById('registerUsername').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const res = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email, username, password}),
+                credentials: 'include'
+            });
+            if (res.ok) {
+                window.location.href = '/profile';
+            } else {
+                alert('Registration failed');
+            }
+        });
+        </script>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="firstName">First Name</label>
@@ -287,5 +293,39 @@
     <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/auth.js"></script>
+        <script>
+        document.getElementById('loginFormElement').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            // Example: send to backend API
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email, password}),
+                credentials: 'include'
+            });
+            if (res.ok) {
+                window.location.href = '/profile';
+            } else {
+                alert('Login failed');
+            }
+        });
+        </script>
+    <script>
+        // Force redirect to dashboard after login
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginFormElement');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    setTimeout(function() {
+                        if (localStorage.getItem('zorn_user_session')) {
+                            window.location.href = 'dashboard.html';
+                        }
+                    }, 1200);
+                });
+            }
+        });
+    </script>
 </body>
 </html>

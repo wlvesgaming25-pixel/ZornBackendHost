@@ -147,15 +147,15 @@ class AuthManager {
         const registerForm = document.getElementById('registerForm');
 
         if (tab === 'login') {
-            loginTab?.classList.add('active');
-            registerTab?.classList.remove('active');
-            loginForm?.classList.remove('hidden');
-            registerForm?.classList.add('hidden');
-        } else {
-            registerTab?.classList.add('active');
-            loginTab?.classList.remove('active');
-            registerForm?.classList.remove('hidden');
-            loginForm?.classList.add('hidden');
+            if (loginTab) loginTab.classList.add('active');
+            if (registerTab) registerTab.classList.remove('active');
+            if (loginForm) loginForm.classList.remove('hidden');
+            if (registerForm) registerForm.classList.add('hidden');
+        } else if (tab === 'register') {
+            if (registerTab) registerTab.classList.add('active');
+            if (loginTab) loginTab.classList.remove('active');
+            if (registerForm) registerForm.classList.remove('hidden');
+            if (loginForm) loginForm.classList.add('hidden');
         }
     }
 
@@ -184,18 +184,29 @@ class AuthManager {
 
         try {
             // Simulate API delay
-            await this.delay(1000);
-            
+            await this.delay(500);
+
+            // Only allow login if credentials match a registered user
             const user = this.authenticateUser(email, password);
-            
             if (user) {
                 this.saveSession(user);
                 NotificationManager.show('Login successful! Redirecting...', 'success');
-                
-                // Redirect after short delay
                 setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
+                    // List of dashboard authorized emails
+                    const authorizedEmails = [
+                        'ticklemybootey@gmail.com',
+                        'jawleiall@gmail.com',
+                        'charliewhitaker842@gmail.com',
+                        'zacfrew06@gmail.com',
+                        'xavier.mcmullan2006@outlook.com'
+                    ];
+                    const emailLower = user.email?.toLowerCase();
+                    if (authorizedEmails.includes(emailLower)) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        window.location.href = 'profile.html';
+                    }
+                }, 1000);
             } else {
                 NotificationManager.show('Invalid email/username or password', 'error');
             }
@@ -629,6 +640,11 @@ class AuthManager {
 
             console.log('Token response status:', response.status);
 
+            if (response.status === 401) {
+                // Not logged in, suppress error and continue gracefully
+                return false;
+            }
+
             if (response.ok) {
                 const data = await response.json();
                 console.log('Token response data:', data);
@@ -647,7 +663,10 @@ class AuthManager {
                 console.log('Token response not ok:', await response.text());
             }
         } catch (error) {
-            console.error('Failed to load user from token:', error);
+            // Only log real errors, not 401s
+            if (!error.message || !error.message.includes('401')) {
+                console.error('Failed to load user from token:', error);
+            }
         }
         return false;
     }
