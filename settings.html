@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Zorn</title>
+    <link rel="stylesheet" href="assets/css/settings.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/img/zorn-logo.png" alt="Zorn Logo" onerror="this.style.display='none'">
+                <span>ZORN</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="roster.html">Roster</a>
+                <a href="apply.html">Apply</a>
+                <a href="partners.html">Partners</a>
+                <a href="store.html">Store</a>
+                <a href="contact.html">Contact</a>
+                <a href="help.html">Help</a>
+                <a href="settings.html" class="active">Settings</a>
+            </div>
+            <div class="nav-auth">
+                <a href="login.html" id="loginBtn" class="btn-login">Login</a>
+                <a href="profile.html" id="profileBtn" class="btn-profile" style="display: none;">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Settings Hero -->
+    <section class="settings-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Settings</h1>
+            <p class="hero-subtitle">Customize your experience with accessibility and display options</p>
+        </div>
+    </section>
+
+    <!-- Settings Container -->
+    <main class="settings-container">
+        <!-- Theme Settings -->
+        <section class="settings-section">
+            <div class="section-header">
+                <h2>Appearance</h2>
+                <p>Customize the visual theme of the website</p>
+            </div>
+            <div class="settings-options">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="themeSelect">Theme</label>
+                        <span class="setting-description">Choose between light and dark mode</span>
+                    </div>
+                    <select id="themeSelect" class="setting-control">
+                        <option value="dark">Dark Mode</option>
+                        <option value="light">Light Mode</option>
+                        <option value="auto">Auto (System)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accessibility Settings -->
+        <section class="settings-section">
+            <div class="section-header">
+                <h2>Accessibility</h2>
+                <p>Adjust settings to improve readability and visibility</p>
+            </div>
+            <div class="settings-options">
+                <!-- Font Size -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="fontSizeRange">Font Size</label>
+                        <span class="setting-description">Adjust the size of text throughout the site</span>
+                    </div>
+                    <div class="range-control">
+                        <input type="range" id="fontSizeRange" min="80" max="140" value="100" step="10" class="setting-control">
+                        <span id="fontSizeValue" class="range-value">100%</span>
+                    </div>
+                </div>
+
+                <!-- High Contrast -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="highContrastToggle">High Contrast</label>
+                        <span class="setting-description">Increase contrast for better visibility</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="highContrastToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Reduce Motion -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="reduceMotionToggle">Reduce Motion</label>
+                        <span class="setting-description">Minimize animations and transitions</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="reduceMotionToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Dyslexia-Friendly Font -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="dyslexiaFontToggle">Dyslexia-Friendly Font</label>
+                        <span class="setting-description">Use OpenDyslexic font for easier reading</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="dyslexiaFontToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Letter Spacing -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="letterSpacingRange">Letter Spacing</label>
+                        <span class="setting-description">Increase spacing between letters</span>
+                    </div>
+                    <div class="range-control">
+                        <input type="range" id="letterSpacingRange" min="0" max="4" value="0" step="0.5" class="setting-control">
+                        <span id="letterSpacingValue" class="range-value">Normal</span>
+                    </div>
+                </div>
+
+                <!-- Line Height -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="lineHeightRange">Line Height</label>
+                        <span class="setting-description">Adjust spacing between lines of text</span>
+                    </div>
+                    <div class="range-control">
+                        <input type="range" id="lineHeightRange" min="1.4" max="2.2" value="1.6" step="0.2" class="setting-control">
+                        <span id="lineHeightValue" class="range-value">1.6</span>
+                    </div>
+                </div>
+
+                <!-- Focus Indicators -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="focusIndicatorsToggle">Enhanced Focus Indicators</label>
+                        <span class="setting-description">Make keyboard navigation more visible</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="focusIndicatorsToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Display Settings -->
+        <section class="settings-section">
+            <div class="section-header">
+                <h2>Display</h2>
+                <p>Control visual effects and animations</p>
+            </div>
+            <div class="settings-options">
+                <!-- Background Effects -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="backgroundEffectsToggle">Background Effects</label>
+                        <span class="setting-description">Enable animated background elements</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="backgroundEffectsToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Smooth Scrolling -->
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="smoothScrollToggle">Smooth Scrolling</label>
+                        <span class="setting-description">Enable smooth page scrolling</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="smoothScrollToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reset Section -->
+        <section class="settings-section">
+            <div class="section-header">
+                <h2>Reset</h2>
+                <p>Restore all settings to default values</p>
+            </div>
+            <div class="settings-options">
+                <button id="resetSettingsBtn" class="btn-reset">Reset All Settings</button>
+            </div>
+        </section>
+
+        <!-- Settings Info -->
+        <div class="settings-info">
+            <p>Your settings are saved locally in your browser and will persist across visits.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Zorn</h3>
+                <p>Professional RL Freestyle Team competing at the highest level</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="about.html">About</a>
+                <a href="roster.html">Roster</a>
+                <a href="apply.html">Apply</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://twitter.com/zornteam" target="_blank" aria-label="Twitter">Twitter</a>
+                    <a href="https://youtube.com/@zornteam" target="_blank" aria-label="YouTube">YouTube</a>
+                    <a href="https://discord.gg/zorn" target="_blank" aria-label="Discord">Discord</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - Zorn</title>
+    <link rel="stylesheet" href="assets/css/help.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/img/zorn-logo.png" alt="Zorn Logo" onerror="this.style.display='none'">
+                <span>ZORN</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="roster.html">Roster</a>
+                <a href="apply.html">Apply</a>
+                <a href="partners.html">Partners</a>
+                <a href="store.html">Store</a>
+                <a href="contact.html">Contact</a>
+                <a href="help.html" class="active">Help</a>
+                <a href="settings.html">Settings</a>
+            </div>
+            <div class="nav-auth">
+                <a href="login.html" id="loginBtn" class="btn-login">Login</a>
+                <a href="profile.html" id="profileBtn" class="btn-profile" style="display: none;">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="help-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Help Center</h1>
+            <p class="hero-subtitle">Find answers to frequently asked questions about Zorn</p>
+            <div class="search-box">
+                <input type="text" id="helpSearch" placeholder="Search for help..." />
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Popular Topics</h2>
+            <div class="quick-links-grid">
+                <a href="#applying" class="quick-link-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    <h3>How to Apply</h3>
+                    <p>Learn about the application process</p>
+                </a>
+                <a href="#requirements" class="quick-link-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <h3>Requirements</h3>
+                    <p>What you need to join Zorn</p>
+                </a>
+                <a href="#roster" class="quick-link-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <h3>Roster Info</h3>
+                    <p>About our team members</p>
+                </a>
+                <a href="#contact" class="quick-link-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <h3>Contact Us</h3>
+                    <p>Get in touch with the team</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Sections -->
+    <section class="faq-section">
+        <div class="container">
+            <!-- Applying -->
+            <div id="applying" class="faq-category">
+                <h2 class="category-title">Applying to Zorn</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I apply to join Zorn?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>To apply to Zorn, visit our <a href="apply.html">Apply page</a> and select the position you're interested in. Fill out the application form with your information, social media links, and any required clips or portfolio links. Make sure to read the requirements for your chosen position before applying.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What positions are available?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We have several positions available:</p>
+                            <ul>
+                                <li><strong>Freestyler</strong> - Showcase your Rocket League freestyle skills</li>
+                                <li><strong>Competitive Player</strong> - Join our competitive roster</li>
+                                <li><strong>Content Creator</strong> - Create engaging Rocket League content</li>
+                                <li><strong>Editor</strong> - Edit videos for our team and members</li>
+                                <li><strong>Designer</strong> - Create graphics, thumbnails, and branding</li>
+                                <li><strong>Coach</strong> - Help train and improve our players</li>
+                                <li><strong>Management</strong> - Assist with team operations and organization</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How long does the application process take?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Application review typically takes 3-7 business days. You'll receive a notification via the email you provided in your application. During peak periods, this may take slightly longer. If you haven't heard back within 2 weeks, feel free to contact us.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I apply for multiple positions?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! You can submit separate applications for different positions if you're qualified for multiple roles. However, make sure each application is tailored to the specific position and includes relevant experience and examples for that role.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What happens after I submit my application?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>After submission, your application will be reviewed by our leadership team. If selected, you'll be contacted via email or Discord for a potential interview or trial period. Even if you're not selected, we appreciate your interest and encourage you to apply again in the future!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div id="requirements" class="faq-category">
+                <h2 class="category-title">Requirements & Eligibility</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What are the general requirements to join Zorn?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>General requirements include:</p>
+                            <ul>
+                                <li>Active Discord account</li>
+                                <li>Professional and respectful attitude</li>
+                                <li>Commitment to the team and its goals</li>
+                                <li>Position-specific skills (varies by role)</li>
+                                <li>Willingness to collaborate with team members</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do I need to be a certain rank in Rocket League?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Rank requirements vary by position:</p>
+                            <ul>
+                                <li><strong>Freestyler:</strong> No minimum rank, but strong mechanical skills required</li>
+                                <li><strong>Competitive Player:</strong> Typically Champion 2 or higher</li>
+                                <li><strong>Coach:</strong> Grand Champion or higher recommended</li>
+                                <li><strong>Content/Creative Roles:</strong> No rank requirement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Is there an age requirement?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We welcome applicants of all ages! However, if you're under 13, you'll need parental consent to join our Discord server and participate in team activities, in accordance with Discord's Terms of Service.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do I need prior team experience?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Prior team experience is helpful but not required! We value talent, dedication, and the willingness to learn. If you have the skills for the position and a positive attitude, we encourage you to apply regardless of past team experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roster -->
+            <div id="roster" class="faq-category">
+                <h2 class="category-title">Roster & Team Information</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How can I view the current roster?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You can view our complete roster on the <a href="roster.html">Roster page</a>. There you'll find all our team members organized by position, including their social media links and country flags.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How many members does Zorn have?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our team size varies as we're constantly growing! Check our <a href="index.html">homepage</a> for our current member count, or visit our Discord server to see our active community.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I collaborate with Zorn members?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! Many of our members are open to collaborations. You can reach out to individual members through their social media links on the roster page, or contact the team through our <a href="contact.html">Contact page</a> for partnership opportunities.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What happens if I'm accepted to the team?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Once accepted, you'll:</p>
+                            <ul>
+                                <li>Receive special roles in our Discord server</li>
+                                <li>Be added to our roster page</li>
+                                <li>Gain access to team resources and channels</li>
+                                <li>Be able to represent Zorn in your content and competitions</li>
+                                <li>Collaborate with other talented team members</li>
+                                <li>Participate in team events and activities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media & Contact -->
+            <div id="contact" class="faq-category">
+                <h2 class="category-title">Social Media & Contact</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Where can I follow Zorn on social media?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Follow us on:</p>
+                            <ul>
+                                <li><strong>Twitter/X:</strong> <a href="https://twitter.com/zornteam" target="_blank">@zornteam</a></li>
+                                <li><strong>YouTube:</strong> <a href="https://youtube.com/@zornteam" target="_blank">@zornteam</a></li>
+                                <li><strong>Discord:</strong> <a href="https://discord.gg/zorn" target="_blank">discord.gg/zorn</a></li>
+                                <li><strong>Instagram:</strong> <a href="https://instagram.com/zornteam" target="_blank">@zornteam</a></li>
+                                <li><strong>TikTok:</strong> <a href="https://tiktok.com/@zornteam" target="_blank">@zornteam</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I contact the Zorn leadership team?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You can reach our leadership team through:</p>
+                            <ul>
+                                <li>Our <a href="contact.html">Contact page</a> form</li>
+                                <li>Discord server (for members and applicants)</li>
+                                <li>Email: contact@zorn.team (if configured)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I join the Zorn Discord server?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Join our Discord community at <a href="https://discord.gg/zorn" target="_blank">discord.gg/zorn</a>! Our server is open to everyone - fans, aspiring members, and current team members. You'll find announcements, community events, and more.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Does Zorn have partnerships available?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We're always interested in potential partnerships. Visit our <a href="partners.html">Partners page</a> to see current partners, or use our <a href="contact.html">Contact page</a> to inquire about partnership opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- General -->
+            <div id="general" class="faq-category">
+                <h2 class="category-title">General Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What is Zorn?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Zorn is a professional Rocket League organization focused on freestyle, competitive play, and content creation. We're a community of talented players, creators, and staff working together to produce amazing content and compete at the highest levels.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Is Zorn only for Rocket League?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Currently, yes! Zorn is primarily focused on Rocket League. However, we're always looking to grow and expand, so stay tuned for potential future opportunities in other games or esports.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I purchase Zorn merchandise?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Visit our <a href="store.html">Store page</a> to browse and purchase official Zorn merchandise, including apparel, accessories, and more!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>I have a question that's not answered here</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No problem! If you have a question that isn't covered in our Help Center, please reach out to us through our <a href="contact.html">Contact page</a> or join our Discord server. We're always happy to help!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Need Help -->
+    <section class="help-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Still Need Help?</h2>
+                <p>Can't find the answer you're looking for? Get in touch with our team.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary">Contact Us</a>
+                    <a href="https://discord.gg/zorn" target="_blank" class="btn-secondary">Join Discord</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Zorn</h3>
+                <p>Professional RL Freestyle Team competing at the highest level</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="about.html">About</a>
+                <a href="roster.html">Roster</a>
+                <a href="apply.html">Apply</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://twitter.com/zornteam" target="_blank" aria-label="Twitter">Twitter</a>
+                    <a href="https://youtube.com/@zornteam" target="_blank" aria-label="YouTube">YouTube</a>
+                    <a href="https://discord.gg/zorn" target="_blank" aria-label="Discord">Discord</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Zorn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/help.js"></script>
+</body>
+</html>
