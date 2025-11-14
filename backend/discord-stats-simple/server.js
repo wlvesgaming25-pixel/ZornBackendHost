@@ -11,10 +11,8 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Environment variables
 // Configuration
-const config = {
-    discordBotToken: process.env.DISCORD_BOT_TOKEN || 'YOUR_DISCORD_BOT_TOKEN_HERE',
+const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || 'YOUR_DISCORD_BOT_TOKEN_HERE';
 const DISCORD_GUILD_ID = process.env.DISCORD_GUILD_ID || '1329264791704961034';
 const DISCORD_MEMBER_ROLE_ID = process.env.DISCORD_MEMBER_ROLE_ID || '1376033872411627550';
 

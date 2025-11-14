@@ -2,43 +2,49 @@
 
 /* CSS Variables - Team Zorn Brand Colors */
 :root {
+    /* Team Zorn Brand Colors */
+    --primary-color: #ff4824;
+    --primary-dark: #ff0b4e;
+    --primary-light: #ff6b4a;
+    --secondary-color: #ff0b4e;
+    
     /* Team Gradient */
-    --zorn-gradient: linear-gradient(135deg, #ff4824 0%, #ff0b4e 50%, #b000ff 100%);
-    --zorn-gradient-hover: linear-gradient(135deg, #ff5535 0%, #ff1c5f 50%, #c111ff 100%);
+    --zorn-gradient: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    --zorn-gradient-hover: linear-gradient(135deg, #ff0b4e 0%, #ff4824 100%);
     
     /* Grays & Neutrals */
     --gray-950: #0a0a0a;
-    --gray-900: #111111;
+    --gray-900: #0f0f1a;
     --gray-850: #1a1a1a;
-    --gray-800: #222222;
-    --gray-700: #333333;
+    --gray-800: #1a1a1a;
+    --gray-700: #333;
     --gray-600: #444444;
     --gray-500: #666666;
     --gray-400: #888888;
     --gray-300: #aaaaaa;
-    --gray-200: #cccccc;
+    --gray-200: #e0e0e0;
     --gray-100: #e5e5e5;
     --white: #ffffff;
     
     /* Status Colors */
     --green-400: #4ade80;
-    --green-500: #22c55e;
+    --green-500: #10b981;
     --red-400: #f87171;
     --red-500: #ef4444;
     --orange-400: #fb923c;
-    --orange-500: #f97316;
+    --orange-500: #f59e0b;
     
     /* Shadows & Effects */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
-    --shadow-glow: 0 0 20px rgba(255, 72, 36, 0.3);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
     
     /* Transitions */
-    --transition-fast: 0.15s ease;
-    --transition-base: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== GLOBAL RESET & BASE ===== */
@@ -206,7 +212,7 @@ body {
     padding: 0.5rem 1rem;
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 12px;
+    border-radius: 0px;
     cursor: pointer;
     transition: all var(--transition-base);
 }
@@ -289,7 +295,7 @@ body {
     min-width: 200px;
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 0.5rem;
     box-shadow: var(--shadow-xl);
     opacity: 0;
@@ -311,7 +317,7 @@ body {
     padding: 0.75rem 1rem;
     color: var(--gray-200);
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     transition: all var(--transition-fast);
     cursor: pointer;
@@ -432,7 +438,7 @@ body {
     height: 40px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 0px;
     cursor: pointer;
     transition: all var(--transition-base);
     backdrop-filter: blur(10px);
@@ -532,7 +538,7 @@ body {
     display: flex;
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 0.25rem;
 }
 
@@ -543,7 +549,7 @@ body {
     color: var(--gray-400);
     font-size: 0.9rem;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 0px;
     cursor: pointer;
     transition: all var(--transition-fast);
 }
@@ -562,7 +568,7 @@ body {
     padding: 0.5rem 1rem;
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 8px;
+    border-radius: 0px;
     color: var(--white);
     font-size: 0.9rem;
     cursor: pointer;
@@ -573,6 +579,19 @@ body {
 .sort-select:focus {
     border-color: var(--gray-600);
     outline: none;
+}
+
+.sort-select option {
+    background: rgba(40, 40, 40, 0.98) !important;
+    color: #e0e0e0 !important;
+    padding: 8px 12px !important;
+}
+
+.sort-select option:hover,
+.sort-select option:focus,
+.sort-select option:checked {
+    background: rgba(255, 72, 36, 0.2) !important;
+    color: #ffffff !important;
 }
 
 /* ===== APPLICATIONS GRID ===== */
@@ -590,7 +609,7 @@ body {
 .application-card {
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 16px;
+    border-radius: 0px;
     padding: 1.5rem;
     transition: all var(--transition-base);
     position: relative;
@@ -671,7 +690,7 @@ body {
 
 .application-status {
     padding: 0.25rem 0.75rem;
-    border-radius: 20px;
+    border-radius: 2px;
     font-size: 0.8rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -701,7 +720,7 @@ body {
     background: var(--gray-800);
     color: var(--gray-200);
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 1rem;
@@ -730,7 +749,7 @@ body {
     background: var(--zorn-gradient);
     color: var(--white);
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -821,7 +840,7 @@ body {
 .modal-container {
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 16px;
+    border-radius: 0px;
     max-width: 600px;
     width: 90%;
     max-height: 80vh;
@@ -854,7 +873,7 @@ body {
     color: var(--gray-400);
     cursor: pointer;
     padding: 0.5rem;
-    border-radius: 8px;
+    border-radius: 0px;
     transition: all var(--transition-fast);
 }
 
@@ -884,7 +903,7 @@ body {
 .modal-field-value {
     background: var(--gray-800);
     border: 1px solid var(--gray-700);
-    border-radius: 8px;
+    border-radius: 0px;
     padding: 0.75rem;
     color: var(--white);
     font-size: 0.9rem;
@@ -902,7 +921,7 @@ body {
     flex: 1;
     padding: 0.75rem 1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -976,7 +995,7 @@ body {
     background: var(--gray-700);
     color: var(--gray-200);
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -994,7 +1013,7 @@ body {
     background: linear-gradient(135deg, var(--red-500), var(--red-400));
     color: var(--white);
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -1076,7 +1095,7 @@ body {
     max-width: 400px;
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 1rem;
     box-shadow: var(--shadow-xl);
     transform: translateX(100%);
@@ -1140,7 +1159,7 @@ body {
 .skeleton-card {
     background: var(--gray-900);
     border: 1px solid var(--gray-700);
-    border-radius: 16px;
+    border-radius: 0px;
     padding: 1.5rem;
     position: relative;
     overflow: hidden;
@@ -1174,7 +1193,7 @@ body {
     width: 100%;
     height: 120px;
     background: var(--gray-800);
-    border-radius: 8px;
+    border-radius: 0px;
     margin-bottom: 1rem;
 }
 

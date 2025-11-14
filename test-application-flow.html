@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submission Test - Team Zorn</title>
+    <link rel="stylesheet" href="assets/css/apply.css">
+    <style>
+        .test-container { padding: 50px; max-width: 600px; margin: 0 auto; }
+        .test-form { background: #1a1a1a; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .test-button { margin: 10px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .success-btn { background: #28a745; color: white; }
+        .error-btn { background: #dc3545; color: white; }
+        .warning-btn { background: #ffc107; color: black; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Application Submission Test</h1>
+        <p>This page tests the notification system and error handling for applications.</p>
+        
+        <h2>Notification Tests</h2>
+        <button class="test-button success-btn" onclick="testSuccessNotification()">Test Success Notification</button>
+        <button class="test-button error-btn" onclick="testErrorNotification()">Test Error Notification</button>
+        <button class="test-button warning-btn" onclick="testMultilineError()">Test Multi-line Error</button>
+        
+        <h2>Mock Application Form</h2>
+        <form class="apply-form test-form" data-position="freestyler">
+            <input type="hidden" name="position" value="freestyler">
+            
+            <label>Full Name:</label>
+            <input type="text" name="fullName" required>
+            
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            
+            <label>Discord Tag:</label>
+            <input type="text" name="discordTag" required>
+            
+            <label>Age:</label>
+            <input type="number" name="age" min="13" required>
+            
+            <label>Motivation:</label>
+            <textarea name="motivation" rows="4" placeholder="Why do you want to join Team Zorn?" required></textarea>
+            
+            <button type="submit">Submit Test Application</button>
+        </form>
+        
+        <h2>Error Simulation Tests</h2>
+        <button class="test-button error-btn" onclick="simulateValidationError()">Simulate Missing Fields</button>
+        <button class="test-button error-btn" onclick="simulateNetworkError()">Simulate Network Error</button>
+        
+        <h2>Console Output</h2>
+        <div id="console-output" style="background: #000; color: #0f0; padding: 10px; border-radius: 5px; font-family: monospace; min-height: 200px; overflow-y: auto;"></div>
+    </div>
+
+    <script src="assets/js/applications-simple.js"></script>
+    <script>
+        // Capture console output
+        const consoleOutput = document.getElementById('console-output');
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        function addToConsole(message, type = 'log') {
+            const color = type === 'error' ? '#f00' : '#0f0';
+            consoleOutput.innerHTML += `<div style="color: ${color}">[${type.toUpperCase()}] ${message}</div>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole(args.join(' '), 'error');
+        };
+        
+        // Test functions
+        function testSuccessNotification() {
+            console.log('Testing success notification...');
+            showSuccessNotification('Test success message - everything is working!');
+        }
+
+        function testErrorNotification() {
+            console.log('Testing error notification...');
+            showErrorNotification('Test error message - this is a simulated error!');
+        }
+
+        function testMultilineError() {
+            console.log('Testing multi-line error notification...');
+            showErrorNotification('Please fill in all required fields:\n\n• Full Name\n• Email Address\n• Discord Tag\n• Age\n• Motivation');
+        }
+        
+        function simulateValidationError() {
+            console.log('Simulating validation error...');
+            const form = document.querySelector('.apply-form');
+            // Clear required fields to trigger validation error
+            form.querySelector('[name="fullName"]').value = '';
+            form.querySelector('[name="email"]').value = '';
+            
+            // Manually trigger submission to test validation
+            const event = new Event('submit', { bubbles: true, cancelable: true });
+            form.dispatchEvent(event);
+        }
+        
+        function simulateNetworkError() {
+            console.log('Simulating network error...');
+            // This would normally cause a network error, but we'll just show the error notification
+            showErrorNotification('Network error: Failed to connect to Discord webhook. Please check your internet connection and try again.');
+        }
+        
+        console.log('Test page loaded successfully!');
+    </script>
+</body>
+</html>

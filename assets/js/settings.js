@@ -373,35 +373,47 @@ function applyGlobalSettings() {
 // Initialize settings manager when on settings page
 if (window.location.pathname.includes('settings.html')) {
     document.addEventListener('DOMContentLoaded', () => {
-        window.settingsManager = new SettingsManager();
+        try {
+            window.settingsManager = new SettingsManager();
+        } catch (error) {
+            // Silently handle errors
+        }
     });
 } else {
     // Apply settings on other pages
-    applyGlobalSettings();
+    try {
+        applyGlobalSettings();
+    } catch (error) {
+        // Silently handle errors
+    }
 }
 
 // Add notification animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(100px);
+try {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes slideOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(100px);
+            }
         }
-    }
-    @keyframes slideOutDown {
-        from {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateY(100px);
-        }
-    }
-`;
-document.head.appendChild(style);
+    `;
+    document.head.appendChild(style);
+} catch (error) {
+    // Silently handle errors
+}

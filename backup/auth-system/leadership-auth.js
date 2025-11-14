@@ -8,7 +8,7 @@ class LeadershipPortalAuth {
         // Management emails with role-based access levels
         this.managementRegistry = {
             // Core Leadership (Full Access)
-            'teamzornhq@gmail.com': {
+            'xavierelliot0': {
                 role: 'Owner',
                 level: 'admin',
                 permissions: ['view', 'edit', 'delete', 'manage_users', 'system_config'],
@@ -32,7 +32,7 @@ class LeadershipPortalAuth {
                 active: true,
                 verified: true
             },
-            'monty@zorn.team': {
+            'cch@zorn.team': {
                 role: 'Competitive Manager',
                 level: 'manager',
                 permissions: ['view', 'edit', 'delete'],

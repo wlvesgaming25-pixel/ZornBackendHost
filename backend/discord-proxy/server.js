@@ -94,6 +94,49 @@ app.get('/api/discord/team-members', async (req, res) => {
     }
 });
 
+// NEW: Comprehensive stats endpoint combining all Discord data
+app.get('/api/discord/stats', async (req, res) => {
+    try {
+        // Fetch guild information with counts
+        const guildResponse = await fetch(`${DISCORD_API_BASE}/guilds/${GUILD_ID}?with_counts=true`, {
+            headers: discordHeaders
+        });
+
+        if (!guildResponse.ok) {
+            throw new Error(`Discord API error: ${guildResponse.status}`);
+        }
+
+        const guildData = await guildResponse.json();
+        
+        // Fetch members to count those with specific role
+        const membersResponse = await fetch(`${DISCORD_API_BASE}/guilds/${GUILD_ID}/members?limit=1000`, {
+            headers: discordHeaders
+        });
+
+        let teamMemberCount = 0;
+        if (membersResponse.ok) {
+            const members = await membersResponse.json();
+            teamMemberCount = members.filter(member => member.roles.includes(MEMBER_ROLE_ID)).length;
+        }
+
+        // Return comprehensive stats
+        res.json({
+            members: guildData.approximate_member_count || 0,
+            online: guildData.approximate_presence_count || 0,
+            roles: guildData.roles ? guildData.roles.length : 0,
+            team_members: teamMemberCount,
+            last_updated: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('Error fetching Discord stats:', error);
+        res.status(500).json({ 
+            error: 'Failed to fetch Discord stats',
+            members: 0,
+            roles: 0
+        });
+    }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Discord proxy server is running' });

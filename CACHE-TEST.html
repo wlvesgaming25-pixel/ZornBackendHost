@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zorn - Cache Test</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .stats-card {
+            margin: 2rem auto;
+            max-width: 400px;
+            background: #181818;
+            border-radius: 20px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .features {
+            padding: 60px 20px;
+            background: #0a0a0a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #e74c3c;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #e74c3c;
+        }
+
+        .feature-card h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <div style="color: #e74c3c; font-weight: bold;">CACHE TEST PAGE</div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Welcome to Zorn</h1>
+                <p>Wrath. Precision. Legacy.</p>
+                <p style="font-size: 1rem; background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px; max-width: 600px;">
+                    ✅ If you can see this page with RED/BLACK styling, your browser is working!<br>
+                    ❌ If pages are still empty, the issue is browser cache.<br>
+                    📝 Try opening in INCOGNITO mode (Ctrl+Shift+N)
+                </p>
+            </div>
+        </section>
+
+        <section class="stats-card">
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div style="text-align: center; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+                    <span class="stat-number">45</span>
+                    <span style="font-size: 1rem; color: #aaa; margin-left: 0.5rem;">MEMBERS</span>
+                    <div style="font-size: 1rem; color: #ccc; margin-top: 0.5rem;">Building the future</div>
+                </div>
+                <div style="text-align: center;">
+                    <span class="stat-number">150</span>
+                    <span style="font-size: 1rem; color: #aaa; margin-left: 0.5rem;">COMMUNITY</span>
+                    <div style="font-size: 1rem; color: #ccc; margin-top: 0.5rem;">Discord members strong</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Zorn?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Excellence</h3>
+                        <p>We strive for excellence in everything we do.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Innovation</h3>
+                        <p>Cutting-edge solutions for modern challenges.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Community</h3>
+                        <p>Building strong connections and relationships.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

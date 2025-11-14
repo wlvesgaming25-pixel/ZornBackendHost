@@ -7,6 +7,7 @@
     <title>Contact - Zorn</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/animation-enhancements.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -41,7 +42,7 @@
                     </li>
                 </ul>
                 <div class="user-profile" id="userProfile">
-                    <!-- This will be populated by JavaScript -->
+                    <!-- Populated by auth.js -->
                 </div>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -53,10 +54,10 @@
     </header>
 
     <main>
-        <section class="page-hero animate-on-load fade-in-scale">
+        <section class="contact-hero animate-on-load fade-in-scale">
             <div class="container">
-                <h1 class="animate-on-load slide-in-bottom delay-2">Contact Us</h1>
-                <p class="animate-on-load slide-in-bottom delay-3">We'd love to hear from you. Get in touch with our team!</p>
+                <h1 class="hero-title animate-on-load slide-in-bottom delay-2">Contact Us</h1>
+                <p class="hero-subtitle animate-on-load slide-in-bottom delay-3">We'd love to hear from you. Get in touch with our team!</p>
             </div>
         </section>
 
@@ -152,38 +153,126 @@
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="roster.html">Roster</a></li>
-                    <li><a href="apply.html">Apply</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="https://x.com/ZornHQ" class="social-link" target="_blank">X (Twitter)</a>
-                    <a href="https://discord.gg/VNb82VRYna" class="social-link" target="_blank">Discord</a>
-                    <a href="https://www.tiktok.com/@teamzornhq" class="social-link" target="_blank">TikTok</a>
+    <footer class="modern-footer">
+        <div class="footer-gradient-bg"></div>
+        <div class="footer-container">
+            <div class="footer-main">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/img/logo.png" alt="Zorn Logo" class="logo-img">
+                        <div class="brand-text">
+                            <h3>Zorn</h3>
+                            <p>Wrath. Precision. Legacy.</p>
+                        </div>
+                    </div>
+                    <p class="brand-description">Elite gaming organization pushing the boundaries of competitive excellence across multiple esports titles.</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="footer-nav">
+                    <h4>Navigate</h4>
+                    <div class="nav-grid">
+                        <a href="index.html" class="footer-link">
+                            <span class="link-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                        <a href="about.html" class="footer-link">
+                            <span class="link-icon">ℹ️</span>
+                            <span>About</span>
+                        </a>
+                        <a href="roster.html" class="footer-link">
+                            <span class="link-icon">👥</span>
+                            <span>Roster</span>
+                        </a>
+                        <a href="apply.html" class="footer-link">
+                            <span class="link-icon">📝</span>
+                            <span>Apply</span>
+                        </a>
+                        <a href="partners.html" class="footer-link">
+                            <span class="link-icon">🤝</span>
+                            <span>Partners</span>
+                        </a>
+                        <a href="contact.html" class="footer-link">
+                            <span class="link-icon">📧</span>
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Community & Social -->
+                <div class="footer-community">
+                    <h4>Join Our Community</h4>
+                    <div class="social-grid">
+                        <a href="https://discord.gg/VNb82VRYna" class="social-card discord" target="_blank">
+                            <div class="social-icon">
+                                <img src="assets/img/roster/sociallogos/discord-logo.png" alt="Discord">
+                            </div>
+                            <div class="social-info">
+                                <span class="platform">Discord</span>
+                                <span class="members" id="footer-discord-count">400+ members</span>
+                            </div>
+                        </a>
+                        <a href="https://x.com/ZornHQ" class="social-card twitter" target="_blank">
+                            <div class="social-icon">
+                                <img src="assets/img/roster/sociallogos/x-logo.png" alt="Twitter">
+                            </div>
+                            <div class="social-info">
+                                <span class="platform">X (Twitter)</span>
+                                <span class="handle">@ZornHQ</span>
+                            </div>
+                        </a>
+                        <a href="https://www.tiktok.com/@teamzornhq" class="social-card tiktok" target="_blank">
+                            <div class="social-icon">
+                                <img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok">
+                            </div>
+                            <div class="social-info">
+                                <span class="platform">TikTok</span>
+                                <span class="handle">@teamzornhq</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sponsor Section -->
+                <div class="footer-sponsor">
+                    <h4>Official Sponsor</h4>
+                    <a href="https://drinkrez.com/" class="sponsor-logo-link" target="_blank">
+                        <img src="assets/img/partners/rez-sponsor.png" alt="REZ Energy">
+                    </a>
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Contact Info</h4>
-                <p>Email: teamzornhq@gmail.com</p>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 Zorn Esports. All rights reserved.</p>
+                        <p class="sub-text">Competitive gaming excellence since day one.</p>
+                    </div>
+                    <div class="footer-contact">
+                        <a href="mailto:teamzornhq@gmail.com" class="contact-link">
+                            <span class="contact-icon">📧</span>
+                            <span>teamzornhq@gmail.com</span>
+                        </a>
+                    </div>
+                    <div class="scroll-top">
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="scroll-btn">
+                            <span>↑</span>
+                            <span>Top</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Zorn. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="assets/js/config.js"></script>
+    <script src="assets/js/settings.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/auth.js"></script>
+    <script src="assets/js/animations.js"></script>
     <script src="assets/js/contact.js"></script>
+    <script src="assets/js/smooth-animations.js"></script>
 </body>
 </html>

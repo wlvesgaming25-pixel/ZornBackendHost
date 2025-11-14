@@ -23,8 +23,69 @@ const positionNames = {
     'other': 'Other'
 };
 
+// Notification functions to replace alert dialogs
+function showSuccessNotification(message) {
+    console.log('🟢 showSuccessNotification called:', message);
+    
+    // Remove any existing notifications first
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notif => notif.remove());
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification success';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <strong>✅ Application Submitted!</strong>
+            <p>${message}</p>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+function showErrorNotification(message) {
+    console.log('🔴 showErrorNotification called:', message);
+    
+    // Remove any existing notifications first
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notif => notif.remove());
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification error';
+    
+    // Handle multi-line messages by converting newlines to HTML line breaks
+    const formattedMessage = message.replace(/\n/g, '<br>');
+    
+    notification.innerHTML = `
+        <div class="notification-content">
+            <strong>❌ Submission Failed</strong>
+            <p>${formattedMessage}</p>
+            <p>Please try again or contact us directly if the problem persists.</p>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 7 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 7000);
+}
+
 async function submitApplication(event) {
     console.log('=== SUBMIT APPLICATION CALLED ===');
+    console.log('🚀 Event:', event);
+    console.log('🚀 Event target:', event.target);
+    console.log('🚀 Current timestamp:', new Date().toISOString());
     event.preventDefault();
     
     // Get the form properly - event.target might be the submit button, not the form
@@ -35,7 +96,7 @@ async function submitApplication(event) {
     
     if (!form) {
         console.error('Could not find form element');
-        alert('Form not found. Please try again.');
+        showErrorNotification('Form not found. Please try again.');
         return;
     }
     
@@ -62,7 +123,7 @@ async function submitApplication(event) {
     console.log('Position:', position);
     
     if (!position) {
-        alert('Position not found in form data!');
+        showErrorNotification('Position not found in form data!');
         return;
     }
     
@@ -70,7 +131,7 @@ async function submitApplication(event) {
     console.log('Webhook URL:', webhookUrl);
     
     if (!webhookUrl) {
-        alert(`No webhook configured for position: ${position}`);
+        showErrorNotification(`No webhook configured for position: ${position}`);
         return;
     }
     
@@ -121,7 +182,7 @@ async function submitApplication(event) {
     console.log('=== END VALIDATION DEBUG ===');
     
     if (requiredFields.length > 0) {
-        alert('Please fill in all required fields:\n\n• ' + requiredFields.join('\n• '));
+        showErrorNotification('Please fill in all required fields:\n\n• ' + requiredFields.join('\n• '));
         return;
     }
     
@@ -181,11 +242,18 @@ async function submitApplication(event) {
             // Store application for dashboard review
             storeApplicationForDashboard(formObj, position);
             
-            alert('Application submitted successfully! We will review it and get back to you.');
+            showSuccessNotification('Application submitted successfully! We will review it and get back to you.');
             form.reset();
+            
+            // Reset button and return on success
+            if (button) {
+                button.textContent = 'Submit Application';
+                button.disabled = false;
+            }
+            return; // Exit function on success
         } else {
             console.error('Discord response:', response.status, response.statusText);
-            alert('Failed to submit application. Please try again.');
+            showErrorNotification('Failed to submit application. Please try again.');
         }
         
         if (button) {
@@ -195,7 +263,7 @@ async function submitApplication(event) {
         
     } catch (error) {
         console.error('Submission error:', error);
-        alert('Failed to submit application. Please try again.');
+        showErrorNotification('Failed to submit application. Please try again.');
         
         const button = form.querySelector('button[type="submit"]');
         if (button) {
@@ -337,4 +405,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Also make it globally available
     window.submitApplication = submitApplication;
     console.log('Global submitApplication function set');
+});
+
+// Add global error handlers to catch any unhandled errors
+window.addEventListener('error', function(event) {
+    console.error('Global error caught:', event.error);
+    // Don't show notification for every error, just log it
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+    console.error('Unhandled promise rejection:', event.reason);
+    event.preventDefault(); // Prevent the default browser error dialog
 });

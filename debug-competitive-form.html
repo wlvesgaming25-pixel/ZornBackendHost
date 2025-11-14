@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitive Application Debug - Team Zorn</title>
+    <link rel="stylesheet" href="assets/css/apply.css">
+    <style>
+        .debug-container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .debug-section { background: #1a1a1a; padding: 15px; margin: 15px 0; border-radius: 8px; }
+        .field-status { margin: 5px 0; padding: 5px; border-radius: 3px; }
+        .field-filled { background: rgba(40, 167, 69, 0.2); color: #28a745; }
+        .field-empty { background: rgba(220, 53, 69, 0.2); color: #dc3545; }
+        .test-button { margin: 10px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>Competitive Application Form Debug</h1>
+        <p>This page helps debug form validation issues.</p>
+        
+        <div class="debug-section">
+            <h3>Form Status</h3>
+            <div id="formStatus">Form not loaded</div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>Field Validation Status</h3>
+            <div id="fieldStatus">No fields checked yet</div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>Test Actions</h3>
+            <button class="test-button" onclick="fillAllFields()">Fill All Required Fields</button>
+            <button class="test-button" onclick="clearAllFields()">Clear All Fields</button>
+            <button class="test-button" onclick="checkFieldStatus()">Check Field Status</button>
+            <button class="test-button" onclick="testSubmission()">Test Submission</button>
+        </div>
+        
+        <div class="debug-section">
+            <h2>Competitive Application Form</h2>
+            <form class="apply-form" action="#" method="POST" novalidate>
+                <input type="hidden" name="position" value="competitive-player">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="discordTag">Discord Tag *</label>
+                    <input type="text" id="discordTag" name="discordTag" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rlRank">Current Highest Rank *</label>
+                    <select id="rlRank" name="rlRank" required>
+                        <option value="">Select your highest rank</option>
+                        <option value="champion-1">Champion 1</option>
+                        <option value="champion-2">Champion 2</option>
+                        <option value="champion-3">Champion 3</option>
+                        <option value="grand-champion-1">Grand Champion 1</option>
+                        <option value="supersonic-legend">Supersonic Legend</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="peakRank">Peak Rank Achieved *</label>
+                    <select id="peakRank" name="peakRank" required>
+                        <option value="">Select your peak rank</option>
+                        <option value="champion-1">Champion 1</option>
+                        <option value="champion-2">Champion 2</option>
+                        <option value="champion-3">Champion 3</option>
+                        <option value="grand-champion-1">Grand Champion 1</option>
+                        <option value="supersonic-legend">Supersonic Legend</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="platform">Primary Gaming Platform *</label>
+                    <select id="platform" name="platform" required>
+                        <option value="">Select platform</option>
+                        <option value="steam">Steam (PC)</option>
+                        <option value="epic">Epic Games (PC)</option>
+                        <option value="xbox">Xbox</option>
+                        <option value="playstation">PlayStation</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferredRole">Preferred Position *</label>
+                    <select id="preferredRole" name="preferredRole" required>
+                        <option value="">Select preferred role</option>
+                        <option value="striker">Striker/Offense</option>
+                        <option value="midfield">Midfield/Playmaker</option>
+                        <option value="defender">Defender/Last Man</option>
+                        <option value="flexible">Flexible/Any Position</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="competitiveExperience">Competitive Experience *</label>
+                    <textarea id="competitiveExperience" name="competitiveExperience" rows="4" placeholder="List your tournament experience..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="strengths">Strengths & Playstyle *</label>
+                    <textarea id="strengths" name="strengths" rows="4" placeholder="Describe your playstyle..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Schedule & Availability *</label>
+                    <textarea id="availability" name="availability" rows="4" placeholder="What days and times are you available?" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why Team Zorn? *</label>
+                    <textarea id="motivation" name="motivation" rows="6" placeholder="Why do you want to join Team Zorn?" required></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to commit to team practice schedules and represent Team Zorn professionally *</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/applications-simple.js"></script>
+    <script>
+        function updateFormStatus() {
+            const form = document.querySelector('.apply-form');
+            const statusDiv = document.getElementById('formStatus');
+            if (form) {
+                const requiredFields = form.querySelectorAll('[required]');
+                statusDiv.innerHTML = `Form loaded successfully. Found ${requiredFields.length} required fields.`;
+            } else {
+                statusDiv.innerHTML = 'Form not found!';
+            }
+        }
+        
+        function checkFieldStatus() {
+            const form = document.querySelector('.apply-form');
+            const statusDiv = document.getElementById('fieldStatus');
+            
+            if (!form) {
+                statusDiv.innerHTML = 'Form not found!';
+                return;
+            }
+            
+            const requiredFields = form.querySelectorAll('[required]');
+            let statusHTML = '<h4>Required Fields Status:</h4>';
+            
+            requiredFields.forEach(field => {
+                const value = field.value || '';
+                const isEmpty = field.type === 'checkbox' ? !field.checked : value.trim() === '';
+                const statusClass = isEmpty ? 'field-empty' : 'field-filled';
+                const statusIcon = isEmpty ? '❌' : '✅';
+                const label = form.querySelector(`label[for="${field.id}"]`)?.textContent.replace('*', '').trim() || field.name;
+                
+                statusHTML += `<div class="field-status ${statusClass}">${statusIcon} ${label}: "${value}"</div>`;
+            });
+            
+            statusDiv.innerHTML = statusHTML;
+        }
+        
+        function fillAllFields() {
+            document.getElementById('fullName').value = 'Test Player';
+            document.getElementById('email').value = 'test@example.com';
+            document.getElementById('discordTag').value = 'TestPlayer';
+            document.getElementById('rlRank').value = 'grand-champion-1';
+            document.getElementById('peakRank').value = 'supersonic-legend';
+            document.getElementById('platform').value = 'steam';
+            document.getElementById('preferredRole').value = 'striker';
+            document.getElementById('competitiveExperience').value = 'Played in RLCS qualifiers, multiple tournament wins';
+            document.getElementById('strengths').value = 'Fast aerial plays, good rotation, strong mechanical skills';
+            document.getElementById('availability').value = 'Available weekdays 6-10 PM EST, weekends flexible';
+            document.getElementById('motivation').value = 'I want to compete at the highest level and believe Team Zorn can help me achieve my goals';
+            document.getElementById('terms').checked = true;
+            
+            checkFieldStatus();
+        }
+        
+        function clearAllFields() {
+            const form = document.querySelector('.apply-form');
+            form.reset();
+            checkFieldStatus();
+        }
+        
+        function testSubmission() {
+            const form = document.querySelector('.apply-form');
+            const event = new Event('submit', { bubbles: true, cancelable: true });
+            form.dispatchEvent(event);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFormStatus();
+            checkFieldStatus();
+        });
+    </script>
+</body>
+</html>

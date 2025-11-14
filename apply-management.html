@@ -7,6 +7,8 @@
     <title>Apply for Management - Team Zorn</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/apply.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <header>
@@ -16,15 +18,36 @@
                     <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="roster.html" class="nav-link">Roster</a></li>
-                    <li class="nav-item"><a href="apply.html" class="nav-link active">Apply</a></li>
-                    <li class="nav-item"><a href="partners.html" class="nav-link">Partners</a></li>
-                    <li class="nav-item"><a href="store.html" class="nav-link">Store</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link active">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
                 </ul>
-                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+                <div class="user-profile" id="userProfile">
+                    <!-- Populated by auth.js -->
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -32,10 +55,13 @@
         <section class="page-hero">
             <div class="container">
                 <h1>Management Application</h1>
-                <p>Help lead Team Zorn to success!</p>
-                <div class="back-link"><a href="apply.html" class="btn btn-secondary">← Back to Positions</a></div>
+                <p>Lead and support Team Zorn's operations and growth!</p>
+                <div class="back-link">
+                    <a href="apply.html" class="btn btn-secondary">← Back to Positions</a>
+                </div>
             </div>
         </section>
+
         <section class="application-form">
             <div class="container">
                 <!-- Requirements Modal -->
@@ -65,7 +91,7 @@
                     <input type="hidden" name="position" value="management">
                     <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" name="fullName" required></div>
                     <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required></div>
-                    <div class="form-group"><label for="discordTag">Discord Tag *</label><input type="text" id="discordTag" name="discordTag" required></div>
+                    <div class="form-group"><label for="discordTag">Discord Username *</label><input type="text" id="discordTag" name="discordTag" required></div>
                     <div class="form-group"><label for="managementRole">Management Role Interest *</label>
                         <select id="managementRole" name="managementRole" required>
                             <option value="">Select role</option>
@@ -96,7 +122,6 @@
         <div class="footer-bottom"><p>&copy; 2025 Team Zorn. All rights reserved.</p></div>
     </footer>
     <script src="assets/js/config.js"></script>
-    <script src="assets/js/main.js"></script>
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/applications-simple.js"></script>
     <script src="assets/js/requirements-modal.js"></script>

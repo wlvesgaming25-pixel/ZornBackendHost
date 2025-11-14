@@ -293,28 +293,6 @@ function initializeLazyLoading() {
 // Call lazy loading initialization
 document.addEventListener('DOMContentLoaded', initializeLazyLoading);
 
-// Management section expand/collapse functionality
-function toggleManagementCards() {
-    const additionalCards = document.getElementById('additionalManagement');
-    const toggleButton = document.getElementById('managementToggle');
-    const toggleText = toggleButton.querySelector('.expand-text');
-    const toggleIcon = toggleButton.querySelector('.expand-icon');
-    
-    if (additionalCards.classList.contains('expanded')) {
-        // Hide additional cards
-        additionalCards.classList.remove('expanded');
-        toggleText.textContent = 'Show More Management';
-        toggleIcon.textContent = '▼';
-        toggleButton.classList.remove('expanded');
-    } else {
-        // Show additional cards
-        additionalCards.classList.add('expanded');
-        toggleText.textContent = 'Show Less Management';
-        toggleIcon.textContent = '▲';
-        toggleButton.classList.add('expanded');
-    }
-}
-
 // Export roster-specific functions
 window.RosterUtils = {
     filterMembers,

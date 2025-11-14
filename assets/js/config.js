@@ -64,8 +64,4 @@ class ProductionConfig {
 // Initialize global config
 window.ProductionConfig = new ProductionConfig();
 
-console.log('🔧 Environment detected:', window.ProductionConfig.getSettings().environment);
-console.log('🌐 API Endpoints:', {
-    discord: window.ProductionConfig.getDiscordApiUrl(),
-    oauth: window.ProductionConfig.getOAuthUrl()
-});
+// Silent initialization - no console output needed

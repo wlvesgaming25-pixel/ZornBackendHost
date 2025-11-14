@@ -7,6 +7,8 @@
     <title>Dashboard - Team Zorn</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/dashboard-enhancements.css">
+    <link rel="stylesheet" href="assets/css/animation-enhancements.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -284,7 +286,7 @@
             
             // Set user info based on email - 5 different team members
             const userProfiles = {
-                'jawleiall@gmail.com': {
+                'jawleiall@gmail.com, charliewhitaker842@gmail.com': {
                     name: 'Jawlei',
                     role: 'Upper Staff & GFX'
                 },
@@ -293,7 +295,7 @@
                     role: 'Head of Scouting & VFX'
                 },
                 'placeholder.email1@gmail.com': {
-                    name: 'Monty',
+                    name: 'None',
                     role: 'Competitive Lead'
                 },
                 'placeholder.email2@gmail.com': {
@@ -359,5 +361,8 @@
     
     <!-- Add config.js for production API endpoints -->
     <script src="assets/js/config.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <!-- Add roster integration for auto-sync -->
+    <script src="assets/js/roster-integration.js"></script>
 </body>
 </html>

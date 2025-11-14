@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roster Integration Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .test-section {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            color: #6366f1;
+        }
+
+        button {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        pre {
+            background: #000;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .success {
+            color: #10b981;
+        }
+
+        .error {
+            color: #ef4444;
+        }
+
+        #output {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Roster Integration Test Suite</h1>
+
+        <div class="test-section">
+            <h2>1. Test Application Acceptance</h2>
+            <p>Simulate accepting an application from the dashboard</p>
+            <button onclick="testAcceptApplication()">Accept Test Application</button>
+            <button onclick="testAcceptMultiple()">Accept 3 Applications</button>
+            <div id="acceptOutput" class="info" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. View Roster Members</h2>
+            <p>Check localStorage for saved roster members</p>
+            <button onclick="viewRosterMembers()">View All Members</button>
+            <button onclick="clearRosterMembers()">Clear All Members</button>
+            <div id="rosterOutput" class="info" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>3. Test Position Mapping</h2>
+            <p>Verify role names are correctly normalized</p>
+            <button onclick="testPositionMapping()">Test Position Mapping</button>
+            <div id="positionOutput" class="info" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>4. Test Social Media Extraction</h2>
+            <p>Verify social links are correctly extracted</p>
+            <button onclick="testSocialExtraction()">Test Social Extraction</button>
+            <div id="socialOutput" class="info" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>5. Test Country Flags</h2>
+            <p>Verify country flags are correctly mapped</p>
+            <button onclick="testCountryFlags()">Test Country Flags</button>
+            <div id="flagOutput" class="info" style="display:none;"></div>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script src="assets/js/roster-integration.js"></script>
+    <script>
+        // Wait for roster integration to initialize
+        setTimeout(() => {
+            console.log('Test suite ready');
+        }, 100);
+
+        function testAcceptApplication() {
+            const testApp = {
+                id: 'test-' + Date.now(),
+                name: 'Test Player',
+                email: 'test@example.com',
+                role: 'freestyler',
+                discordTag: 'TestPlayer#1234',
+                socials: 'Twitter: https://twitter.com/testplayer\nYouTube: https://youtube.com/@testplayer',
+                country: 'United States',
+                timestamp: new Date().toISOString()
+            };
+
+            // Dispatch the acceptance event
+            window.dispatchEvent(new CustomEvent('applicationAccepted', {
+                detail: testApp
+            }));
+
+            const output = document.getElementById('acceptOutput');
+            output.style.display = 'block';
+            output.innerHTML = `
+                <p class="success">✅ Application accepted!</p>
+                <pre>${JSON.stringify(testApp, null, 2)}</pre>
+                <p>Check localStorage and visit roster.html to see the result.</p>
+            `;
+        }
+
+        function testAcceptMultiple() {
+            const positions = ['freestyler', 'competitive', 'content-creator'];
+            const countries = ['United States', 'Canada', 'United Kingdom'];
+            
+            positions.forEach((pos, i) => {
+                setTimeout(() => {
+                    const testApp = {
+                        id: 'test-' + Date.now() + '-' + i,
+                        name: `Test ${pos.charAt(0).toUpperCase() + pos.slice(1)} ${i + 1}`,
+                        email: `test${i}@example.com`,
+                        role: pos,
+                        discordTag: `Test${i}#${1234 + i}`,
+                        socials: `Twitter: https://twitter.com/test${i}\nTwitch: https://twitch.tv/test${i}`,
+                        country: countries[i],
+                        timestamp: new Date().toISOString()
+                    };
+
+                    window.dispatchEvent(new CustomEvent('applicationAccepted', {
+                        detail: testApp
+                    }));
+                }, i * 100);
+            });
+
+            const output = document.getElementById('acceptOutput');
+            output.style.display = 'block';
+            output.innerHTML = `
+                <p class="success">✅ Accepting 3 test applications...</p>
+                <p>Check roster.html after a moment to see all members.</p>
+            `;
+        }
+
+        function viewRosterMembers() {
+            const members = localStorage.getItem('zornRosterMembers');
+            const output = document.getElementById('rosterOutput');
+            output.style.display = 'block';
+
+            if (!members) {
+                output.innerHTML = '<p class="error">❌ No roster members found in localStorage</p>';
+                return;
+            }
+
+            const parsed = JSON.parse(members);
+            output.innerHTML = `
+                <p class="success">✅ Found ${parsed.length} roster member(s)</p>
+                <pre>${JSON.stringify(parsed, null, 2)}</pre>
+            `;
+        }
+
+        function clearRosterMembers() {
+            localStorage.removeItem('zornRosterMembers');
+            const output = document.getElementById('rosterOutput');
+            output.style.display = 'block';
+            output.innerHTML = '<p class="success">✅ All roster members cleared!</p>';
+        }
+
+        function testPositionMapping() {
+            const testCases = [
+                { input: 'freestyler', expected: 'Freestyler' },
+                { input: 'competitive', expected: 'Competitive' },
+                { input: 'content-creator', expected: 'Content Creator' },
+                { input: 'editor', expected: 'Editor' },
+                { input: 'designer', expected: 'Designer' },
+                { input: 'management', expected: 'Management' },
+                { input: 'coach', expected: 'Coach' }
+            ];
+
+            const integration = window.rosterIntegration;
+            if (!integration) {
+                alert('RosterIntegration not found!');
+                return;
+            }
+
+            let results = '<h3>Position Mapping Results:</h3>';
+            testCases.forEach(test => {
+                const result = integration.normalizePosition(test.input);
+                const status = result === test.expected ? '✅' : '❌';
+                results += `<p>${status} ${test.input} → ${result} (expected: ${test.expected})</p>`;
+            });
+
+            const output = document.getElementById('positionOutput');
+            output.style.display = 'block';
+            output.innerHTML = results;
+        }
+
+        function testSocialExtraction() {
+            const testInput = `
+                Twitter: https://twitter.com/testuser
+                YouTube: https://youtube.com/@testchannel
+                Twitch: https://twitch.tv/teststreamer
+                TikTok: https://tiktok.com/@testtok
+                Instagram: https://instagram.com/testgram
+                Discord: https://discord.gg/testserver
+                Random text here
+            `;
+
+            const integration = window.rosterIntegration;
+            if (!integration) {
+                alert('RosterIntegration not found!');
+                return;
+            }
+
+            const socials = integration.extractSocials(testInput);
+
+            const output = document.getElementById('socialOutput');
+            output.style.display = 'block';
+            output.innerHTML = `
+                <h3>Social Media Extraction Results:</h3>
+                <pre>${JSON.stringify(socials, null, 2)}</pre>
+            `;
+        }
+
+        function testCountryFlags() {
+            const countries = [
+                'United States', 'United Kingdom', 'Canada', 'Australia',
+                'Germany', 'France', 'Spain', 'Italy',
+                'Japan', 'Brazil', 'Mexico', 'India'
+            ];
+
+            const integration = window.rosterIntegration;
+            if (!integration) {
+                alert('RosterIntegration not found!');
+                return;
+            }
+
+            let results = '<h3>Country Flag Mapping:</h3>';
+            countries.forEach(country => {
+                const flag = integration.getCountryFlag(country);
+                results += `<p>${flag} ${country}</p>`;
+            });
+
+            const output = document.getElementById('flagOutput');
+            output.style.display = 'block';
+            output.innerHTML = results;
+        }
+    </script>
+</body>
+</html>

@@ -7,13 +7,14 @@ class DashboardManager {
     constructor() {
         // Access control
         this.config = new ProductionConfig();
+        // Normalize all emails to lowercase for case-insensitive comparison
         this.authorizedEmails = [
             'ticklemybootey@gmail.com',
             'jawleiall@gmail.com',
             'charliewhitaker842@gmail.com',
             'zacfrew06@gmail.com',
             'xavier.mcmullan2006@outlook.com'
-        ];
+        ].map(email => email.toLowerCase());
         this.currentUser = null;
         
         // Dashboard data
@@ -782,6 +783,13 @@ class DashboardManager {
                 const appIndex = this.applications.findIndex(app => app.id === application.id);
                 if (appIndex !== -1) {
                     this.applications[appIndex].status = action === 'accept' ? 'accepted' : 'denied';
+                    
+                    // If accepted, trigger roster integration
+                    if (action === 'accept') {
+                        window.dispatchEvent(new CustomEvent('applicationAccepted', {
+                            detail: this.applications[appIndex]
+                        }));
+                    }
                 }
             }
 

@@ -1,0 +1,537 @@
+/* ========================================
+   SLEEK MINIMAL DESIGN SYSTEM
+   Maintains exact color scheme with modern aesthetic
+   ======================================== */
+
+:root {
+    /* Exact Color Palette - DO NOT CHANGE */
+    --primary-gradient-start: #ff4824;
+    --primary-gradient-end: #ff0b4e;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111;
+    --bg-card: #1a1a1a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888;
+    --border-color: #333;
+    --border-subtle: #222;
+    
+    /* Design System Variables */
+    --radius-none: 0px;
+    --radius-minimal: 2px;
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 64px;
+    
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --transition-fast: 150ms;
+    --transition-normal: 250ms;
+    --transition-slow: 350ms;
+    
+    /* Shadows - Minimal and subtle */
+    --shadow-minimal: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 24px rgba(255, 72, 36, 0.15);
+    --shadow-glow-hover: 0 0 32px rgba(255, 72, 36, 0.25);
+}
+
+/* ========================================
+   TYPOGRAPHY - SHARP AND CLEAN
+   ======================================== */
+
+.sleek-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.sleek-heading-xl {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.sleek-heading-lg {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.sleek-heading-md {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.sleek-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-weight-normal);
+    letter-spacing: 0.01em;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.sleek-body-lg {
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+/* ========================================
+   GEOMETRIC ACCENTS
+   ======================================== */
+
+.geometric-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    margin: var(--spacing-md) 0;
+}
+
+.geometric-corner {
+    position: relative;
+}
+
+.geometric-corner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--primary-gradient-start);
+    border-left: 2px solid var(--primary-gradient-start);
+}
+
+.geometric-corner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--primary-gradient-end);
+    border-right: 2px solid var(--primary-gradient-end);
+}
+
+/* ========================================
+   SLEEK CARDS
+   ======================================== */
+
+.sleek-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    padding: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal) ease;
+}
+
+.sleek-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-gradient-start), var(--primary-gradient-end), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-normal) ease;
+}
+
+.sleek-card:hover::before {
+    opacity: 1;
+}
+
+.sleek-card:hover {
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+/* Minimalist Card - No borders, just subtle background */
+.minimal-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: none;
+    padding: var(--spacing-lg);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-normal) ease;
+}
+
+.minimal-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: var(--shadow-minimal);
+}
+
+/* ========================================
+   SLEEK BUTTONS
+   ======================================== */
+
+.sleek-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 12px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal) ease;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.sleek-btn-primary {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    color: #ffffff;
+    box-shadow: var(--shadow-minimal);
+}
+
+.sleek-btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--primary-gradient-end), var(--primary-gradient-start));
+    opacity: 0;
+    transition: opacity var(--transition-normal) ease;
+}
+
+.sleek-btn-primary:hover::before {
+    opacity: 1;
+}
+
+.sleek-btn-primary:hover {
+    box-shadow: var(--shadow-glow-hover);
+    transform: translateY(-1px);
+}
+
+.sleek-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.sleek-btn-secondary:hover {
+    background: rgba(255, 72, 36, 0.1);
+    border-color: var(--primary-gradient-start);
+    transform: translateY(-1px);
+}
+
+.sleek-btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 8px 16px;
+}
+
+.sleek-btn-ghost:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Icon in buttons */
+.sleek-btn svg {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.sleek-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   GRID LAYOUTS
+   ======================================== */
+
+.sleek-grid {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.sleek-grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.sleek-grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.sleek-grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* ========================================
+   DIVIDERS
+   ======================================== */
+
+.sleek-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: var(--spacing-lg) 0;
+}
+
+.sleek-divider-gradient {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-gradient-start), var(--primary-gradient-end), transparent);
+    margin: var(--spacing-xl) 0;
+}
+
+/* ========================================
+   GRADIENT TEXT
+   ======================================== */
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========================================
+   NAVIGATION - MINIMAL
+   ======================================== */
+
+.sleek-nav {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.sleek-nav-link {
+    position: relative;
+    padding: var(--spacing-sm) 0;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color var(--transition-fast) ease;
+}
+
+.sleek-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    transition: width var(--transition-normal) ease;
+}
+
+.sleek-nav-link:hover {
+    color: var(--text-primary);
+}
+
+.sleek-nav-link:hover::after,
+.sleek-nav-link.active::after {
+    width: 100%;
+}
+
+.sleek-nav-link.active {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   HERO SECTIONS - BOLD AND MINIMAL
+   ======================================== */
+
+.sleek-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: var(--spacing-2xl) var(--spacing-md);
+}
+
+.sleek-hero-content {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.sleek-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--border-subtle), transparent);
+    opacity: 0.5;
+}
+
+/* ========================================
+   FORMS - CLEAN INPUTS
+   ======================================== */
+
+.sleek-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all var(--transition-normal) ease;
+    outline: none;
+}
+
+.sleek-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-gradient-start);
+    box-shadow: 0 0 0 3px rgba(255, 72, 36, 0.1);
+}
+
+.sleek-input::placeholder {
+    color: var(--text-muted);
+}
+
+.sleek-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* ========================================
+   BADGES AND TAGS
+   ======================================== */
+
+.sleek-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(255, 72, 36, 0.15);
+    color: var(--primary-gradient-start);
+    border: 1px solid rgba(255, 72, 36, 0.3);
+}
+
+/* ========================================
+   ANIMATIONS - SUBTLE
+   ======================================== */
+
+@keyframes sleekFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sleekSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sleek-animate-in {
+    animation: sleekFadeIn 0.6s ease-out forwards;
+}
+
+.sleek-animate-slide {
+    animation: sleekSlideIn 0.6s ease-out forwards;
+}
+
+/* ========================================
+   HOVER EFFECTS - MINIMAL
+   ======================================== */
+
+.sleek-hover-lift {
+    transition: transform var(--transition-normal) ease;
+}
+
+.sleek-hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+.sleek-hover-glow {
+    transition: box-shadow var(--transition-normal) ease;
+}
+
+.sleek-hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .sleek-grid-2,
+    .sleek-grid-3,
+    .sleek-grid-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .sleek-hero {
+        min-height: 90vh;
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+}

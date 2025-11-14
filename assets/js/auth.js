@@ -629,7 +629,6 @@ class AuthManager {
     // Load user from JWT token (cookie-based)
     async loadUserFromToken() {
         try {
-            console.log('Attempting to load user from token...');
             const response = await fetch(`${this.getApiBaseUrl()}/api/auth/me`, {
                 method: 'GET',
                 credentials: 'include', // Include cookies
@@ -638,16 +637,13 @@ class AuthManager {
                 }
             });
 
-            console.log('Token response status:', response.status);
-
             if (response.status === 401) {
-                // Not logged in, suppress error and continue gracefully
+                // Not logged in via OAuth - this is normal, not an error
                 return false;
             }
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Token response data:', data);
                 
                 if (data.success && data.user) {
                     this.currentUser = {
@@ -655,18 +651,14 @@ class AuthManager {
                         loginTime: Date.now(),
                         expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 days
                     };
-                    console.log('User loaded successfully:', this.currentUser);
+                    console.log('✅ OAuth user loaded');
                     this.updateUI();
                     return true;
                 }
-            } else {
-                console.log('Token response not ok:', await response.text());
             }
         } catch (error) {
-            // Only log real errors, not 401s
-            if (!error.message || !error.message.includes('401')) {
-                console.error('Failed to load user from token:', error);
-            }
+            // Silently fail for CORS/network errors - user just isn't logged in via OAuth
+            // This is expected behavior for local development
         }
         return false;
     }
@@ -728,10 +720,24 @@ class AuthManager {
             } else {
                 // Standard layout profile update
                 userProfile.innerHTML = `
-                    <a href="/profile" class="user-profile-link">
-                        <img src="${userData.avatar || 'assets/img/roster/socialsbg.png.webp'}" alt="Profile" class="user-avatar">
-                        <span class="user-name">${userData.displayName || userData.username}</span>
-                    </a>
+                    <div class="nav-utils">
+                        <a href="help.html" class="icon-btn" title="Help" aria-label="Help">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <circle cx="12" cy="17" r="0.5" fill="currentColor"></circle>
+                            </svg>
+                        </a>
+                        <a href="settings.html" class="icon-btn settings-icon" title="Settings" aria-label="Settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </a>
+                        <a href="profile.html" class="user-profile-link">
+                            <img src="${userData.avatar || 'assets/img/roster/socialsbg.png.webp'}" alt="Profile" class="user-avatar">
+                            <span class="user-name">${userData.displayName || userData.username}</span>
+                        </a>
+                    </div>
                 `;
             }
             
@@ -743,12 +749,23 @@ class AuthManager {
                 // This is handled by dashboard access control
                 return;
             } else {
-                // Standard layout - show login link
+                // Standard layout - show login button and utility icons
                 userProfile.innerHTML = `
-                    <a href="/login" class="user-profile-link">
-                        <img src="assets/img/roster/socialsbg.png.webp" alt="Login" class="user-avatar placeholder">
-                        <span class="user-name">Guest</span>
-                    </a>
+                    <div class="nav-utils">
+                        <a href="help.html" class="icon-btn" title="Help" aria-label="Help">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <circle cx="12" cy="17" r="0.5" fill="currentColor"></circle>
+                            </svg>
+                        </a>
+                        <a href="settings.html" class="icon-btn settings-icon" title="Settings" aria-label="Settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </a>
+                        <a href="login.html" class="btn-login"><span>Login</span></a>
+                    </div>
                 `;
             }
         }
