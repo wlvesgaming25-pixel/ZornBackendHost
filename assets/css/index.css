@@ -398,6 +398,55 @@ body::before {
     letter-spacing: 0.05em;
 }
 
+/* Centered wordmark variant for homepage hero */
+.hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    display: none; /* hide the textual heading when using the wordmark image */
+}
+
+.hero-wordmark {
+    max-width: 520px;
+    width: min(84%, 520px);
+    height: auto;
+    display: block;
+    margin: 0 0 0.6rem;
+    filter: drop-shadow(0 10px 26px rgba(0,0,0,0.48));
+    transform-origin: center;
+}
+
+.hero-slogan {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: #bdbdbd;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.hero-buttons {
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 120px 20px 60px;
+    }
+
+    .hero-wordmark {
+        width: min(92%, 420px);
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-slogan {
+        margin-bottom: 1rem;
+    }
+}
+
 .hero-buttons {
     display: flex;
     gap: 1.5rem;
