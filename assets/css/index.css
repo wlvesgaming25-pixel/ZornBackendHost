@@ -32,6 +32,16 @@ html {
     --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.25);
     --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.4);
     --shadow-glow: 0 0 20px rgba(255, 72, 36, 0.3);
+    
+    /* Color system (use these in component CSS where possible) */
+    --color-bg: #0a0a0a;
+    --color-surface: rgba(255, 255, 255, 0.02);
+    --color-card: rgba(255, 255, 255, 0.02);
+    --color-text: #e0e0e0;
+    --color-muted: #666666;
+    --color-accent: #ff4824;
+    --color-accent-2: #ff0b4e;
+    --color-border: rgba(255,255,255,0.05);
 }
 
 /* Enhanced Page Load Animations */
@@ -148,7 +158,8 @@ html {
 }
 
 .fade-in-scale {
-    animation: fadeInScale var(--duration-slow) var(--ease-out-quart) forwards;
+    /* Use opacity-only fade to avoid movement/scale — keep it subtle */
+    animation: fadeIn var(--duration-slow) var(--ease-out-quart) forwards;
 }
 
 .fade-in {
@@ -184,8 +195,8 @@ html {
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: #e0e0e0;
-    background-color: #0a0a0a;
+    color: var(--color-text);
+    background-color: var(--color-bg);
     position: relative;
     opacity: 0;
     transition: opacity var(--duration-slower) var(--ease-out-quart);
@@ -197,6 +208,7 @@ body.loaded {
 
 /* Minimal grid pattern background */
 body::before {
+    /* default subtle grid pattern for non-home pages */
     content: '';
     position: fixed;
     top: 0;
@@ -210,6 +222,31 @@ body::before {
     opacity: 0.3;
     pointer-events: none;
     z-index: -1;
+}
+
+/* Homepage: hero-scoped background + overlay */
+.home .hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('../img/Zorn-Fennec-Render-Tropical.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* fill the hero area */
+    filter: saturate(0.95) contrast(0.95);
+    z-index: -2; /* behind overlay and content */
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 900ms var(--ease-out-quart) forwards;
+}
+
+.home .hero .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: -1; /* above image, below content */
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 700ms var(--ease-out-quart) 150ms forwards;
 }
 
 .container {
@@ -1461,3 +1498,5 @@ footer {
         padding: 15px;
     }
 }
+
+/* Light theme removed — site uses its original styles by default. */

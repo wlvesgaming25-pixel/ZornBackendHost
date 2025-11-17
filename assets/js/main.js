@@ -116,8 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Back to top button
     createBackToTopButton();
     
-    // Initialize theme toggle if available
-    initializeThemeToggle();
+    // Theme functionality removed: ensure no automatic theme changes
     
     // Initialize search functionality if available
     initializeSearch();
@@ -267,10 +266,14 @@ function createBackToTopButton() {
 }
 
 function initializeThemeToggle() {
-    // Theme toggle functionality can be added here
-    // For now, we'll prepare for future implementation
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // Theme option removed. Clear any stored theme preference so site uses original styles.
+    try {
+        localStorage.removeItem('site-theme');
+        localStorage.removeItem('theme');
+        document.documentElement.removeAttribute('data-theme');
+    } catch (e) {
+        // ignore storage errors
+    }
 }
 
 function initializeSearch() {

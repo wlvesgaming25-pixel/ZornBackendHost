@@ -15,11 +15,15 @@ $headerActionsInsert = @'
                             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"></path>
                         </svg>
                     </a>
+                    
                     <div class="user-profile" id="userProfile">
                         <!-- Populated by auth.js -->
                     </div>
                 </div>
 '@
+
+# No head insert needed — theme boot removed
+$headInsert = ''
 
 # List of files to update (excluding index.html and about.html as they're already done)
 $files = @(
@@ -59,7 +63,14 @@ foreach ($file in $files) {
             if ($content -match $pattern) {
                 # Replace with new header-actions structure
                 $newContent = $content -replace $pattern, "$headerActionsInsert`r`n                $2"
-                
+
+                # Insert head boot script if not already present
+                if ($newContent -notmatch 'id="data-theme-boot"') {
+                    if ($newContent -match '(?i)<head[^>]*>') {
+                        $newContent = $newContent -replace '(?i)(<head[^>]*>)', "`$1`r`n$headInsert"
+                    }
+                }
+
                 Set-Content -Path $filePath -Value $newContent -NoNewline
                 Write-Host "✓ Updated: $file" -ForegroundColor Green
                 $updated++
