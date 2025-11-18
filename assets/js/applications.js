@@ -421,7 +421,14 @@ class ApplicationSubmissionHandler {
                 break;
         }
 
-        // Always include availability and motivation (use 'N/A' when missing)
+        // Always include portfolio, availability and motivation (use 'N/A' when missing)
+        const portfolioVal = formData.get('portfolio') || formData.get('contentLinks') || formData.get('portfolioLinks') || 'N/A';
+        additionalFields.push({
+            name: "🔗 Portfolio Links",
+            value: portfolioVal.length > 500 ? portfolioVal.substring(0, 500) + '...' : portfolioVal,
+            inline: false
+        });
+
         const availabilityVal = formData.get('availability') || 'N/A';
         additionalFields.push({
             name: "⏰ Availability",
