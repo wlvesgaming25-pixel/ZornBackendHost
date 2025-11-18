@@ -198,19 +198,18 @@ class ApplicationSubmissionHandler {
         const positionName = this.positionNames[position] || position;
         const timestamp = new Date().toISOString();
         
-        // Get basic info
-        const fullName = formData.get('fullName') || 'Name not provided';
-        const email = formData.get('email') || 'Not provided';
-        const discordTag = formData.get('discordTag') || 'Not provided';
+        // Get basic info (use 'N/A' for unanswered questions)
+        const fullName = formData.get('fullName') || 'N/A';
+        const email = formData.get('email') || 'N/A';
+        const discordTag = formData.get('discordTag') || 'N/A';
         
-        // Create field sections for better organization
-        const contactFields = [];
-        const gameInfoFields = [];
-        const experienceFields = [];
-        const additionalFields = [];
-
-        // Contact Information Section
-        contactFields.push(
+        // Create field sections for better organization; always include expected questions and use 'N/A' when missing
+        const contactFields = [
+            {
+                name: "📛 Full Name",
+                value: fullName,
+                inline: false
+            },
             {
                 name: "📧 Email Address",
                 value: email,
@@ -220,208 +219,222 @@ class ApplicationSubmissionHandler {
                 name: "💬 Discord Tag",
                 value: discordTag,
                 inline: true
+            },
+            {
+                name: "🏷️ Position Applied For",
+                value: positionName,
+                inline: true
             }
-        );
+        ];
+
+        const gameInfoFields = [];
+        const experienceFields = [];
+        const additionalFields = [];
 
         // Add position-specific fields with better organization
         switch(position) {
             case 'freestyler':
-                const rlRank = formData.get('rlRank') || 'Not specified';
-                const platform = formData.get('platform') || 'Not specified';
-                const freestyleExp = formData.get('freestyleExperience') || 'Not specified';
-                const contentLinks = formData.get('contentLinks') || 'Not provided';
-                const freestyleSkills = formData.get('specialSkills') || 'Not provided';
-                
-                gameInfoFields.push(
-                    {
-                        name: "🎮 Gaming Platform",
-                        value: platform,
-                        inline: true
-                    },
-                    {
-                        name: "🏆 Rocket League Rank",
-                        value: rlRank,
-                        inline: true
-                    },
-                    {
-                        name: "⏱️ Freestyle Experience",
-                        value: freestyleExp,
-                        inline: true
-                    }
-                );
-                
-                experienceFields.push(
-                    {
-                        name: "🎬 Content Portfolio",
-                        value: contentLinks.length > 500 ? contentLinks.substring(0, 500) + '...' : contentLinks,
-                        inline: false
-                    },
-                    {
-                        name: "⭐ Specialty Skills",
-                        value: freestyleSkills.length > 500 ? freestyleSkills.substring(0, 500) + '...' : freestyleSkills,
-                        inline: false
-                    }
-                );
+                {
+                    const rlRank = formData.get('rlRank') || 'N/A';
+                    const platform = formData.get('platform') || 'N/A';
+                    const freestyleExp = formData.get('freestyleExperience') || 'N/A';
+                    const contentLinks = formData.get('contentLinks') || 'N/A';
+                    const freestyleSkills = formData.get('specialSkills') || 'N/A';
+
+                    gameInfoFields.push(
+                        {
+                            name: "🎮 Gaming Platform",
+                            value: platform,
+                            inline: true
+                        },
+                        {
+                            name: "🏆 Rocket League Rank",
+                            value: rlRank,
+                            inline: true
+                        },
+                        {
+                            name: "⏱️ Freestyle Experience",
+                            value: freestyleExp,
+                            inline: true
+                        }
+                    );
+
+                    experienceFields.push(
+                        {
+                            name: "🎬 Content Portfolio",
+                            value: contentLinks.length > 500 ? contentLinks.substring(0, 500) + '...' : contentLinks,
+                            inline: false
+                        },
+                        {
+                            name: "⭐ Specialty Skills",
+                            value: freestyleSkills.length > 500 ? freestyleSkills.substring(0, 500) + '...' : freestyleSkills,
+                            inline: false
+                        }
+                    );
+                }
                 break;
                 
             case 'competitive-player':
-                const currentRank = formData.get('rlRank') || 'Not specified';
-                const peakRank = formData.get('peakRank') || 'Not specified';
-                const preferredRole = formData.get('preferredRole') || 'Not specified';
-                const competitiveExp = formData.get('competitiveExperience') || 'Not provided';
-                const strengths = formData.get('strengths') || 'Not provided';
-                const gamePlatform = formData.get('platform') || 'Not specified';
-                
-                gameInfoFields.push(
-                    {
-                        name: "🎮 Gaming Platform",
-                        value: gamePlatform,
-                        inline: true
-                    },
-                    {
-                        name: "🏆 Current Rank",
-                        value: currentRank,
-                        inline: true
-                    },
-                    {
-                        name: "🥇 Peak Rank",
-                        value: peakRank,
-                        inline: true
-                    },
-                    {
-                        name: "⚽ Preferred Position",
-                        value: preferredRole,
-                        inline: true
-                    }
-                );
-                
-                experienceFields.push(
-                    {
-                        name: "🏅 Competitive Experience",
-                        value: competitiveExp.length > 500 ? competitiveExp.substring(0, 500) + '...' : competitiveExp,
-                        inline: false
-                    },
-                    {
-                        name: "💪 Strengths & Playstyle",
-                        value: strengths.length > 500 ? strengths.substring(0, 500) + '...' : strengths,
-                        inline: false
-                    }
-                );
+                {
+                    const currentRank = formData.get('rlRank') || 'N/A';
+                    const peakRank = formData.get('peakRank') || 'N/A';
+                    const preferredRole = formData.get('preferredRole') || 'N/A';
+                    const competitiveExp = formData.get('competitiveExperience') || 'N/A';
+                    const strengths = formData.get('strengths') || 'N/A';
+                    const gamePlatform = formData.get('platform') || 'N/A';
+
+                    gameInfoFields.push(
+                        {
+                            name: "🎮 Gaming Platform",
+                            value: gamePlatform,
+                            inline: true
+                        },
+                        {
+                            name: "🏆 Current Rank",
+                            value: currentRank,
+                            inline: true
+                        },
+                        {
+                            name: "🥇 Peak Rank",
+                            value: peakRank,
+                            inline: true
+                        },
+                        {
+                            name: "⚽ Preferred Position",
+                            value: preferredRole,
+                            inline: true
+                        }
+                    );
+
+                    experienceFields.push(
+                        {
+                            name: "🏅 Competitive Experience",
+                            value: competitiveExp.length > 500 ? competitiveExp.substring(0, 500) + '...' : competitiveExp,
+                            inline: false
+                        },
+                        {
+                            name: "💪 Strengths & Playstyle",
+                            value: strengths.length > 500 ? strengths.substring(0, 500) + '...' : strengths,
+                            inline: false
+                        }
+                    );
+                }
                 break;
                 
             case 'video-editor':
-                const software = formData.get('software') || 'Not specified';
-                const experience = formData.get('experience') || 'Not specified';
-                const portfolio = formData.get('portfolio') || 'Not provided';
-                const editorSkills = formData.get('specialSkills') || 'Not provided';
-                
-                gameInfoFields.push(
-                    {
-                        name: "💻 Primary Software",
-                        value: software,
-                        inline: true
-                    },
-                    {
-                        name: "📅 Experience Level",
-                        value: experience,
-                        inline: true
-                    }
-                );
-                
-                experienceFields.push(
-                    {
-                        name: "🎬 Portfolio Links",
-                        value: portfolio.length > 500 ? portfolio.substring(0, 500) + '...' : portfolio,
-                        inline: false
-                    },
-                    {
-                        name: "⭐ Editing Specialties",
-                        value: editorSkills.length > 500 ? editorSkills.substring(0, 500) + '...' : editorSkills,
-                        inline: false
-                    }
-                );
+                {
+                    const software = formData.get('software') || 'N/A';
+                    const experience = formData.get('experience') || 'N/A';
+                    const portfolio = formData.get('portfolio') || 'N/A';
+                    const editorSkills = formData.get('specialSkills') || 'N/A';
+
+                    gameInfoFields.push(
+                        {
+                            name: "💻 Primary Software",
+                            value: software,
+                            inline: true
+                        },
+                        {
+                            name: "📅 Experience Level",
+                            value: experience,
+                            inline: true
+                        }
+                    );
+
+                    experienceFields.push(
+                        {
+                            name: "🎬 Portfolio Links",
+                            value: portfolio.length > 500 ? portfolio.substring(0, 500) + '...' : portfolio,
+                            inline: false
+                        },
+                        {
+                            name: "⭐ Editing Specialties",
+                            value: editorSkills.length > 500 ? editorSkills.substring(0, 500) + '...' : editorSkills,
+                            inline: false
+                        }
+                    );
+                }
                 break;
                 
             case 'designer':
-                const specialization = formData.get('specialization') || 'Not specified';
-                const designPortfolio = formData.get('portfolio') || 'Not provided';
-                const designSoftware = formData.get('software') || 'Not provided';
-                
-                gameInfoFields.push(
-                    {
-                        name: "🎨 Design Specialization",
-                        value: specialization,
-                        inline: true
-                    }
-                );
-                
-                experienceFields.push(
-                    {
-                        name: "🎬 Portfolio Links",
-                        value: designPortfolio.length > 500 ? designPortfolio.substring(0, 500) + '...' : designPortfolio,
-                        inline: false
-                    },
-                    {
-                        name: "💻 Software Skills",
-                        value: designSoftware.length > 500 ? designSoftware.substring(0, 500) + '...' : designSoftware,
-                        inline: false
-                    }
-                );
+                {
+                    const specialization = formData.get('specialization') || 'N/A';
+                    const designPortfolio = formData.get('portfolio') || 'N/A';
+                    const designSoftware = formData.get('software') || 'N/A';
+
+                    gameInfoFields.push(
+                        {
+                            name: "🎨 Design Specialization",
+                            value: specialization,
+                            inline: true
+                        }
+                    );
+
+                    experienceFields.push(
+                        {
+                            name: "🎬 Portfolio Links",
+                            value: designPortfolio.length > 500 ? designPortfolio.substring(0, 500) + '...' : designPortfolio,
+                            inline: false
+                        },
+                        {
+                            name: "💻 Software Skills",
+                            value: designSoftware.length > 500 ? designSoftware.substring(0, 500) + '...' : designSoftware,
+                            inline: false
+                        }
+                    );
+                }
                 break;
                 
             case 'content-creator':
-                const platforms = formData.get('platforms') || 'Not provided';
-                const contentType = formData.get('contentType') || 'Not specified';
-                const schedule = formData.get('schedule') || 'Not provided';
-                const channels = formData.get('channels') || 'Not provided';
-                
-                gameInfoFields.push(
-                    {
-                        name: "🎥 Primary Content Type",
-                        value: contentType,
-                        inline: true
-                    }
-                );
-                
-                experienceFields.push(
-                    {
-                        name: "� Platforms & Followers",
-                        value: platforms.length > 400 ? platforms.substring(0, 400) + '...' : platforms,
-                        inline: false
-                    },
-                    {
-                        name: "� Upload Schedule",
-                        value: schedule.length > 400 ? schedule.substring(0, 400) + '...' : schedule,
-                        inline: false
-                    },
-                    {
-                        name: "🔗 Channel Links",
-                        value: channels.length > 400 ? channels.substring(0, 400) + '...' : channels,
-                        inline: false
-                    }
-                );
+                {
+                    const platforms = formData.get('platforms') || 'N/A';
+                    const contentType = formData.get('contentType') || 'N/A';
+                    const schedule = formData.get('schedule') || 'N/A';
+                    const channels = formData.get('channels') || 'N/A';
+
+                    gameInfoFields.push(
+                        {
+                            name: "🎥 Primary Content Type",
+                            value: contentType,
+                            inline: true
+                        }
+                    );
+
+                    experienceFields.push(
+                        {
+                            name: "📈 Platforms & Followers",
+                            value: platforms.length > 400 ? platforms.substring(0, 400) + '...' : platforms,
+                            inline: false
+                        },
+                        {
+                            name: "🗓️ Upload Schedule",
+                            value: schedule.length > 400 ? schedule.substring(0, 400) + '...' : schedule,
+                            inline: false
+                        },
+                        {
+                            name: "🔗 Channel Links",
+                            value: channels.length > 400 ? channels.substring(0, 400) + '...' : channels,
+                            inline: false
+                        }
+                    );
+                }
                 break;
         }
 
-        // Add availability if provided
-        const availability = formData.get('availability');
-        if (availability) {
-            additionalFields.push({
-                name: "⏰ Availability",
-                value: availability.length > 400 ? availability.substring(0, 400) + '...' : availability,
-                inline: false
-            });
-        }
+        // Always include availability and motivation (use 'N/A' when missing)
+        const availabilityVal = formData.get('availability') || 'N/A';
+        additionalFields.push({
+            name: "⏰ Availability",
+            value: availabilityVal.length > 400 ? availabilityVal.substring(0, 400) + '...' : availabilityVal,
+            inline: false
+        });
 
-        // Always add motivation at the end
-        const motivation = formData.get('motivation') || formData.get('coverLetter');
-        if (motivation) {
-            additionalFields.push({
-                name: "💭 Why Team Zorn?",
-                value: motivation.length > 800 ? motivation.substring(0, 800) + '...' : motivation,
-                inline: false
-            });
-        }
+        const motivationVal = formData.get('motivation') || formData.get('coverLetter') || 'N/A';
+        additionalFields.push({
+            name: "💭 Why Team Zorn?",
+            value: motivationVal.length > 800 ? motivationVal.substring(0, 800) + '...' : motivationVal,
+            inline: false
+        });
 
         // Combine all fields
         const allFields = [
