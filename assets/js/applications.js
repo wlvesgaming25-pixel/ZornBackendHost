@@ -422,7 +422,7 @@ class ApplicationSubmissionHandler {
         }
 
         // Always include portfolio, availability and motivation (use 'N/A' when missing)
-        const portfolioVal = formData.get('portfolio') || formData.get('contentLinks') || formData.get('portfolioLinks') || 'N/A';
+        const portfolioVal = formData.get('portfolio') || formData.get('contentLinks') || formData.get('portfolioLinks') || formData.get('gameplayLinks') || formData.get('gameplay') || 'N/A';
         additionalFields.push({
             name: "🔗 Portfolio Links",
             value: portfolioVal.length > 500 ? portfolioVal.substring(0, 500) + '...' : portfolioVal,
