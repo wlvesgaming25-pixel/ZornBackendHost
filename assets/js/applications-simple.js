@@ -7,9 +7,9 @@ const webhookUrls = {
     'video-editor': 'https://discord.com/api/webhooks/1422213396962738216/KeGc0wuN79Bd6aCTKQmh-eI1ALdHjQluT1SFG8gYhqyXoTX9xAcEXO8ohNpafE-w6bv7',
     'designer': 'https://discord.com/api/webhooks/1422213298631217183/rF7Wschxfhs-9GyPOf7XnSKZoC_kK5qvF0u2GObWR8PGY7XT3LpWGQW4-q7wJNw3_phd',
     'content-creator': 'https://discord.com/api/webhooks/1422213542379130883/Zn3QzVLDmEPmYd8-Mz1kfQ1FGYQM-0I0xdYMA34v41uf7VSDG3voL_EWvLGtit6_ydf8',
-    'management': 'https://discord.com/api/webhooks/1422213542379130883/Zn3QzVLDmEPmYd8-Mz1kfQ1FGYQM-0I0xdYMA34v41uf7VSDG3voL_EWvLGtit6_ydf8',
-    'coach': 'https://discord.com/api/webhooks/1422213542379130883/Zn3QzVLDmEPmYd8-Mz1kfQ1FGYQM-0I0xdYMA34v41uf7VSDG3voL_EWvLGtit6_ydf8',
-    'other': 'https://discord.com/api/webhooks/1422213542379130883/Zn3QzVLDmEPmYd8-Mz1kfQ1FGYQM-0I0xdYMA34v41uf7VSDG3voL_EWvLGtit6_ydf8'
+    'management': 'https://discord.com/api/webhooks/1422213632275779629/OleZvJaxqOW02-s-lBXpRDr6rcdWD0q_reyMDzakd_mm2WKj0GDlKUrYYlxb1YNm3psq',
+    'coach': 'https://discord.com/api/webhooks/1422213632275779629/OleZvJaxqOW02-s-lBXpRDr6rcdWD0q_reyMDzakd_mm2WKj0GDlKUrYYlxb1YNm3psq',
+    'other': 'https://discord.com/api/webhooks/1422213632275779629/OleZvJaxqOW02-s-lBXpRDr6rcdWD0q_reyMDzakd_mm2WKj0GDlKUrYYlxb1YNm3psq'
 };
 
 const positionNames = {
