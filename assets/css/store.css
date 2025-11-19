@@ -318,6 +318,14 @@ header {
     transform: scale(1.05);
 }
 
+/* Fix: ensure jersey images keep their centering translate when hovered (avoid being pushed) */
+.jersey-image img {
+    transform: translate(-50%, -50%) scale(1);
+}
+.product-card:hover .jersey-image img {
+    transform: translate(-50%, -50%) scale(1.01);
+}
+
 .product-overlay {
     position: absolute;
     top: 0;
