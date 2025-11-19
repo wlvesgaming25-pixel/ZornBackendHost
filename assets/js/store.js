@@ -114,7 +114,18 @@ function initializeAddToCartButtons() {
                 color: selectedColor,
                 quantity: 1
             };
-            
+
+            // Special-case: prevent actual checkout for the jersey (no payment configured)
+            if (productId === 'jersey-2026') {
+                // Show modal telling user checkout is unavailable
+                const modal = document.getElementById('noPaymentModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+                return;
+            }
+
             addToCart(product);
         });
     });
@@ -220,10 +231,9 @@ function initializeCart() {
                 ZornUtils.showNotification('Your cart is empty', 'warning');
                 return;
             }
-            
-            // In a real application, this would redirect to checkout
-            ZornUtils.showNotification('Redirecting to checkout...', 'info');
-            console.log('Checkout cart:', cart);
+            // There is no payment method configured — prevent checkout
+            ZornUtils.showNotification('Checkout is currently unavailable (no payment method configured)', 'warning');
+            console.log('Checkout attempted but payment not configured:', cart);
         });
     }
 }
@@ -314,6 +324,27 @@ document.addEventListener('click', function(e) {
         const productCard = e.target.closest('.product-card');
         showQuickView(productCard);
     }
+});
+
+// No-payment modal handlers
+document.addEventListener('DOMContentLoaded', function() {
+    const noPaymentModal = document.getElementById('noPaymentModal');
+    if (!noPaymentModal) return;
+
+    const closeBtn = document.getElementById('closeNoPayment');
+    const okBtn = document.getElementById('noPaymentOk');
+
+    function closeModal() {
+        noPaymentModal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (okBtn) okBtn.addEventListener('click', closeModal);
+
+    noPaymentModal.addEventListener('click', (e) => {
+        if (e.target === noPaymentModal) closeModal();
+    });
 });
 
 function showQuickView(productCard) {

@@ -54,17 +54,7 @@
     </header>
 
     <main>
-        <!-- Store Closed Overlay -->
-        <div class="store-closed-overlay">
-            <div class="store-closed-content">
-                <h1>Store is Currently Closed</h1>
-                <p>We're working hard to bring you amazing merchandise soon!</p>
-                <p>Check back later for exclusive Zorn gear.</p>
-                <div class="store-closed-actions">
-                    <a href="index.html" class="btn-back-home">Back to Homepage</a>
-                </div>
-            </div>
-        </div>
+        <!-- Store is open: removed closed overlay -->
 
         <section class="store-hero animate-on-load fade-in-scale">
             <div class="container">
@@ -126,6 +116,32 @@
                                 </select>
                             </div>
                             <button class="add-to-cart-btn" data-product="hoodie-black" data-price="59.99">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Zorn Esports Jersey (new) -->
+                    <div class="product-card animate-on-load fade-in-scale delay-6" data-category="apparel">
+                        <div class="product-image jersey-image">
+                            <img class="front" src="assets/img/roster/jersey-front.png" alt="Zorn Jersey Front">
+                            <img class="back" src="assets/img/roster/jersey-back.png" alt="Zorn Jersey Back">
+                            <div class="product-overlay">
+                                <button class="quick-view-btn">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Zorn Esports Jersey</h3>
+                            <p class="product-price">$50.00</p>
+                            <div class="product-options">
+                                <select class="size-select">
+                                    <option>Select Size</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                    <option value="xxl">XXL</option>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn" data-product="jersey-2026" data-price="50">Add to Cart</button>
                         </div>
                     </div>
 
@@ -322,6 +338,17 @@
                 </div>
                 <button class="checkout-btn">Proceed to Checkout</button>
             </div>
+        </div>
+    </div>
+
+    <!-- No Payment Modal -->
+    <div class="no-payment-modal" id="noPaymentModal" style="display:none;">
+        <div class="no-payment-content">
+            <button class="close-no-payment" id="closeNoPayment">&times;</button>
+            <h2>Checkout Unavailable</h2>
+            <p>We're not accepting payments right now — there is currently no payment method configured.</p>
+            <p>You can still add items to your cart, but checkout is disabled until payment is set up.</p>
+            <div style="margin-top:1.25rem; text-align:center;"><button class="btn-primary" id="noPaymentOk">OK</button></div>
         </div>
     </div>
 
