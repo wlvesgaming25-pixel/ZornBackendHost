@@ -270,13 +270,18 @@ header {
     background: rgba(0,0,0,0.03);
 }
 .jersey-image img {
-    position: relative;
+    position: absolute; /* overlay images so they can fade */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: auto;
     max-height: 92%;
     max-width: 92%;
     object-fit: contain; /* ensure whole jersey is visible */
     transition: opacity 0.35s ease, transform 0.25s ease;
     padding: 6px;
+    display: block;
+    z-index: 1;
 }
 .jersey-image img.back {
     opacity: 0;
@@ -297,10 +302,17 @@ header {
 }
 .jersey-card .product-overlay {
     background: rgba(107,91,255,0.06);
+    z-index: 3; /* ensure overlay and quick view stay above images */
 }
 .jersey-card:hover .product-overlay {
     background: rgba(107,91,255,0.14);
 }
+
+/* ensure front/back stacking order */
+.jersey-image img.front { z-index: 2; }
+.jersey-image img.back { z-index: 1; opacity: 0; }
+.jersey-image:hover img.front { opacity: 0; }
+.jersey-image:hover img.back { opacity: 1; }
 
 .product-card:hover .product-image img {
     transform: scale(1.05);
