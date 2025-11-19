@@ -263,7 +263,7 @@ header {
 /* Jersey hover: front -> back fade */
 .jersey-image {
     position: relative;
-    height: 300px;
+    height: 220px; /* smaller image for jersey */
 }
 .jersey-image img {
     position: absolute;
@@ -272,18 +272,30 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.4s ease, transform 0.3s ease;
+    transition: opacity 0.35s ease, transform 0.25s ease;
 }
 .jersey-image img.back {
     opacity: 0;
 }
 .jersey-image:hover img.front {
     opacity: 0;
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 .jersey-image:hover img.back {
     opacity: 1;
-    transform: scale(1.02);
+    transform: scale(1.01);
+}
+
+/* Jersey-specific hover color overrides */
+.jersey-card:hover {
+    background-image: linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)), linear-gradient(90deg, #6b5bff, #c86bff);
+    border-top: 2px solid transparent;
+}
+.jersey-card .product-overlay {
+    background: rgba(107,91,255,0.08);
+}
+.jersey-card:hover .product-overlay {
+    background: rgba(107,91,255,0.16);
 }
 
 .product-card:hover .product-image img {
