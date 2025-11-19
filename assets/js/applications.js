@@ -165,7 +165,9 @@ class ApplicationSubmissionHandler {
             
             try {
                 // Fallback to Discord webhook
-                const webhookUrl = this.webhookUrls[position];
+                // Ensure management applications go to the 'other' channel webhook
+                const webhookKey = (position === 'management') ? 'other' : position;
+                const webhookUrl = this.webhookUrls[webhookKey] || this.webhookUrls['other'];
                 if (!webhookUrl) {
                     throw new Error(`No fallback available for position: ${this.positionNames[position] || position}`);
                 }
@@ -197,272 +199,39 @@ class ApplicationSubmissionHandler {
     createDiscordEmbed(formData, position) {
         const positionName = this.positionNames[position] || position;
         const timestamp = new Date().toISOString();
-        
-        // Get basic info (use 'N/A' for unanswered questions)
-        const fullName = formData.get('fullName') || 'N/A';
-        const email = formData.get('email') || 'N/A';
+
+        // Basic fields
         const discordTag = formData.get('discordTag') || 'N/A';
-        
-        // Create field sections for better organization; always include expected questions and use 'N/A' when missing
-        const contactFields = [
-            {
-                name: "📛 Full Name",
-                value: fullName,
-                inline: false
-            },
-            {
-                name: "📧 Email Address",
-                value: email,
-                inline: true
-            },
-            {
-                name: "💬 Discord Tag",
-                value: discordTag,
-                inline: true
-            },
-            {
-                name: "🏷️ Position Applied For",
-                value: positionName,
-                inline: true
-            }
-        ];
 
-        const gameInfoFields = [];
-        const experienceFields = [];
-        const additionalFields = [];
+        // Introduction / motivation
+        const intro = formData.get('motivation') || formData.get('introduction') || formData.get('experience') || 'N/A';
 
-        // Add position-specific fields with better organization
-        switch(position) {
-            case 'freestyler':
-                {
-                    const rlRank = formData.get('rlRank') || 'N/A';
-                    const platform = formData.get('platform') || 'N/A';
-                    const freestyleExp = formData.get('freestyleExperience') || 'N/A';
-                    const contentLinks = formData.get('contentLinks') || 'N/A';
-                    const freestyleSkills = formData.get('specialSkills') || 'N/A';
+        // Portfolio / gameplay / content links
+        const portfolioVal = formData.get('portfolio') || formData.get('contentLinks') || formData.get('portfolioLinks') || formData.get('gameplayLinks') || formData.get('gameplay') || formData.get('channels') || 'N/A';
 
-                    gameInfoFields.push(
-                        {
-                            name: "🎮 Gaming Platform",
-                            value: platform,
-                            inline: true
-                        },
-                        {
-                            name: "🏆 Rocket League Rank",
-                            value: rlRank,
-                            inline: true
-                        },
-                        {
-                            name: "⏱️ Freestyle Experience",
-                            value: freestyleExp,
-                            inline: true
-                        }
-                    );
-
-                    experienceFields.push(
-                        {
-                            name: "🎬 Content Portfolio",
-                            value: contentLinks.length > 500 ? contentLinks.substring(0, 500) + '...' : contentLinks,
-                            inline: false
-                        },
-                        {
-                            name: "⭐ Specialty Skills",
-                            value: freestyleSkills.length > 500 ? freestyleSkills.substring(0, 500) + '...' : freestyleSkills,
-                            inline: false
-                        }
-                    );
-                }
-                break;
-                
-            case 'competitive-player':
-                {
-                    const currentRank = formData.get('rlRank') || 'N/A';
-                    const peakRank = formData.get('peakRank') || 'N/A';
-                    const preferredRole = formData.get('preferredRole') || 'N/A';
-                    const competitiveExp = formData.get('competitiveExperience') || 'N/A';
-                    const strengths = formData.get('strengths') || 'N/A';
-                    const gamePlatform = formData.get('platform') || 'N/A';
-
-                    gameInfoFields.push(
-                        {
-                            name: "🎮 Gaming Platform",
-                            value: gamePlatform,
-                            inline: true
-                        },
-                        {
-                            name: "🏆 Current Rank",
-                            value: currentRank,
-                            inline: true
-                        },
-                        {
-                            name: "🥇 Peak Rank",
-                            value: peakRank,
-                            inline: true
-                        },
-                        {
-                            name: "⚽ Preferred Position",
-                            value: preferredRole,
-                            inline: true
-                        }
-                    );
-
-                    experienceFields.push(
-                        {
-                            name: "🏅 Competitive Experience",
-                            value: competitiveExp.length > 500 ? competitiveExp.substring(0, 500) + '...' : competitiveExp,
-                            inline: false
-                        },
-                        {
-                            name: "💪 Strengths & Playstyle",
-                            value: strengths.length > 500 ? strengths.substring(0, 500) + '...' : strengths,
-                            inline: false
-                        }
-                    );
-                }
-                break;
-                
-            case 'video-editor':
-                {
-                    const software = formData.get('software') || 'N/A';
-                    const experience = formData.get('experience') || 'N/A';
-                    const portfolio = formData.get('portfolio') || 'N/A';
-                    const editorSkills = formData.get('specialSkills') || 'N/A';
-
-                    gameInfoFields.push(
-                        {
-                            name: "💻 Primary Software",
-                            value: software,
-                            inline: true
-                        },
-                        {
-                            name: "📅 Experience Level",
-                            value: experience,
-                            inline: true
-                        }
-                    );
-
-                    experienceFields.push(
-                        {
-                            name: "🎬 Portfolio Links",
-                            value: portfolio.length > 500 ? portfolio.substring(0, 500) + '...' : portfolio,
-                            inline: false
-                        },
-                        {
-                            name: "⭐ Editing Specialties",
-                            value: editorSkills.length > 500 ? editorSkills.substring(0, 500) + '...' : editorSkills,
-                            inline: false
-                        }
-                    );
-                }
-                break;
-                
-            case 'designer':
-                {
-                    const specialization = formData.get('specialization') || 'N/A';
-                    const designPortfolio = formData.get('portfolio') || 'N/A';
-                    const designSoftware = formData.get('software') || 'N/A';
-
-                    gameInfoFields.push(
-                        {
-                            name: "🎨 Design Specialization",
-                            value: specialization,
-                            inline: true
-                        }
-                    );
-
-                    experienceFields.push(
-                        {
-                            name: "🎬 Portfolio Links",
-                            value: designPortfolio.length > 500 ? designPortfolio.substring(0, 500) + '...' : designPortfolio,
-                            inline: false
-                        },
-                        {
-                            name: "💻 Software Skills",
-                            value: designSoftware.length > 500 ? designSoftware.substring(0, 500) + '...' : designSoftware,
-                            inline: false
-                        }
-                    );
-                }
-                break;
-                
-            case 'content-creator':
-                {
-                    const platforms = formData.get('platforms') || 'N/A';
-                    const contentType = formData.get('contentType') || 'N/A';
-                    const schedule = formData.get('schedule') || 'N/A';
-                    const channels = formData.get('channels') || 'N/A';
-
-                    gameInfoFields.push(
-                        {
-                            name: "🎥 Primary Content Type",
-                            value: contentType,
-                            inline: true
-                        }
-                    );
-
-                    experienceFields.push(
-                        {
-                            name: "📈 Platforms & Followers",
-                            value: platforms.length > 400 ? platforms.substring(0, 400) + '...' : platforms,
-                            inline: false
-                        },
-                        {
-                            name: "🗓️ Upload Schedule",
-                            value: schedule.length > 400 ? schedule.substring(0, 400) + '...' : schedule,
-                            inline: false
-                        },
-                        {
-                            name: "🔗 Channel Links",
-                            value: channels.length > 400 ? channels.substring(0, 400) + '...' : channels,
-                            inline: false
-                        }
-                    );
-                }
-                break;
-        }
-
-        // Always include portfolio, availability and motivation (use 'N/A' when missing)
-        const portfolioVal = formData.get('portfolio') || formData.get('contentLinks') || formData.get('portfolioLinks') || formData.get('gameplayLinks') || formData.get('gameplay') || 'N/A';
-        additionalFields.push({
-            name: "🔗 Portfolio Links",
-            value: portfolioVal.length > 500 ? portfolioVal.substring(0, 500) + '...' : portfolioVal,
-            inline: false
+        // Build an "Extra Info" section from common misc fields
+        const miscKeys = ['availability','strengths','skills','previousTeams','achievements','extraInfo','whyJoin','message','notes'];
+        const misc = [];
+        miscKeys.forEach(k => {
+            const v = formData.get(k);
+            if (v && v.trim && v.trim() !== '') misc.push(`**${k}**: ${v}`);
         });
+        const extraInfo = misc.length > 0 ? misc.join('\n') : (formData.get('additional') || 'N/A');
 
-        const availabilityVal = formData.get('availability') || 'N/A';
-        additionalFields.push({
-            name: "⏰ Availability",
-            value: availabilityVal.length > 400 ? availabilityVal.substring(0, 400) + '...' : availabilityVal,
-            inline: false
-        });
-
-        const motivationVal = formData.get('motivation') || formData.get('coverLetter') || 'N/A';
-        additionalFields.push({
-            name: "💭 Why Team Zorn?",
-            value: motivationVal.length > 800 ? motivationVal.substring(0, 800) + '...' : motivationVal,
-            inline: false
-        });
-
-        // Combine all fields
-        const allFields = [
-            ...contactFields,
-            ...(gameInfoFields.length > 0 ? [{ name: "\u200B", value: "**🎮 Gaming Information**", inline: false }] : []),
-            ...gameInfoFields,
-            ...(experienceFields.length > 0 ? [{ name: "\u200B", value: "**📊 Experience & Skills**", inline: false }] : []),
-            ...experienceFields,
-            ...(additionalFields.length > 0 ? [{ name: "\u200B", value: "**📝 Additional Information**", inline: false }] : []),
-            ...additionalFields
+        const fields = [
+            { name: 'Discord Username', value: discordTag, inline: false },
+            { name: 'Introduction', value: intro.length > 1000 ? intro.substring(0,1000) + '...' : intro, inline: false },
+            { name: 'Portfolio / Video', value: portfolioVal.length > 1000 ? portfolioVal.substring(0,1000) + '...' : portfolioVal, inline: false },
+            { name: 'Extra Info', value: extraInfo || 'N/A', inline: false }
         ];
 
         return {
             embeds: [{
                 title: `🎯 New ${positionName} Application`,
-                description: `**👤 Applicant:** ${fullName}`,
-                color: 0xff4824, // Team orange color
-                fields: allFields,
-                footer: {
-                    text: "Team Zorn Application System"
-                },
+                description: `**👤 Applicant:** ${formData.get('fullName') || 'N/A'}`,
+                color: 0xff4824,
+                fields: fields,
+                footer: { text: 'ZornHQ Applications' },
                 timestamp: timestamp
             }]
         };
