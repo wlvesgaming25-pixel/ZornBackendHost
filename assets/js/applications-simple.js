@@ -127,9 +127,11 @@ async function submitApplication(event) {
         return;
     }
     
-    const webhookUrl = webhookUrls[position];
+    // Route management to the 'other' webhook to match main handler
+    const webhookKey = (position === 'management') ? 'other' : position;
+    const webhookUrl = webhookUrls[webhookKey] || webhookUrls['other'];
     console.log('Webhook URL:', webhookUrl);
-    
+
     if (!webhookUrl) {
         showErrorNotification(`No webhook configured for position: ${position}`);
         return;
@@ -186,18 +188,33 @@ async function submitApplication(event) {
         return;
     }
     
-    // Create Discord embed
+    // Unified embed layout
+    const discordTag = formObj.discordTag || 'N/A';
+    const intro = formObj.motivation || formObj.introduction || formObj.experience || 'N/A';
+    const portfolioVal = formObj.portfolio || formObj.contentLinks || formObj.portfolioLinks || formObj.gameplayLinks || formObj.gameplay || formObj.channels || 'N/A';
+
+    const miscKeys = ['availability','strengths','skills','previousTeams','achievements','extraInfo','whyJoin','message','notes','additional'];
+    const misc = [];
+    miscKeys.forEach(k => {
+        const v = formObj[k];
+        if (v && v.toString().trim && v.toString().trim() !== '') misc.push(`**${k}**: ${v}`);
+    });
+    const extraInfo = misc.length > 0 ? misc.join('\n') : 'N/A';
+
     const embed = {
-        title: `New ${positionNames[position]} Application`,
-        color: 16724004, // Team color
-        fields: [
-            { name: 'Full Name', value: formObj.fullName || 'Not provided', inline: true },
-            { name: 'Email', value: formObj.email || 'Not provided', inline: true },
-            { name: 'Discord Tag', value: formObj.discordTag || 'Not provided', inline: true },
-            { name: 'Position Applied For', value: positionNames[position] || position, inline: false }
-        ],
-        timestamp: new Date().toISOString(),
-        footer: { text: 'Team Zorn Application System' }
+        embeds: [{
+            title: `🎯 New ${positionNames[position]} Application`,
+            description: `**👤 Applicant:** ${formObj.fullName || 'N/A'}`,
+            color: 16724708,
+            fields: [
+                { name: 'Discord Username', value: discordTag, inline: false },
+                { name: 'Introduction', value: (intro && intro.length > 1000) ? intro.substring(0,1000) + '...' : intro, inline: false },
+                { name: 'Portfolio / Video', value: (portfolioVal && portfolioVal.length > 1000) ? portfolioVal.substring(0,1000) + '...' : portfolioVal, inline: false },
+                { name: 'Extra Info', value: extraInfo || 'N/A', inline: false }
+            ],
+            footer: { text: 'ZornHQ Applications' },
+            timestamp: new Date().toISOString()
+        }]
     };
     
     // Add position-specific fields
