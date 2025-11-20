@@ -372,29 +372,19 @@ function showQuickView(productCard) {
         </div>
     `;
     
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 2000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `;
-    
     document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
     
     // Close functionality
     modal.querySelector('.close-quick-view').addEventListener('click', () => {
         modal.remove();
+        document.body.style.overflow = '';
     });
     
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.remove();
+            document.body.style.overflow = '';
         }
     });
 }
