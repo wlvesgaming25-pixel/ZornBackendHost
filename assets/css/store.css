@@ -295,17 +295,19 @@ header {
     transform: scale(1.01);
 }
 
-/* Jersey-specific hover color overrides */
+/* Jersey-specific hover color: darker gray */
 .jersey-card:hover {
-    background-image: linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)), linear-gradient(90deg, #6b5bff, #c86bff);
-    border-top: 2px solid transparent;
+    background: rgba(50, 50, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 .jersey-card .product-overlay {
-    background: rgba(107,91,255,0.06);
+    background: rgba(50, 50, 50, 0.1);
     z-index: 3; /* ensure overlay and quick view stay above images */
 }
 .jersey-card:hover .product-overlay {
-    background: rgba(107,91,255,0.14);
+    background: rgba(50, 50, 50, 0.2);
 }
 
 /* ensure front/back stacking order */
@@ -484,11 +486,10 @@ header {
 }
 
 .info-card:hover {
-    background: rgba(255, 255, 255, 0.03);
-    border-top: 2px solid transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)), linear-gradient(90deg, #ff4824, #ff0b4e);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+    background: rgba(50, 50, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .info-icon {
