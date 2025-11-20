@@ -747,9 +747,13 @@ header {
     background: rgba(10, 10, 10, 0.95) !important;
     backdrop-filter: blur(8px) !important;
     z-index: 3000 !important;
-    display: flex !important;
+    display: none !important;
     align-items: center !important;
     justify-content: center !important;
+}
+
+.no-payment-modal[style*="display: flex"] {
+    display: flex !important;
 }
 
 .no-payment-content {

@@ -252,11 +252,12 @@ button:hover {
     pointer-events: none;
 }
 
-.ripple-effect:active::after {
+/* Click animation disabled */
+/* .ripple-effect:active::after {
     width: 20px;
     height: 20px;
     animation: ripple 0.6s ease-out;
-}
+} */
 
 /* ===== PROGRESS BAR ANIMATIONS ===== */
 
