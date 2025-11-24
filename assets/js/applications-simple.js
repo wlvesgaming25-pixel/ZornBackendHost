@@ -407,6 +407,11 @@ function notifyDashboard(application) {
     }
 }
 
+// Make submitApplication globally available immediately (before DOMContentLoaded)
+// This is critical for inline onsubmit handlers in the HTML
+window.submitApplication = submitApplication;
+console.log('Global submitApplication function set immediately on script load');
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, looking for forms...');
@@ -418,10 +423,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(`Setting up form ${index + 1}`);
         form.addEventListener('submit', submitApplication);
     });
-    
-    // Also make it globally available
-    window.submitApplication = submitApplication;
-    console.log('Global submitApplication function set');
 });
 
 // Add global error handlers to catch any unhandled errors
