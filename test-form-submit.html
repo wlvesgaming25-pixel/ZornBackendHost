@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Form Submission</title>
+</head>
+<body>
+    <h1>Test Form Submission</h1>
+    
+    <form id="testForm" onsubmit="testSubmit(event); return false;">
+        <input type="text" name="testField" value="test" />
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="output"></div>
+    
+    <script>
+        window.testSubmit = function(event) {
+            document.getElementById('output').innerHTML = 'Form submitted! Event: ' + event.type;
+            event.preventDefault();
+        };
+        console.log('testSubmit function defined globally');
+    </script>
+</body>
+</html>
