@@ -201,39 +201,38 @@ async function submitApplication(event) {
     });
     const extraInfo = misc.length > 0 ? misc.join('\n') : 'N/A';
 
-    const embed = {
-        embeds: [{
-            title: `🎯 New ${positionNames[position]} Application`,
-            description: `**👤 Applicant:** ${formObj.fullName || 'N/A'}`,
-            color: 16724708,
-            fields: [
-                { name: 'Discord Username', value: discordTag, inline: false },
-                { name: 'Introduction', value: (intro && intro.length > 1000) ? intro.substring(0,1000) + '...' : intro, inline: false },
-                { name: 'Portfolio / Video', value: (portfolioVal && portfolioVal.length > 1000) ? portfolioVal.substring(0,1000) + '...' : portfolioVal, inline: false },
-                { name: 'Extra Info', value: extraInfo || 'N/A', inline: false }
-            ],
-            footer: { text: 'ZornHQ Applications' },
-            timestamp: new Date().toISOString()
-        }]
+    // Create the embed object (just the embed, not wrapped in embeds array yet)
+    const embedObject = {
+        title: `🎯 New ${positionNames[position]} Application`,
+        description: `**👤 Applicant:** ${formObj.fullName || 'N/A'}`,
+        color: 16724708,
+        fields: [
+            { name: 'Discord Username', value: discordTag, inline: false },
+            { name: 'Introduction', value: (intro && intro.length > 1000) ? intro.substring(0,1000) + '...' : intro, inline: false },
+            { name: 'Portfolio / Video', value: (portfolioVal && portfolioVal.length > 1000) ? portfolioVal.substring(0,1000) + '...' : portfolioVal, inline: false },
+            { name: 'Extra Info', value: extraInfo || 'N/A', inline: false }
+        ],
+        footer: { text: 'ZornHQ Applications' },
+        timestamp: new Date().toISOString()
     };
     
     // Add position-specific fields
     if (position === 'designer') {
-        if (formObj.specialization) embed.fields.push({ name: 'Specialization', value: formObj.specialization, inline: false });
-        if (formObj.portfolio) embed.fields.push({ name: 'Portfolio', value: formObj.portfolio, inline: false });
-        if (formObj.software) embed.fields.push({ name: 'Software Used', value: formObj.software, inline: false });
-        if (formObj.experience) embed.fields.push({ name: 'Experience', value: formObj.experience, inline: false });
+        if (formObj.specialization) embedObject.fields.push({ name: 'Specialization', value: formObj.specialization, inline: false });
+        if (formObj.portfolio) embedObject.fields.push({ name: 'Portfolio', value: formObj.portfolio, inline: false });
+        if (formObj.software) embedObject.fields.push({ name: 'Software Used', value: formObj.software, inline: false });
+        if (formObj.experience) embedObject.fields.push({ name: 'Experience', value: formObj.experience, inline: false });
     }
     
     // Add motivation/why join field - this is the main message
     if (formObj.motivation) {
-        embed.fields.push({ name: 'Why Team Zorn?', value: formObj.motivation, inline: false });
+        embedObject.fields.push({ name: 'Why Team Zorn?', value: formObj.motivation, inline: false });
     } else if (formObj.whyJoin) {
-        embed.fields.push({ name: 'Why Team Zorn?', value: formObj.whyJoin, inline: false });
+        embedObject.fields.push({ name: 'Why Team Zorn?', value: formObj.whyJoin, inline: false });
     }
     
     const payload = {
-        embeds: [embed]
+        embeds: [embedObject]
     };
     
     console.log('Sending payload:', payload);
