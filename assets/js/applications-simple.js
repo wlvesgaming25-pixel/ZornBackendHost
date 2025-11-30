@@ -188,47 +188,58 @@ async function submitApplication(event) {
         return;
     }
     
-    // Unified embed layout
-    const discordTag = formObj.discordTag || 'N/A';
-    const intro = formObj.motivation || formObj.introduction || formObj.experience || 'N/A';
-    const portfolioVal = formObj.portfolio || formObj.contentLinks || formObj.portfolioLinks || formObj.gameplayLinks || formObj.gameplay || formObj.channels || 'N/A';
-
-    const miscKeys = ['availability','strengths','skills','previousTeams','achievements','extraInfo','whyJoin','message','notes','additional'];
-    const misc = [];
-    miscKeys.forEach(k => {
-        const v = formObj[k];
-        if (v && v.toString().trim && v.toString().trim() !== '') misc.push(`**${k}**: ${v}`);
-    });
-    const extraInfo = misc.length > 0 ? misc.join('\n') : 'N/A';
-
     // Create the embed object (just the embed, not wrapped in embeds array yet)
     const embedObject = {
         title: `🎯 New ${positionNames[position]} Application`,
         description: `**👤 Applicant:** ${formObj.fullName || 'N/A'}`,
         color: 16724708,
         fields: [
-            { name: 'Discord Username', value: discordTag, inline: false },
-            { name: 'Introduction', value: (intro && intro.length > 1000) ? intro.substring(0,1000) + '...' : intro, inline: false },
-            { name: 'Portfolio / Video', value: (portfolioVal && portfolioVal.length > 1000) ? portfolioVal.substring(0,1000) + '...' : portfolioVal, inline: false },
-            { name: 'Extra Info', value: extraInfo || 'N/A', inline: false }
+            { name: 'Discord Username', value: formObj.discordTag || 'N/A', inline: false }
         ],
         footer: { text: 'ZornHQ Applications' },
         timestamp: new Date().toISOString()
     };
-    
-    // Add position-specific fields
-    if (position === 'designer') {
-        if (formObj.specialization) embedObject.fields.push({ name: 'Specialization', value: formObj.specialization, inline: false });
+
+    // Add position-specific fields based on role
+    if (position === 'freestyler') {
+        if (formObj.rlRank) embedObject.fields.push({ name: 'Rank', value: formObj.rlRank, inline: false });
+        if (formObj.specialSkills) embedObject.fields.push({ name: 'Specialty Skills', value: formObj.specialSkills, inline: false });
+        if (formObj.contentLinks) embedObject.fields.push({ name: 'Content Portfolio', value: formObj.contentLinks, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else if (position === 'competitive-player') {
+        if (formObj.rlRank) embedObject.fields.push({ name: 'Rank', value: formObj.rlRank, inline: false });
+        if (formObj.preferredRole) embedObject.fields.push({ name: 'Preferred Role', value: formObj.preferredRole, inline: false });
+        if (formObj.competitiveExperience) embedObject.fields.push({ name: 'Competitive Experience', value: formObj.competitiveExperience, inline: false });
+        if (formObj.strengths) embedObject.fields.push({ name: 'Strengths & Playstyle', value: formObj.strengths, inline: false });
+        if (formObj.gameplayLinks) embedObject.fields.push({ name: 'Gameplay Links', value: formObj.gameplayLinks, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else if (position === 'video-editor') {
+        if (formObj.editingExperience) embedObject.fields.push({ name: 'Editing Experience', value: formObj.editingExperience, inline: false });
+        if (formObj.softwareUsed) embedObject.fields.push({ name: 'Software Used', value: formObj.softwareUsed, inline: false });
+        if (formObj.portfolioLinks) embedObject.fields.push({ name: 'Portfolio Links', value: formObj.portfolioLinks, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else if (position === 'designer') {
+        if (formObj.designSpecialization) embedObject.fields.push({ name: 'Specialization', value: formObj.designSpecialization, inline: false });
+        if (formObj.softwareUsed) embedObject.fields.push({ name: 'Software Used', value: formObj.softwareUsed, inline: false });
         if (formObj.portfolio) embedObject.fields.push({ name: 'Portfolio', value: formObj.portfolio, inline: false });
-        if (formObj.software) embedObject.fields.push({ name: 'Software Used', value: formObj.software, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else if (position === 'content-creator') {
+        if (formObj.contentType) embedObject.fields.push({ name: 'Content Type', value: formObj.contentType, inline: false });
+        if (formObj.contentLinks) embedObject.fields.push({ name: 'Content Links', value: formObj.contentLinks, inline: false });
+        if (formObj.postingFrequency) embedObject.fields.push({ name: 'Posting Frequency', value: formObj.postingFrequency, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else if (position === 'management') {
+        if (formObj.experience) embedObject.fields.push({ name: 'Management Experience', value: formObj.experience, inline: false });
+        if (formObj.skills) embedObject.fields.push({ name: 'Skills', value: formObj.skills, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else if (position === 'coach') {
+        if (formObj.coachingExperience) embedObject.fields.push({ name: 'Coaching Experience', value: formObj.coachingExperience, inline: false });
+        if (formObj.coachingStyle) embedObject.fields.push({ name: 'Coaching Style', value: formObj.coachingStyle, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
+    } else {
+        // Default for other positions
         if (formObj.experience) embedObject.fields.push({ name: 'Experience', value: formObj.experience, inline: false });
-    }
-    
-    // Add motivation/why join field - this is the main message
-    if (formObj.motivation) {
-        embedObject.fields.push({ name: 'Why Team Zorn?', value: formObj.motivation, inline: false });
-    } else if (formObj.whyJoin) {
-        embedObject.fields.push({ name: 'Why Team Zorn?', value: formObj.whyJoin, inline: false });
+        if (formObj.motivation) embedObject.fields.push({ name: 'Why Team Zorn', value: formObj.motivation, inline: false });
     }
     
     const payload = {
