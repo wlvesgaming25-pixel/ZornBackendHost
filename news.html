@@ -29,10 +29,91 @@
                 
                 <!-- Content Section -->
                 <div style="padding: 45px; flex: 1; overflow-y: auto;">
-                    <div id="newsModalContent" style="font-size: 1.1rem; line-height: 1.9; color: #ddd;"></div>
+                    <div id="newsModalContent" style="font-size: 1.1rem; line-height: 1.9; color: #ddd; scroll-behavior: smooth;"></div>
                     <style>
-                        #newsModalContent {
-                            scroll-behavior: smooth;
+                        #newsModalContent h2 {
+                            font-size: 2.1rem !important;
+                            font-weight: 900 !important;
+                            color: #ff4824 !important;
+                            margin: 0 0 32px 0 !important;
+                            line-height: 1.3 !important;
+                            letter-spacing: -0.8px !important;
+                            padding-bottom: 24px !important;
+                            border-bottom: 3px solid #ff4824 !important;
+                            text-transform: uppercase !important;
+                            font-style: italic !important;
+                        }
+
+                        #newsModalContent h3 {
+                            font-size: 1.5rem !important;
+                            font-weight: 800 !important;
+                            color: #fff !important;
+                            margin: 56px 0 24px 0 !important;
+                            padding: 16px 0 16px 20px !important;
+                            border-left: 5px solid #ff4824 !important;
+                            background: rgba(255, 72, 36, 0.08) !important;
+                            border-radius: 4px !important;
+                        }
+
+                        #newsModalContent p {
+                            margin-bottom: 28px !important;
+                            color: #e0e0e0 !important;
+                            line-height: 2.15 !important;
+                            font-size: 1.02rem !important;
+                            letter-spacing: 0.3px !important;
+                        }
+
+                        #newsModalContent > p:first-of-type {
+                            color: #d0d0d0 !important;
+                            font-size: 1.08rem !important;
+                            line-height: 2.3 !important;
+                            margin-bottom: 40px !important;
+                            font-weight: 500 !important;
+                        }
+
+                        #newsModalContent ul {
+                            margin-left: 0 !important;
+                            margin-bottom: 40px !important;
+                            padding: 32px !important;
+                            background: linear-gradient(135deg, rgba(255, 72, 36, 0.1), rgba(255, 72, 36, 0.05)) !important;
+                            border-left: 5px solid #ff4824 !important;
+                            border-radius: 8px !important;
+                            box-shadow: 0 4px 12px rgba(255, 72, 36, 0.1) !important;
+                        }
+
+                        #newsModalContent li {
+                            list-style-type: none !important;
+                            margin-bottom: 22px !important;
+                            color: #e0e0e0 !important;
+                            line-height: 2.15 !important;
+                            font-size: 1.02rem !important;
+                            padding-left: 28px !important;
+                            position: relative !important;
+                        }
+
+                        #newsModalContent li:before {
+                            content: '▸' !important;
+                            position: absolute !important;
+                            left: 0 !important;
+                            color: #ff4824 !important;
+                            font-size: 1.2rem !important;
+                        }
+
+                        #newsModalContent li:last-child {
+                            margin-bottom: 0 !important;
+                        }
+
+                        #newsModalContent strong {
+                            color: #ff4824 !important;
+                            font-weight: 800 !important;
+                        }
+
+                        #newsModalContent hr {
+                            margin: 52px 0 !important;
+                            border: none !important;
+                            height: 2px !important;
+                            background: linear-gradient(90deg, transparent, #ff4824, transparent) !important;
+                            opacity: 0.6 !important;
                         }
                     </style>
                 </div>
@@ -202,7 +283,153 @@
         </section>
     </main>
 
-    <footer class="modern-footer">
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/smooth-animations.js"></script>
+    <script>
+        // Article data for modals
+        const articles = [
+            {
+                title: "December Newsletter: Year-End Recap & 2026 Vision",
+                date: "December 1, 2025",
+                category: "Announcement",
+                content: `
+                    <h2>Year-End Recap & 2026 Vision</h2>
+                    <p>As we wrap up an incredible first year at Team Zorn, we wanted to take a moment to reflect on the incredible journey we've been on together. From humble beginnings to becoming a recognized force in competitive esports, this year has been nothing short of amazing.</p>
+                    
+                    <hr>
+                    
+                    <h3>2025 Highlights</h3>
+                    <p><strong>Community Growth:</strong> Our Discord community has grown to over 400+ members, making it one of the most active and welcoming esports communities. Thank you for making this possible.</p>
+                    <p><strong>Roster Expansion:</strong> We've recruited some of the most talented players in the Rocket League and esports scene. Our competitive teams have shown remarkable growth and performance.</p>
+                    <p><strong>Content Creation:</strong> Our content creators have produced hundreds of hours of high-quality content, from gameplay highlights to behind-the-scenes footage. We've collaborated with major platforms and featured our members across multiple channels.</p>
+                    <p><strong>Website Launch:</strong> Our brand new website showcases the organization like never before, with interactive features, live rosters, and seamless applications.</p>
+                    
+                    <hr>
+                    
+                    <h3>2026 Plans</h3>
+                    <p>We're planning an exciting 2026 with several major initiatives:</p>
+                    <ul>
+                        <li><strong>Competitive Circuit:</strong> Expanded tournament participation and team development programs</li>
+                        <li><strong>Content Expansion:</strong> New series, weekly streams, and exclusive member content</li>
+                        <li><strong>Community Events:</strong> Monthly tournaments, team meetups, and exclusive experiences</li>
+                        <li><strong>Partnerships:</strong> Strategic partnerships with brands that align with our values</li>
+                    </ul>
+                    
+                    <hr>
+                    
+                    <p style="text-align: center; margin-top: 32px; font-style: italic; color: #999;">Thank you for being part of Team Zorn's journey. #FueledByFury</p>
+                `
+            },
+            {
+                title: "November Newsletter: New Content Series Launch",
+                date: "November 15, 2025",
+                category: "Update",
+                content: `
+                    <h2>Introducing Our New Content Series</h2>
+                    <p>We're thrilled to announce the launch of multiple new content series designed to bring you closer to Team Zorn's world. Whether you're a competitive player, content creator, or casual fan, there's something for everyone.</p>
+                    
+                    <hr>
+                    
+                    <h3>Featured Series</h3>
+                    <p><strong>Behind the Play:</strong> Deep-dive analysis of our team's competitive matches, featuring strategies, plays, and what went into each victory or lesson learned.</p>
+                    <p><strong>Creator Chronicles:</strong> Follow our content creators as they produce videos, streams, and social content. See the creative process from concept to final edit.</p>
+                    <p><strong>Meet the Team:</strong> Exclusive interviews with each team member covering their journey, advice for aspiring players, and personal stories you won't find anywhere else.</p>
+                    <p><strong>Training Tuesday:</strong> Weekly tips and tricks from our professional players to help you improve your gameplay and compete at higher levels.</p>
+                    
+                    <hr>
+                    
+                    <h3>Where to Watch</h3>
+                    <ul>
+                        <li>YouTube - Full episodes and highlights</li>
+                        <li>TikTok - Short clips and trending content</li>
+                        <li>Discord - Exclusive member-only content and early access</li>
+                        <li>Twitch - Live streams and interactive sessions</li>
+                    </ul>
+                    
+                    <hr>
+                    
+                    <p style="text-align: center; margin-top: 32px; font-style: italic; color: #999;">Subscribe and turn on notifications so you don't miss a single update!</p>
+                `
+            },
+            {
+                title: "October Newsletter: Website Launch Celebration",
+                date: "October 20, 2025",
+                category: "Milestone",
+                content: `
+                    <h2>Website Launch: A New Era for Team Zorn</h2>
+                    <p>Today marks an exciting milestone for Team Zorn – the official launch of our brand new website! This is more than just a website; it's a hub for everything Team Zorn.</p>
+                    
+                    <hr>
+                    
+                    <h3>What's New</h3>
+                    <p><strong>Live Roster:</strong> Explore our complete roster with bios, stats, and social links for every team member across all disciplines.</p>
+                    <p><strong>Easy Applications:</strong> Want to join Team Zorn? Our new application system makes it simple to apply for various positions including competitive players, freestylers, content creators, and more.</p>
+                    <p><strong>News & Updates:</strong> Stay informed with our newsletter and news hub. Get monthly updates on what's happening at Team Zorn.</p>
+                    <p><strong>Store:</strong> Support the team by grabbing official Team Zorn merch and exclusives from our store.</p>
+                    <p><strong>Dashboard:</strong> For our leadership team, streamlined application management and team organization tools.</p>
+                    
+                    <hr>
+                    
+                    <h3>Launch Party Results</h3>
+                    <p>We celebrated the launch with:</p>
+                    <ul>
+                        <li>Special community event with exclusive giveaways</li>
+                        <li>Live AMA sessions with team members</li>
+                        <li>Exclusive website-launch discount codes for the store</li>
+                        <li>Featured spotlights of our most active community members</li>
+                    </ul>
+                    
+                    <hr>
+                    
+                    <p style="text-align: center; margin-top: 32px; font-style: italic; color: #999;">Thank you to everyone who helped make this happen. Visit teamzorn.com to explore!</p>
+                `
+            }
+        ];
+
+        
+
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            
+            // Show success message
+            alert('Thanks for subscribing! Check your email for confirmation.');
+            this.reset();
+        });
+
+        // Open news modal
+        function openNewsModal(index) {
+            const article = articles[index];
+            const modal = document.getElementById('newsModal');
+            
+            document.getElementById('newsModalTitle').textContent = article.title;
+            document.getElementById('newsModalDate').innerHTML = `<span style="color: #fff; font-weight: 500;">${article.date}</span> • <span style="background: rgba(255,72,36,0.2); color: #ff4824; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">${article.category}</span>`;
+            document.getElementById('newsModalContent').innerHTML = article.content;
+            
+            // Position modal to center of current viewport
+            modal.style.display = 'block';
+            modal.style.position = 'fixed';
+            modal.style.top = window.scrollY + (window.innerHeight - modal.querySelector('div > div').offsetHeight) / 2 + 'px';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close news modal
+        function closeNewsModal() {
+            const modal = document.getElementById('newsModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Load more news function
+        function loadMoreNews() {
+            alert('More news coming soon! Check back for additional newsletter archives.');
+        }
+    </script>
+
+      <footer class="modern-footer">
         <div class="footer-gradient-bg"></div>
         <div class="footer-container">
             <div class="footer-main">
@@ -315,149 +542,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="assets/js/config.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/smooth-animations.js"></script>
-    <script>
-        // Article data for modals
-        const articles = [
-            {
-                title: "December Newsletter: Year-End Recap & 2026 Vision",
-                date: "December 1, 2025",
-                category: "Announcement",
-                content: `
-                    <h2>Year-End Recap & 2026 Vision</h2>
-                    <p>As we wrap up an incredible first year at Team Zorn, we wanted to take a moment to reflect on the incredible journey we've been on together. From humble beginnings to becoming a recognized force in competitive esports, this year has been nothing short of amazing.</p>
-                    
-                    <hr>
-                    
-                    <h3>2025 Highlights</h3>
-                    <p><strong>Community Growth:</strong> Our Discord community has grown to over 400+ members, making it one of the most active and welcoming esports communities. Thank you for making this possible.</p>
-                    <p><strong>Roster Expansion:</strong> We've recruited some of the most talented players in the Rocket League and esports scene. Our competitive teams have shown remarkable growth and performance.</p>
-                    <p><strong>Content Creation:</strong> Our content creators have produced hundreds of hours of high-quality content, from gameplay highlights to behind-the-scenes footage. We've collaborated with major platforms and featured our members across multiple channels.</p>
-                    <p><strong>Website Launch:</strong> Our brand new website showcases the organization like never before, with interactive features, live rosters, and seamless applications.</p>
-                    
-                    <hr>
-                    
-                    <h3>2026 Plans</h3>
-                    <p>We're planning an exciting 2026 with several major initiatives:</p>
-                    <ul>
-                        <li><strong>Competitive Circuit:</strong> Expanded tournament participation and team development programs</li>
-                        <li><strong>Content Expansion:</strong> New series, weekly streams, and exclusive member content</li>
-                        <li><strong>Community Events:</strong> Monthly tournaments, team meetups, and exclusive experiences</li>
-                        <li><strong>Partnerships:</strong> Strategic partnerships with brands that align with our values</li>
-                    </ul>
-                    
-                    <hr>
-                    
-                    <p style="text-align: center; margin-top: 32px; font-style: italic; color: #999;">Thank you for being part of Team Zorn's journey. #FueledByFury</p>
-                `
-            },
-            {
-                title: "November Newsletter: New Content Series Launch",
-                date: "November 15, 2025",
-                category: "Update",
-                content: `
-                    <h2>Introducing Our New Content Series</h2>
-                    <p>We're thrilled to announce the launch of multiple new content series designed to bring you closer to Team Zorn's world. Whether you're a competitive player, content creator, or casual fan, there's something for everyone.</p>
-                    
-                    <hr>
-                    
-                    <h3>Featured Series</h3>
-                    <p><strong>Behind the Play:</strong> Deep-dive analysis of our team's competitive matches, featuring strategies, plays, and what went into each victory or lesson learned.</p>
-                    <p><strong>Creator Chronicles:</strong> Follow our content creators as they produce videos, streams, and social content. See the creative process from concept to final edit.</p>
-                    <p><strong>Meet the Team:</strong> Exclusive interviews with each team member covering their journey, advice for aspiring players, and personal stories you won't find anywhere else.</p>
-                    <p><strong>Training Tuesday:</strong> Weekly tips and tricks from our professional players to help you improve your gameplay and compete at higher levels.</p>
-                    
-                    <hr>
-                    
-                    <h3>Where to Watch</h3>
-                    <ul>
-                        <li>YouTube - Full episodes and highlights</li>
-                        <li>TikTok - Short clips and trending content</li>
-                        <li>Discord - Exclusive member-only content and early access</li>
-                        <li>Twitch - Live streams and interactive sessions</li>
-                    </ul>
-                    
-                    <hr>
-                    
-                    <p style="text-align: center; margin-top: 32px; font-style: italic; color: #999;">Subscribe and turn on notifications so you don't miss a single update!</p>
-                `
-            },
-            {
-                title: "October Newsletter: Website Launch Celebration",
-                date: "October 20, 2025",
-                category: "Milestone",
-                content: `
-                    <h2>Website Launch: A New Era for Team Zorn</h2>
-                    <p>Today marks an exciting milestone for Team Zorn – the official launch of our brand new website! This is more than just a website; it's a hub for everything Team Zorn.</p>
-                    
-                    <hr>
-                    
-                    <h3>What's New</h3>
-                    <p><strong>Live Roster:</strong> Explore our complete roster with bios, stats, and social links for every team member across all disciplines.</p>
-                    <p><strong>Easy Applications:</strong> Want to join Team Zorn? Our new application system makes it simple to apply for various positions including competitive players, freestylers, content creators, and more.</p>
-                    <p><strong>News & Updates:</strong> Stay informed with our newsletter and news hub. Get monthly updates on what's happening at Team Zorn.</p>
-                    <p><strong>Store:</strong> Support the team by grabbing official Team Zorn merch and exclusives from our store.</p>
-                    <p><strong>Dashboard:</strong> For our leadership team, streamlined application management and team organization tools.</p>
-                    
-                    <hr>
-                    
-                    <h3>Launch Party Results</h3>
-                    <p>We celebrated the launch with:</p>
-                    <ul>
-                        <li>Special community event with exclusive giveaways</li>
-                        <li>Live AMA sessions with team members</li>
-                        <li>Exclusive website-launch discount codes for the store</li>
-                        <li>Featured spotlights of our most active community members</li>
-                    </ul>
-                    
-                    <hr>
-                    
-                    <p style="text-align: center; margin-top: 32px; font-style: italic; color: #999;">Thank you to everyone who helped make this happen. Visit teamzorn.com to explore!</p>
-                `
-            }
-        ];
-
-        // Newsletter form submission
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('newsletterEmail').value;
-            
-            // Show success message
-            alert('Thanks for subscribing! Check your email for confirmation.');
-            this.reset();
-        });
-
-        // Open news modal
-        function openNewsModal(index) {
-            const article = articles[index];
-            const modal = document.getElementById('newsModal');
-            
-            document.getElementById('newsModalTitle').textContent = article.title;
-            document.getElementById('newsModalDate').innerHTML = `<span style="color: #fff; font-weight: 500;">${article.date}</span> • <span style="background: rgba(255,72,36,0.2); color: #ff4824; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">${article.category}</span>`;
-            document.getElementById('newsModalContent').innerHTML = article.content;
-            
-            // Position modal to center of current viewport
-            modal.style.display = 'block';
-            modal.style.position = 'fixed';
-            modal.style.top = window.scrollY + (window.innerHeight - modal.querySelector('div > div').offsetHeight) / 2 + 'px';
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close news modal
-        function closeNewsModal() {
-            const modal = document.getElementById('newsModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Load more news function
-        function loadMoreNews() {
-            alert('More news coming soon! Check back for additional newsletter archives.');
-        }
-    </script>
+    
 </body>
 </html>
