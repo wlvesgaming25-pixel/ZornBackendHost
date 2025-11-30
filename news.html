@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Team Zorn News - Stay updated with monthly newsletters, announcements, and team updates">
+    <title>News & Newsletter - Team Zorn</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/news.css">
+    <link rel="stylesheet" href="assets/css/animation-enhancements.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Zorn Logo" class="logo"></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="roster.html" class="nav-link">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="apply.html" class="nav-link">Apply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partners.html" class="nav-link">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="store.html" class="nav-link">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="user-profile" id="userProfile">
+                    <!-- Populated by auth.js -->
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero animate-on-load fade-in-scale">
+            <div class="container">
+                <h1 class="animate-on-load slide-in-bottom delay-2">Team Zorn News</h1>
+                <p class="animate-on-load slide-in-bottom delay-3">Monthly newsletters, announcements, and community updates</p>
+            </div>
+        </section>
+
+        <!-- Newsletter Subscription Section -->
+        <section class="newsletter-signup">
+            <div class="container">
+                <div class="signup-card animate-on-load fade-in">
+                    <div class="signup-content">
+                        <h2>📰 Subscribe to Our Newsletter</h2>
+                        <p>Get monthly updates on Team Zorn's latest achievements, community highlights, and exclusive announcements</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="form-group">
+                                <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email" required>
+                                <button type="submit" class="btn btn-primary">Subscribe</button>
+                            </div>
+                            <p class="form-note">We send updates monthly. No spam, just pure Zorn content.</p>
+                        </form>
+                    </div>
+                    <div class="signup-icon">
+                        📧
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Items Section -->
+        <section class="news-section">
+            <div class="container">
+                <h2 class="section-title animate-on-load fade-in">Latest Updates</h2>
+                
+                <div class="news-grid">
+                    <!-- Sample News Card 1 -->
+                    <article class="news-card animate-on-load slide-in-left delay-1">
+                        <div class="news-header">
+                            <span class="news-date">December 1, 2025</span>
+                            <span class="news-category">Announcement</span>
+                        </div>
+                        <h3>December Newsletter: Year-End Recap & 2026 Vision</h3>
+                        <p>As we wrap up an incredible first year, we're excited to share Team Zorn's biggest moments, our community's growth, and what's coming in 2026. From epic plays to new team members, it's been an unforgettable journey.</p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">Read Full Newsletter →</a>
+                        </div>
+                    </article>
+
+                    <!-- Sample News Card 2 -->
+                    <article class="news-card animate-on-load slide-in-bottom delay-2">
+                        <div class="news-header">
+                            <span class="news-date">November 15, 2025</span>
+                            <span class="news-category">Update</span>
+                        </div>
+                        <h3>November Newsletter: New Content Series Launch</h3>
+                        <p>Introducing our latest content series featuring in-depth gameplay analysis, behind-the-scenes team moments, and exclusive interviews with our roster members. Subscribe to YouTube to catch all episodes!</p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">Read Full Newsletter →</a>
+                        </div>
+                    </article>
+
+                    <!-- Sample News Card 3 -->
+                    <article class="news-card animate-on-load slide-in-right delay-3">
+                        <div class="news-header">
+                            <span class="news-date">October 20, 2025</span>
+                            <span class="news-category">Milestone</span>
+                        </div>
+                        <h3>October Newsletter: Website Launch Celebration</h3>
+                        <p>Team Zorn's new website is officially live! We celebrated with exclusive content, community events, and major announcements. Thank you to everyone who made this possible. Here's to the future!</p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">Read Full Newsletter →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="load-more-container animate-on-load fade-in delay-4">
+                    <button class="btn btn-secondary" onclick="loadMoreNews()">Load More Updates</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Highlights Section -->
+        <section class="highlights-section">
+            <div class="container">
+                <h2 class="section-title animate-on-load fade-in">Community Highlights</h2>
+                <p class="section-subtitle animate-on-load fade-in delay-1">Celebrating our community members and their achievements</p>
+
+                <div class="highlights-grid">
+                    <div class="highlight-card animate-on-load slide-in-left delay-2">
+                        <div class="highlight-icon">🎯</div>
+                        <h3>Player Achievements</h3>
+                        <p>Recognizing tournament wins, rank advances, and incredible performances by our team members.</p>
+                    </div>
+
+                    <div class="highlight-card animate-on-load slide-in-bottom delay-3">
+                        <div class="highlight-icon">🎬</div>
+                        <h3>Content Drops</h3>
+                        <p>Featuring viral clips, trending videos, and the best moments from our creative team.</p>
+                    </div>
+
+                    <div class="highlight-card animate-on-load slide-in-right delay-4">
+                        <div class="highlight-icon">🤝</div>
+                        <h3>Community Events</h3>
+                        <p>Updates on tournaments, meetups, charity streams, and community-driven initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="footer-gradient-bg"></div>
+        <div class="footer-container">
+            <div class="footer-main">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/img/logo.png" alt="Zorn Logo" class="logo-img">
+                        <div class="brand-text">
+                            <h3>Zorn</h3>
+                            <p>#FueledByFury</p>
+                        </div>
+                    </div>
+                    <p class="brand-description">Elite gaming organization pushing the boundaries of competitive excellence across multiple esports titles.</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="footer-nav">
+                    <h4>Navigate</h4>
+                    <div class="nav-grid">
+                        <a href="index.html" class="footer-link">
+                            <span class="link-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                        <a href="about.html" class="footer-link">
+                            <span class="link-icon">ℹ️</span>
+                            <span>About</span>
+                        </a>
+                        <a href="roster.html" class="footer-link">
+                            <span class="link-icon">👥</span>
+                            <span>Roster</span>
+                        </a>
+                        <a href="apply.html" class="footer-link">
+                            <span class="link-icon">📝</span>
+                            <span>Apply</span>
+                        </a>
+                        <a href="partners.html" class="footer-link">
+                            <span class="link-icon">🤝</span>
+                            <span>Partners</span>
+                        </a>
+                        <a href="contact.html" class="footer-link">
+                            <span class="link-icon">📧</span>
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Community & Social -->
+                <div class="footer-community">
+                    <h4>Join Our Community</h4>
+                    <div class="social-grid">
+                        <a href="https://discord.gg/VNb82VRYna" class="social-card discord" target="_blank">
+                            <div class="social-icon">
+                                <img src="assets/img/roster/sociallogos/discord-logo.png" alt="Discord">
+                            </div>
+                            <div class="social-info">
+                                <span class="platform">Discord</span>
+                                <span class="members" id="footer-discord-count">400+ members</span>
+                            </div>
+                        </a>
+                        <a href="https://x.com/ZornHQ" class="social-card twitter" target="_blank">
+                            <div class="social-icon">
+                                <img src="assets/img/roster/sociallogos/x-logo.png" alt="X">
+                            </div>
+                            <div class="social-info">
+                                <span class="platform">X (Twitter)</span>
+                                <span class="members">Follow Us</span>
+                            </div>
+                        </a>
+                        <a href="https://www.tiktok.com/@teamzornhq" class="social-card tiktok" target="_blank">
+                            <div class="social-icon">
+                                <img src="assets/img/roster/sociallogos/tiktok-logo.png" alt="TikTok">
+                            </div>
+                            <div class="social-info">
+                                <span class="platform">TikTok</span>
+                                <span class="members">Watch Us</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sponsor Section -->
+                <div class="footer-sponsor">
+                    <h4>Sponsor</h4>
+                    <a href="https://rezenergydrink.com/" target="_blank" class="sponsor-link">
+                        <div class="sponsor-logo">
+                            <img src="assets/img/roster/rez-logo.png" alt="REZ Energy">
+                        </div>
+                        <span>REZ Energy</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Team Zorn. All rights reserved. #FueledByFury</p>
+                    <a href="mailto:teamzornhq@gmail.com" class="footer-email">
+                        <span>✉</span>
+                        <span>teamzornhq@gmail.com</span>
+                    </a>
+                    <div class="scroll-top">
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="scroll-btn">
+                            <span>↑</span>
+                            <span>Top</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/smooth-animations.js"></script>
+    <script>
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            
+            // Show success message
+            alert('Thanks for subscribing! Check your email for confirmation.');
+            this.reset();
+        });
+
+        // Load more news function
+        function loadMoreNews() {
+            alert('More news coming soon! Check back for additional newsletter archives.');
+        }
+    </script>
+</body>
+</html>

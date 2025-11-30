@@ -1,0 +1,449 @@
+/* Import base styles from index.css */
+@import url('index.css');
+
+/* Override body opacity for page load */
+body {
+    opacity: 1 !important;
+}
+
+/* Ensure header is visible */
+header {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Override animation classes to ensure visibility */
+.animate-on-load {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.fade-in {
+    opacity: 1 !important;
+}
+
+.slide-in-left,
+.slide-in-right,
+.slide-in-top,
+.slide-in-bottom {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, #ff4824 0%, #ff0b4e 100%);
+    color: white;
+    padding: 140px 32px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.page-hero p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Newsletter Signup Section */
+.newsletter-signup {
+    background: #0a0a0a;
+    padding: 80px 32px;
+    border-bottom: 1px solid rgba(255, 72, 36, 0.1);
+}
+
+.signup-card {
+    background: linear-gradient(135deg, rgba(255, 72, 36, 0.1) 0%, rgba(255, 11, 78, 0.1) 100%);
+    border: 1px solid rgba(255, 72, 36, 0.3);
+    border-radius: 16px;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.signup-content {
+    flex: 1;
+}
+
+.signup-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.signup-content p {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.newsletter-form .form-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    border-color: #ff4824;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.newsletter-form input::placeholder {
+    color: #666;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0;
+}
+
+.signup-icon {
+    font-size: 5rem;
+    opacity: 0.3;
+}
+
+/* News Section */
+.news-section {
+    background: #0a0a0a;
+    padding: 120px 32px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
+    background: linear-gradient(90deg, #ff4824, #ff0b4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-top: -40px;
+    margin-bottom: 60px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 60px;
+}
+
+.news-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 72, 36, 0.15);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 72, 36, 0.1) 0%, rgba(255, 11, 78, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.news-card:hover {
+    border-color: rgba(255, 72, 36, 0.4);
+    transform: translateY(-8px);
+}
+
+.news-card:hover::before {
+    opacity: 1;
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.news-date {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.news-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(90deg, rgba(255, 72, 36, 0.2), rgba(255, 11, 78, 0.2));
+    border: 1px solid rgba(255, 72, 36, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ff6b44;
+    text-transform: uppercase;
+}
+
+.news-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 12px 0;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.news-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.news-footer {
+    margin-top: auto;
+}
+
+.read-more {
+    color: #ff4824;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.read-more:hover {
+    color: #ff6b44;
+    transform: translateX(4px);
+}
+
+.load-more-container {
+    text-align: center;
+}
+
+.btn.btn-secondary {
+    background: transparent;
+    color: #ff4824;
+    border: 2px solid #ff4824;
+    padding: 12px 32px;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-secondary:hover {
+    background: #ff4824;
+    color: #fff;
+}
+
+/* Highlights Section */
+.highlights-section {
+    background: linear-gradient(135deg, rgba(255, 72, 36, 0.05) 0%, rgba(255, 11, 78, 0.05) 100%);
+    padding: 120px 32px;
+    border-top: 1px solid rgba(255, 72, 36, 0.1);
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 60px;
+}
+
+.highlight-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 72, 36, 0.2);
+    border-radius: 12px;
+    padding: 40px 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 72, 36, 0.1) 0%, rgba(255, 11, 78, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.highlight-card:hover {
+    border-color: rgba(255, 72, 36, 0.5);
+    transform: translateY(-8px);
+}
+
+.highlight-card:hover::before {
+    opacity: 1;
+}
+
+.highlight-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.highlight-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.highlight-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .page-hero p {
+        font-size: 1.1rem;
+    }
+
+    .signup-card {
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    .signup-icon {
+        font-size: 4rem;
+    }
+
+    .newsletter-form .form-group {
+        flex-direction: column;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-card {
+        padding: 24px;
+    }
+
+    .news-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .highlight-card {
+        padding: 32px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero {
+        padding: 100px 16px 60px;
+    }
+
+    .page-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .page-hero p {
+        font-size: 1rem;
+    }
+
+    .newsletter-signup {
+        padding: 60px 16px;
+    }
+
+    .signup-card {
+        padding: 32px;
+    }
+
+    .signup-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .news-section {
+        padding: 80px 16px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .highlights-section {
+        padding: 80px 16px;
+    }
+}

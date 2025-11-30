@@ -879,3 +879,164 @@ header {
     }
 }
 
+/* Hall of Fame Section */
+.hall-of-fame {
+    background: linear-gradient(135deg, rgba(255, 72, 36, 0.05) 0%, rgba(255, 11, 78, 0.05) 100%);
+    padding: 120px 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hall-of-fame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 72, 36, 0.3), transparent);
+}
+
+.hof-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.hof-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, #ff4824, #ff0b4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hof-header p {
+    font-size: 1.2rem;
+    color: #aaa;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-bottom: 60px;
+}
+
+.hof-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 72, 36, 0.2);
+    border-radius: 12px;
+    padding: 40px 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hof-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 72, 36, 0.1) 0%, rgba(255, 11, 78, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.hof-card:hover {
+    border-color: rgba(255, 72, 36, 0.5);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.hof-card:hover::before {
+    opacity: 1;
+}
+
+.hof-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.hof-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.hof-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.hof-cta {
+    text-align: center;
+    padding: 40px 32px;
+    background: rgba(255, 72, 36, 0.1);
+    border: 1px solid rgba(255, 72, 36, 0.2);
+    border-radius: 12px;
+}
+
+.hof-cta p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin: 0;
+}
+
+.highlight-link {
+    color: #ff4824;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.highlight-link:hover {
+    color: #ff6b44;
+}
+
+@media (max-width: 768px) {
+    .hall-of-fame {
+        padding: 80px 20px;
+    }
+
+    .hof-header h2 {
+        font-size: 2rem;
+    }
+
+    .hof-header p {
+        font-size: 1rem;
+    }
+
+    .hof-grid {
+        gap: 24px;
+    }
+
+    .hof-card {
+        padding: 32px 24px;
+    }
+
+    .hof-icon {
+        font-size: 2.5rem;
+    }
+
+    .hof-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .hof-cta p {
+        font-size: 1rem;
+    }
+}
+
+
