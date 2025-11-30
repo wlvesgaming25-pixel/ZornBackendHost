@@ -416,17 +416,15 @@ header {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-    animation: fadeIn 0.3s ease-out;
-    overflow-y: auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
     padding: 40px 20px;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .modal.show {
-    display: flex;
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 @keyframes fadeIn {
@@ -446,7 +444,7 @@ header {
     border-radius: 8px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     animation: slideDown 0.3s ease-out;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     margin-top: 40px;
 }
