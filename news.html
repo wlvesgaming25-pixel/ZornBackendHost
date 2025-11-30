@@ -91,6 +91,16 @@
                 <div class="news-grid">
                     <!-- Sample News Card 1 -->
                     <article class="news-card animate-on-load slide-in-left delay-1">
+                        <div class="news-image-placeholder">
+                            <div class="placeholder-content">
+                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                                <span>Year-End Recap</span>
+                            </div>
+                        </div>
                         <div class="news-header">
                             <span class="news-date">December 1, 2025</span>
                             <span class="news-category">Announcement</span>
@@ -98,12 +108,21 @@
                         <h3>December Newsletter: Year-End Recap & 2026 Vision</h3>
                         <p>As we wrap up an incredible first year, we're excited to share Team Zorn's biggest moments, our community's growth, and what's coming in 2026. From epic plays to new team members, it's been an unforgettable journey.</p>
                         <div class="news-footer">
-                            <a href="#" class="read-more">Read Full Newsletter →</a>
+                            <button class="read-more" onclick="openArticleModal(0)">Read Full Newsletter →</button>
                         </div>
                     </article>
 
                     <!-- Sample News Card 2 -->
                     <article class="news-card animate-on-load slide-in-bottom delay-2">
+                        <div class="news-image-placeholder">
+                            <div class="placeholder-content">
+                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M23 7l-7 5 7 5V7z"></path>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                </svg>
+                                <span>Content Series</span>
+                            </div>
+                        </div>
                         <div class="news-header">
                             <span class="news-date">November 15, 2025</span>
                             <span class="news-category">Update</span>
@@ -111,12 +130,21 @@
                         <h3>November Newsletter: New Content Series Launch</h3>
                         <p>Introducing our latest content series featuring in-depth gameplay analysis, behind-the-scenes team moments, and exclusive interviews with our roster members. Subscribe to YouTube to catch all episodes!</p>
                         <div class="news-footer">
-                            <a href="#" class="read-more">Read Full Newsletter →</a>
+                            <button class="read-more" onclick="openArticleModal(1)">Read Full Newsletter →</button>
                         </div>
                     </article>
 
                     <!-- Sample News Card 3 -->
                     <article class="news-card animate-on-load slide-in-right delay-3">
+                        <div class="news-image-placeholder">
+                            <div class="placeholder-content">
+                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
+                                    <path d="M12 9v3m0 3v0"></path>
+                                </svg>
+                                <span>Milestone</span>
+                            </div>
+                        </div>
                         <div class="news-header">
                             <span class="news-date">October 20, 2025</span>
                             <span class="news-category">Milestone</span>
@@ -124,7 +152,7 @@
                         <h3>October Newsletter: Website Launch Celebration</h3>
                         <p>Team Zorn's new website is officially live! We celebrated with exclusive content, community events, and major announcements. Thank you to everyone who made this possible. Here's to the future!</p>
                         <div class="news-footer">
-                            <a href="#" class="read-more">Read Full Newsletter →</a>
+                            <button class="read-more" onclick="openArticleModal(2)">Read Full Newsletter →</button>
                         </div>
                     </article>
                 </div>
@@ -135,6 +163,29 @@
                 </div>
             </div>
         </section>
+
+        <!-- Article Modal -->
+        <div id="articleModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeArticleModal()">&times;</span>
+                <div class="modal-header">
+                    <div class="modal-image-placeholder">
+                        <div class="placeholder-content">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="modalTitle" class="modal-title"></div>
+                    <div id="modalDate" class="modal-date"></div>
+                    <div id="modalContent" class="modal-article"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Community Highlights Section -->
         <section class="highlights-section">
@@ -284,6 +335,88 @@
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/smooth-animations.js"></script>
     <script>
+        // Article data for modals
+        const articles = [
+            {
+                title: "December Newsletter: Year-End Recap & 2026 Vision",
+                date: "December 1, 2025",
+                category: "Announcement",
+                content: `
+                    <h2>Year-End Recap & 2026 Vision</h2>
+                    <p>As we wrap up an incredible first year at Team Zorn, we wanted to take a moment to reflect on the incredible journey we've been on together. From humble beginnings to becoming a recognized force in competitive esports, this year has been nothing short of amazing.</p>
+                    
+                    <h3>2025 Highlights</h3>
+                    <p><strong>Community Growth:</strong> Our Discord community has grown to over 400+ members, making it one of the most active and welcoming esports communities. Thank you for making this possible.</p>
+                    <p><strong>Roster Expansion:</strong> We've recruited some of the most talented players in the Rocket League and esports scene. Our competitive teams have shown remarkable growth and performance.</p>
+                    <p><strong>Content Creation:</strong> Our content creators have produced hundreds of hours of high-quality content, from gameplay highlights to behind-the-scenes footage. We've collaborated with major platforms and featured our members across multiple channels.</p>
+                    <p><strong>Website Launch:</strong> Our brand new website showcases the organization like never before, with interactive features, live rosters, and seamless applications.</p>
+                    
+                    <h3>2026 Plans</h3>
+                    <p>We're planning an exciting 2026 with several major initiatives:</p>
+                    <ul>
+                        <li><strong>Competitive Circuit:</strong> Expanded tournament participation and team development programs</li>
+                        <li><strong>Content Expansion:</strong> New series, weekly streams, and exclusive member content</li>
+                        <li><strong>Community Events:</strong> Monthly tournaments, team meetups, and exclusive experiences</li>
+                        <li><strong>Partnerships:</strong> Strategic partnerships with brands that align with our values</li>
+                    </ul>
+                    
+                    <p>Thank you for being part of Team Zorn's journey. #FueledByFury</p>
+                `
+            },
+            {
+                title: "November Newsletter: New Content Series Launch",
+                date: "November 15, 2025",
+                category: "Update",
+                content: `
+                    <h2>Introducing Our New Content Series</h2>
+                    <p>We're thrilled to announce the launch of multiple new content series designed to bring you closer to Team Zorn's world. Whether you're a competitive player, content creator, or casual fan, there's something for everyone.</p>
+                    
+                    <h3>Featured Series</h3>
+                    <p><strong>Behind the Play:</strong> Deep-dive analysis of our team's competitive matches, featuring strategies, plays, and what went into each victory or lesson learned.</p>
+                    <p><strong>Creator Chronicles:</strong> Follow our content creators as they produce videos, streams, and social content. See the creative process from concept to final edit.</p>
+                    <p><strong>Meet the Team:</strong> Exclusive interviews with each team member covering their journey, advice for aspiring players, and personal stories you won't find anywhere else.</p>
+                    <p><strong>Training Tuesday:</strong> Weekly tips and tricks from our professional players to help you improve your gameplay and compete at higher levels.</p>
+                    
+                    <h3>Where to Watch</h3>
+                    <ul>
+                        <li>YouTube - Full episodes and highlights</li>
+                        <li>TikTok - Short clips and trending content</li>
+                        <li>Discord - Exclusive member-only content and early access</li>
+                        <li>Twitch - Live streams and interactive sessions</li>
+                    </ul>
+                    
+                    <p>Subscribe and turn on notifications so you don't miss a single update!</p>
+                `
+            },
+            {
+                title: "October Newsletter: Website Launch Celebration",
+                date: "October 20, 2025",
+                category: "Milestone",
+                content: `
+                    <h2>Website Launch: A New Era for Team Zorn</h2>
+                    <p>Today marks an exciting milestone for Team Zorn – the official launch of our brand new website! This is more than just a website; it's a hub for everything Team Zorn.</p>
+                    
+                    <h3>What's New</h3>
+                    <p><strong>Live Roster:</strong> Explore our complete roster with bios, stats, and social links for every team member across all disciplines.</p>
+                    <p><strong>Easy Applications:</strong> Want to join Team Zorn? Our new application system makes it simple to apply for various positions including competitive players, freestylers, content creators, and more.</p>
+                    <p><strong>News & Updates:</strong> Stay informed with our newsletter and news hub. Get monthly updates on what's happening at Team Zorn.</p>
+                    <p><strong>Store:</strong> Support the team by grabbing official Team Zorn merch and exclusives from our store.</p>
+                    <p><strong>Dashboard:</strong> For our leadership team, streamlined application management and team organization tools.</p>
+                    
+                    <h3>Launch Party Results</h3>
+                    <p>We celebrated the launch with:</p>
+                    <ul>
+                        <li>Special community event with exclusive giveaways</li>
+                        <li>Live AMA sessions with team members</li>
+                        <li>Exclusive website-launch discount codes for the store</li>
+                        <li>Featured spotlights of our most active community members</li>
+                    </ul>
+                    
+                    <p>Thank you to everyone who helped make this happen. Visit teamzorn.com to explore!</p>
+                `
+            }
+        ];
+
         // Newsletter form submission
         document.getElementById('newsletterForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -293,6 +426,39 @@
             alert('Thanks for subscribing! Check your email for confirmation.');
             this.reset();
         });
+
+        // Open article modal
+        function openArticleModal(index) {
+            const article = articles[index];
+            const modal = document.getElementById('articleModal');
+            
+            document.getElementById('modalTitle').textContent = article.title;
+            document.getElementById('modalDate').innerHTML = `<span class="modal-date-label">${article.date}</span> • <span class="modal-category-label">${article.category}</span>`;
+            document.getElementById('modalContent').innerHTML = article.content;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Scroll to top of modal
+            setTimeout(() => {
+                document.querySelector('.modal-content').scrollTop = 0;
+            }, 0);
+        }
+
+        // Close article modal
+        function closeArticleModal() {
+            const modal = document.getElementById('articleModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('articleModal');
+            if (event.target == modal) {
+                closeArticleModal();
+            }
+        }
 
         // Load more news function
         function loadMoreNews() {
