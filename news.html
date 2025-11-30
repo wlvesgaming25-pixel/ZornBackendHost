@@ -408,19 +408,14 @@
             document.getElementById('modalDate').innerHTML = `<span class="modal-date-label">${article.date}</span> • <span class="modal-category-label">${article.category}</span>`;
             document.getElementById('modalContent').innerHTML = article.content;
             
-            modal.style.display = 'block';
+            modal.classList.add('show');
             document.body.style.overflow = 'hidden';
-            
-            // Scroll to top of modal
-            setTimeout(() => {
-                document.querySelector('.modal-content').scrollTop = 0;
-            }, 0);
         }
 
         // Close article modal
         function closeArticleModal() {
             const modal = document.getElementById('articleModal');
-            modal.style.display = 'none';
+            modal.classList.remove('show');
             document.body.style.overflow = 'auto';
         }
 
